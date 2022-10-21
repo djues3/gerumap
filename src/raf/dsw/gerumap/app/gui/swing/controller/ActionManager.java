@@ -11,6 +11,7 @@ public class ActionManager {
 	private ExitAction exitAction;
 	private NewProjectAction newProjectAction;
 
+	private InfoAction infoAction;
 	public ActionManager() {
 		initActions();
 	}
@@ -18,6 +19,7 @@ public class ActionManager {
 	private void initActions() {
 		exitAction = new ExitAction();
 		newProjectAction = new NewProjectAction();
+		infoAction = new InfoAction();
 	}
 
 }

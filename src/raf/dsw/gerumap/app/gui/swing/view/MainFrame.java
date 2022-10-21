@@ -14,15 +14,19 @@ public class MainFrame extends JFrame {
 	private ActionManager actionManager;
 	private JMenuBar menu;
 	private JToolBar toolbar;
+	private JPanel contentPanel;
+
 
 	private MainFrame() {
 	}
+
 
 	public void init() {
 		actionManager = new ActionManager();
 		initGUI();
 		setVisible(true);
 	}
+
 
 	private void initGUI() {
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -35,6 +39,13 @@ public class MainFrame extends JFrame {
 		setJMenuBar(menu);
 		toolbar = new Toolbar();
 		add(toolbar, BorderLayout.NORTH);
+		contentPanel = new JPanel();
+		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
+		// Za sada su ove dve komponente placeholderi, ali ce kasnije biti promenjene na  klase
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(), new JPanel());
+		splitPane.setDividerLocation(175);
+		contentPanel.add(splitPane);
+		add(contentPanel, BorderLayout.CENTER);
 	}
 
 
