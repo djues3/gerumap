@@ -1,3 +1,4 @@
 module gerumap.tim.daviddjuretanovic.dusanobradovic {
-    requires lombok;
+    requires static lombok;
+    requires java.desktop;
 }
