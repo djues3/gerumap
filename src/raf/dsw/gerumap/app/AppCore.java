@@ -2,15 +2,14 @@ package raf.dsw.gerumap.app;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.app.core.AppFramework;
+import raf.dsw.gerumap.app.core.ApplicationFramework;
 import raf.dsw.gerumap.app.core.GUI;
 import raf.dsw.gerumap.app.gui.swing.SwingGui;
 
 @Getter
 @Setter
-public class AppCore {
+public class AppCore extends ApplicationFramework {
     private static AppCore instance;
-    private AppFramework appFramework;
     private AppCore() {
 
     }
@@ -23,5 +22,13 @@ public class AppCore {
 
     public static void main(String[] args) {
         GUI gui = new SwingGui();
+        ApplicationFramework app = AppCore.getInstance();
+        app.init(gui);
+        app.run();
+    }
+
+    @Override
+    public void run() {
+        this.gui.run();
     }
 }
