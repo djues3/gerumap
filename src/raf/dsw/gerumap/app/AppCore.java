@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.core.ApplicationFramework;
 import raf.dsw.gerumap.app.core.GUI;
+import raf.dsw.gerumap.app.core.MapRepository;
 import raf.dsw.gerumap.app.gui.swing.SwingGui;
+import raf.dsw.gerumap.app.mapRepository.MapRepositoryImpl;
 
 @Getter
 @Setter
@@ -22,13 +24,15 @@ public class AppCore extends ApplicationFramework {
 
     public static void main(String[] args) {
         GUI gui = new SwingGui();
+        MapRepository repo = new MapRepositoryImpl();
         ApplicationFramework app = AppCore.getInstance();
-        app.init(gui);
+        app.init(gui, repo);
         app.run();
     }
 
     @Override
     public void run() {
         this.gui.run();
+        this.mapRepository.init();
     }
 }
