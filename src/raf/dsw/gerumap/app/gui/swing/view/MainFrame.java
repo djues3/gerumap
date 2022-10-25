@@ -42,10 +42,12 @@ public class MainFrame extends JFrame {
 		contentPanel = new JPanel();
 		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
 		// Za sada su ove dve komponente placeholderi, ali ce kasnije biti promenjene na  klase
-		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(), new JPanel());
+		ProjectView projectView = new ProjectView();
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new JScrollPane(), projectView);
 		splitPane.setDividerLocation(175);
 		contentPanel.add(splitPane);
 		add(contentPanel, BorderLayout.CENTER);
+
 	}
 
 
