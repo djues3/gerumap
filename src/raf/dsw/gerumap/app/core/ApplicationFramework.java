@@ -7,9 +7,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public abstract class ApplicationFramework {
     protected GUI gui;
+    protected MapRepository mapRepository;
 
     public abstract void run();
-    public void init(GUI gui) {
+    public void init(GUI gui, MapRepository mapRepository) {
         this.gui = gui;
+        this.mapRepository = mapRepository;
     }
 }
