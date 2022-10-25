@@ -22,7 +22,7 @@ public class InfoAction extends AbstractGerumapAction{
 		Dimension screenSize = toolkit.getScreenSize();
 		JDialog dialog = new JDialog();
 		dialog.setTitle("Info");
-		dialog.setSize(screenSize.width / 4, screenSize.height / 4);
+		dialog.setSize(screenSize.width / 3, screenSize.height / 3);
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setAlignmentX(Component.CENTER_ALIGNMENT);
