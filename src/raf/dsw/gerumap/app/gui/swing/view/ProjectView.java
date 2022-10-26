@@ -1,10 +1,9 @@
 package raf.dsw.gerumap.app.gui.swing.view;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import raf.dsw.gerumap.app.gui.swing.observer.IPublisher;
-import raf.dsw.gerumap.app.gui.swing.observer.ISubscriber;
+import raf.dsw.gerumap.app.gui.observer.IPublisher;
+import raf.dsw.gerumap.app.gui.observer.ISubscriber;
 
 import javax.swing.*;
 
