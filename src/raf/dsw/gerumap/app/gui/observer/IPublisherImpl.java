@@ -1,4 +1,4 @@
-package raf.dsw.gerumap.app.gui.swing.observer;
+package raf.dsw.gerumap.app.gui.observer;
 
 import java.util.ArrayList;
 import java.util.List;
