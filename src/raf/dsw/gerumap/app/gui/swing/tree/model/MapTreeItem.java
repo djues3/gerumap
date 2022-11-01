@@ -6,8 +6,7 @@ import raf.dsw.gerumap.app.mapRepository.MapNode;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-@Getter
-@Setter
+
 public class MapTreeItem extends DefaultMutableTreeNode {
 
     private MapNode mapNode;
@@ -23,5 +22,9 @@ public class MapTreeItem extends DefaultMutableTreeNode {
 
     public void setName(String name) {
         this.mapNode.setName(name);
+    }
+
+    public MapNode getMapNode() {
+        return mapNode;
     }
 }
