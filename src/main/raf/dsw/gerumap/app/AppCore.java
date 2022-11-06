@@ -32,7 +32,7 @@ public class AppCore extends ApplicationFramework {
 
     @Override
     public void run() {
-        this.gui.run();
         this.mapRepository.init();
+        this.gui.run();
     }
 }
