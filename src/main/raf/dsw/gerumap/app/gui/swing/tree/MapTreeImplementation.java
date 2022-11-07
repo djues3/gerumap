@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.app.gui.swing.tree;
 
+import lombok.Getter;
+import lombok.Setter;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
@@ -12,6 +14,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.util.Random;
 
+@Getter
+@Setter
 public class MapTreeImplementation implements MapTree {
 
     private MapTreeView treeView;
