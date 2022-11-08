@@ -11,10 +11,10 @@ public class MapTreeView extends JTree {
 
     public MapTreeView(DefaultTreeModel defaultTreeModel) {
         setModel(defaultTreeModel);
-        MapTreeCellRenderer ruTreeCellRenderer = new MapTreeCellRenderer();
+        MapTreeCellRenderer renderer = new MapTreeCellRenderer();
         addTreeSelectionListener(new MapTreeSelectionListener());
-        setCellEditor(new MapTreeCellEditor(this, ruTreeCellRenderer));
-        setCellRenderer(ruTreeCellRenderer);
+        setCellEditor(new MapTreeCellEditor(this, renderer));
+        setCellRenderer(renderer);
         setEditable(true);
     }
 }
