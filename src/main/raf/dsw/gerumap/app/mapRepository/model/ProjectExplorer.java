@@ -10,6 +10,14 @@ public class ProjectExplorer extends MapNodeComposite {
 	}
 
 	@Override
+	public void removeChild(MapNode child) {
+		if (!(child instanceof Project))
+			throw new RuntimeException("");
+		this.children.remove(child);
+		publish();
+	}
+
+	@Override
 	public void addChild(MapNode child) {
 		if (!(child instanceof Project))
 			throw new RuntimeException("");

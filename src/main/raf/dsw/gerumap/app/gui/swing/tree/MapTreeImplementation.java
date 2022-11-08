@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
+import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
 import raf.dsw.gerumap.app.mapRepository.model.ProjectExplorer;
 
@@ -47,7 +49,7 @@ public class MapTreeImplementation implements MapTree {
         MapNode parent = target.getMapNode().getParent();
         if (!(parent instanceof  MapNodeComposite))
             return;
-        System.out.println(((MapNodeComposite) parent).getChildren().remove(target.getMapNode()));
+        ((MapNodeComposite)target.getMapNode().getParent()).removeChild(target.getMapNode());
         ((DefaultMutableTreeNode)target.getParent()).remove(target);
         SwingUtilities.updateComponentTreeUI(treeView);
     }
@@ -58,11 +60,17 @@ public class MapTreeImplementation implements MapTree {
     }
 
     private MapNode createChild(MapNode parent) {
-        if (parent instanceof ProjectExplorer) {
-            Project tmp = new Project();
-            tmp.setParent(parent);
-            tmp.setName("New Project");
-            return tmp;
+        if (parent instanceof ProjectExplorer)
+            {
+            Project project =  new Project(parent);
+            project.setName("Project " + new Random().nextInt(100));
+//            project.addSubscriber(MainFrame.getInstance().getProjectView());
+            return project;
+        }
+        if (parent instanceof Project) {
+            MindMap map = new MindMap(parent);
+            map.setName("MindMap " + new Random().nextInt(100));
+            return map;
         }
 
         return null;
