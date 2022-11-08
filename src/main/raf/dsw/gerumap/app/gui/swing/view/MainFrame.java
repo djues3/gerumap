@@ -38,11 +38,13 @@ public class MainFrame extends JFrame {
 
 	private void initGUI() {
 		Toolkit kit = Toolkit.getDefaultToolkit();
+
 		Dimension screenSize = kit.getScreenSize();
 		setSize(screenSize.width / 2, screenSize.height / 2);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Gerumap");
+
 		menu = new MenuBar();
 		setJMenuBar(menu);
 		toolbar = new Toolbar();

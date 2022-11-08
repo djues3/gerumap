@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.app.gui.swing.tree;
 
+import lombok.Getter;
+import lombok.Setter;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
@@ -8,9 +10,12 @@ import raf.dsw.gerumap.app.mapRepository.model.Project;
 import raf.dsw.gerumap.app.mapRepository.model.ProjectExplorer;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.util.Random;
 
+@Getter
+@Setter
 public class MapTreeImplementation implements MapTree {
 
     private MapTreeView treeView;
@@ -38,13 +43,28 @@ public class MapTreeImplementation implements MapTree {
     }
 
     @Override
+    public void remove(MapTreeItem target) {
+        MapNode parent = target.getMapNode().getParent();
+        if (!(parent instanceof  MapNodeComposite))
+            return;
+        System.out.println(((MapNodeComposite) parent).getChildren().remove(target.getMapNode()));
+        ((DefaultMutableTreeNode)target.getParent()).remove(target);
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+    @Override
     public MapTreeItem getSelectedNode() {
         return (MapTreeItem) treeView.getLastSelectedPathComponent();
     }
 
     private MapNode createChild(MapNode parent) {
-        if (parent instanceof ProjectExplorer)
-            return  new Project();
+        if (parent instanceof ProjectExplorer) {
+            Project tmp = new Project();
+            tmp.setParent(parent);
+            tmp.setName("New Project");
+            return tmp;
+        }
+
         return null;
     }
 
