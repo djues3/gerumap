@@ -24,6 +24,7 @@ public class MindMap extends MapNodeComposite {
 		if(!(child instanceof Element))
 			throw new RuntimeException("");
 		this.getChildren().remove(child);
+		publish();
 	}
 
 	@Override
@@ -31,5 +32,6 @@ public class MindMap extends MapNodeComposite {
 		if(!(child instanceof Element))
 			throw new RuntimeException("");
 		this.children.add(child);
+		publish();
 	}
 }
