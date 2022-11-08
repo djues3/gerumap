@@ -5,7 +5,6 @@ import lombok.Setter;
 import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.gui.observer.ISubscriber;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -46,11 +45,16 @@ public class AuthorDialog extends JDialog implements ISubscriber {
 	private void initComponents() {
 		label = new JLabel("Autor: ");
 		field = new JTextField(20);
+		field.setText(project.getAuthor());
 		button = new JButton("Postavi");
-		rootPane.setLayout(new GridLayout(0, 1));
+		rootPane.setLayout(new BoxLayout(rootPane, BoxLayout.Y_AXIS));
+		rootPane.add(Box.createVerticalStrut(50));
 		rootPane.add(label);
+		rootPane.add(Box.createVerticalStrut(20));
 		rootPane.add(field);
+		rootPane.add(Box.createVerticalStrut(20));
 		rootPane.add(button);
+		rootPane.add(Box.createVerticalStrut(50));
 	}
 
 	private void initWindow() {

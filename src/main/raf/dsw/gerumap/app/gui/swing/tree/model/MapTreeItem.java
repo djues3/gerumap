@@ -1,7 +1,5 @@
 package raf.dsw.gerumap.app.gui.swing.tree.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 
 import javax.swing.tree.DefaultMutableTreeNode;

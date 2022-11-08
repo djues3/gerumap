@@ -19,9 +19,7 @@ public class DeleteAction extends AbstractGerumapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("LMAO");
-        MapTreeItem selected = (MapTreeItem) MainFrame.getInstance().getMapTree().getSelectedNode();
-//        MainFrame.getInstance().getMapTree().
+        MapTreeItem selected = MainFrame.getInstance().getMapTree().getSelectedNode();
         MainFrame.getInstance().getMapTree().remove(selected);
     }
 }

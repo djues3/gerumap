@@ -3,12 +3,9 @@ package raf.dsw.gerumap.app.gui.swing.view;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.AppCore;
-import raf.dsw.gerumap.app.core.ApplicationFramework;
 import raf.dsw.gerumap.app.gui.swing.controller.ActionManager;
 import raf.dsw.gerumap.app.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.app.gui.swing.tree.MapTreeImplementation;
-import raf.dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
-import raf.dsw.gerumap.app.mapRepository.model.ProjectExplorer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,8 +50,8 @@ public class MainFrame extends JFrame {
 		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
 		// Za sada su ove dve komponente placeholderi, ali ce kasnije biti promenjene na  klase
 		projectView = new ProjectView();
-		JTree projectExplorer = mapTree.generateTree(AppCore.getInstance().getMapRepository().getProjectExplorer());
-		JScrollPane scroll = new JScrollPane(projectExplorer);
+		JTree treeView = mapTree.generateTree(AppCore.getInstance().getMapRepository().getProjectExplorer());
+		JScrollPane scroll = new JScrollPane(treeView);
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, projectView);
 		splitPane.setDividerLocation(175);
 		contentPanel.add(splitPane);
