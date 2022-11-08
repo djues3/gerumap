@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.app.gui.swing;
 
 import raf.dsw.gerumap.app.core.GUI;
+import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 
 public class SwingGui implements GUI {
@@ -10,5 +11,9 @@ public class SwingGui implements GUI {
 		MainFrame mainFrame = MainFrame.getInstance();
 		mainFrame.init();
 		mainFrame.setVisible(true);
+	}
+
+	@Override
+	public void update(IPublisher publisher) {
 	}
 }

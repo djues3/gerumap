@@ -1,6 +1,8 @@
 package raf.dsw.gerumap.app.core;
 
-public interface GUI {
+import raf.dsw.gerumap.app.gui.observer.ISubscriber;
+
+public interface GUI extends ISubscriber {
 
 	void run();
 }

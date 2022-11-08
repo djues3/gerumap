@@ -10,11 +10,14 @@ import lombok.Setter;
 public abstract class ApplicationFramework {
     protected GUI gui;
     protected MapRepository mapRepository;
-
+    protected Logger logger;
+    protected MessageGenerator messageGenerator;
 
     public abstract void run();
-    public void init(GUI gui, MapRepository mapRepository) {
+    public void init(GUI gui, MapRepository mapRepository, Logger logger, MessageGenerator messageGenerator) {
         this.gui = gui;
         this.mapRepository = mapRepository;
+        this.logger = logger;
+        this.messageGenerator = messageGenerator;
     }
 }

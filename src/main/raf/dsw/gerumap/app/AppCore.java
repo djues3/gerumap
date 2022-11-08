@@ -2,11 +2,11 @@ package raf.dsw.gerumap.app;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.app.core.ApplicationFramework;
-import raf.dsw.gerumap.app.core.GUI;
-import raf.dsw.gerumap.app.core.MapRepository;
+import raf.dsw.gerumap.app.core.*;
 import raf.dsw.gerumap.app.gui.swing.SwingGui;
+import raf.dsw.gerumap.app.log.ConsoleLogger;
 import raf.dsw.gerumap.app.mapRepository.MapRepositoryImpl;
+import raf.dsw.gerumap.app.messageGenerator.MessageGeneratorImpl;
 
 @Getter
 @Setter
@@ -25,8 +25,10 @@ public class AppCore extends ApplicationFramework {
     public static void main(String[] args) {
         GUI gui = new SwingGui();
         MapRepository repo = new MapRepositoryImpl();
+        Logger logger = new ConsoleLogger();
+        MessageGenerator generator = new MessageGeneratorImpl();
         ApplicationFramework app = AppCore.getInstance();
-        app.init(gui, repo);
+        app.init(gui, repo, logger, generator);
         app.run();
     }
 
@@ -34,5 +36,6 @@ public class AppCore extends ApplicationFramework {
     public void run() {
         this.mapRepository.init();
         this.gui.run();
+        this.messageGenerator.init();
     }
 }

@@ -1,30 +1,35 @@
 package raf.dsw.gerumap.app.log;
 
-import raf.dsw.gerumap.app.core.Logger;
-import raf.dsw.gerumap.app.core.MessageGenerator;
-import raf.dsw.gerumap.app.gui.observer.IPublisher;
+import lombok.Getter;
+import lombok.Setter;
 import raf.dsw.gerumap.app.messageGenerator.Message;
 
-public class ConsoleLogger implements Logger {
 
-
+@Getter
+@Setter
+public class ConsoleLogger extends AbstractLogger {
 
 	@Override
-	public void log(Message message, Level level) {
-		if (level == Level.ERROR)
-			System.err.println(message.toString());
+	public void log(Message message, Throwable throwable) {
+		if (checkDiscard(message)) return;
+		String format = format(message, throwable);
+		if(message.getLevel() == Message.Level.ERROR)
+			System.err.println(format);
 		else
-			System.out.println(message.toString());
+			System.out.println(format);
 	}
 
 	@Override
 	public void log(Message message) {
-		log(message,Level.INFO);
+		if (checkDiscard(message)) return;
+		String format = format(message, null);
+		if (message.getLevel().equals(Message.Level.ERROR))
+			System.err.println(format);
+		else
+			System.out.println(format);
 	}
-
 	@Override
-	public void update(IPublisher publisher) {
-		if(publisher instanceof MessageGenerator)
-			log(((MessageGenerator) publisher).generate());
+	public void log(Throwable t) {
+		System.err.println(format(null, t));
 	}
 }
