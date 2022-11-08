@@ -56,7 +56,6 @@ public class MainFrame extends JFrame {
 		splitPane.setDividerLocation(175);
 		contentPanel.add(splitPane);
 		add(contentPanel, BorderLayout.CENTER);
-
 	}
 
 

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
@@ -48,6 +49,7 @@ public class MapTreeImplementation implements MapTree {
         MapNode parent = target.getMapNode().getParent();
         if (!(parent instanceof  MapNodeComposite))
             return;
+        ((MapNodeComposite)target.getMapNode().getParent()).removeChild(target.getMapNode());
         ((DefaultMutableTreeNode)target.getParent()).remove(target);
         SwingUtilities.updateComponentTreeUI(treeView);
     }
@@ -62,6 +64,7 @@ public class MapTreeImplementation implements MapTree {
             {
             Project project =  new Project(parent);
             project.setName("Project " + new Random().nextInt(100));
+//            project.addSubscriber(MainFrame.getInstance().getProjectView());
             return project;
         }
         if (parent instanceof Project) {

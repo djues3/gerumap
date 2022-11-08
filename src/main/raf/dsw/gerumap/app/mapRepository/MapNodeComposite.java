@@ -11,5 +11,6 @@ import java.util.List;
 public abstract class MapNodeComposite extends MapNode {
 	protected List<MapNode> children = new ArrayList<>();
 
+	public abstract void removeChild(MapNode child);
 	public abstract void addChild(MapNode child);
 }
