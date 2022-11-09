@@ -22,10 +22,18 @@ public class Project extends MapNodeComposite {
 		this.parent = parent;
 	}
 
+	public void removeChild(MapNode child) {
+		if (!(child instanceof MindMap))
+			throw new RuntimeException("");
+		this.getChildren().remove(child);
+		publish();
+	}
+
 	@Override
 	public void addChild(MapNode child) {
 		if(!(child instanceof MindMap))
 			throw new RuntimeException("");
 		this.children.add(child);
+		publish();
 	}
 }

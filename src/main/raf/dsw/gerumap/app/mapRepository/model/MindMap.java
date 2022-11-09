@@ -18,10 +18,20 @@ public class MindMap extends MapNodeComposite {
 	public MindMap(MapNode parent) {
 		this.parent = parent;
 	}
+
+	@Override
+	public void removeChild(MapNode child) {
+		if(!(child instanceof Element))
+			throw new RuntimeException("");
+		this.getChildren().remove(child);
+		publish();
+	}
+
 	@Override
 	public void addChild(MapNode child) {
 		if(!(child instanceof Element))
 			throw new RuntimeException("");
 		this.children.add(child);
+		publish();
 	}
 }

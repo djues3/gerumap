@@ -5,8 +5,10 @@ import lombok.Setter;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
+import raf.dsw.gerumap.app.mapRepository.model.Element;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
 import raf.dsw.gerumap.app.mapRepository.model.ProjectExplorer;
@@ -57,7 +59,6 @@ public class MapTreeImplementation implements MapTree {
             AppCore.getInstance().getMessageGenerator()
                     .generate(MessageType.NODE_CANNOT_BE_REMOVED, Message.Level.ERROR, e);
         }
-
     }
 
     @Override
@@ -70,12 +71,19 @@ public class MapTreeImplementation implements MapTree {
             {
             Project project =  new Project(parent);
             project.setName("Project " + new Random().nextInt(100));
+//            project.addSubscriber(MainFrame.getInstance().getProjectView());
             return project;
         }
         if (parent instanceof Project) {
             MindMap map = new MindMap(parent);
             map.setName("MindMap " + new Random().nextInt(100));
             return map;
+        }
+
+        if (parent instanceof MindMap) {
+            Element element = new Element(parent);
+            element.setName("Element " + new Random().nextInt(100));
+            return element;
         }
 
         return null;
