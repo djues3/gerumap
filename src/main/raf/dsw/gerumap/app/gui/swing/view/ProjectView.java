@@ -12,20 +12,16 @@ import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
 
 import javax.swing.*;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @Setter
 public class ProjectView extends JTabbedPane implements ISubscriber {
     private Project project;
 
-    private JTabbedPane tabbedPane;
-
     private JLabel label;
 
     public ProjectView() {
-        init();
         for (MapNode x : AppCore.getInstance().getMapRepository().getProjectExplorer().getChildren()) {
             if (x instanceof Project) {
                 x.addSubscriber(this);
@@ -33,23 +29,9 @@ public class ProjectView extends JTabbedPane implements ISubscriber {
         }
     }
 
-    private void init() {
-        initComponents();
-    }
-
-    private void initComponents() {
-        if (project == null) {
-            return;
-        }
-        label = new JLabel("Projekat: " + project.getName());
-        this.add(label);
-        tabbedPane = new JTabbedPane();
-        this.add(tabbedPane);
-    }
 
     @Override
     public void update(IPublisher publisher) {
-        init();
         this.removeAll();
         if (project == null) return;
         List<MindMap> mindMaps = new LinkedList<>();
@@ -57,21 +39,17 @@ public class ProjectView extends JTabbedPane implements ISubscriber {
             mindMaps.add((MindMap)x);
         }
         for (MindMap x : mindMaps) {
-            this.add(x.getName(), new JPanel());
+            this.add(x.getName(), new MindMapView(x));
         }
-
     }
 
     public void setProject(Project project) {
+        if (project == this.project) return;
         this.removeAll();
         this.project = project;
         project.addSubscriber(this);
-        List<MindMap> mindMaps = new LinkedList<>();
         for (MapNode x : project.getChildren()) {
-            mindMaps.add((MindMap)x);
-        }
-        for (MindMap x : mindMaps) {
-            this.add(x.getName(), new JPanel());
+            this.addTab(x.getName(), new MindMapView((MindMap) x));
         }
     }
 }
