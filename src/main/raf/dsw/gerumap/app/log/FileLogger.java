@@ -2,48 +2,40 @@ package raf.dsw.gerumap.app.log;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.app.core.Logger;
-import raf.dsw.gerumap.app.core.MessageGenerator;
-import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.messageGenerator.Message;
-
 import java.io.*;
+
 
 @Getter
 @Setter
-public class FileLogger implements Logger {
+public class FileLogger extends AbstractLogger {
 
-	public static final String DEFAULT_FILE_PATH = "log.txt";
 
-	private String path;
-	@Override
-	public void log(Message message, Level level) {
-		File file = new File("append.txt");
-		FileWriter fr;
-		BufferedWriter br;
-		PrintWriter pr;
-		try {
-			fr = new FileWriter(file, true);
-			br = new BufferedWriter(fr);
-			pr = new PrintWriter(br);
-			pr.println("data");
-			pr.close();
-			br.close();
-			fr.close();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
+	public static final String DEFAULT_FILE_PATH = "/log.log";
+	public static final String PROJECT_PATH = System.getProperty("user.dir");
+
+	private String path = DEFAULT_FILE_PATH;
 
 	@Override
 	public void log(Message message) {
-		log(message, Level.INFO);
+		log(message, null);
 	}
 
 	@Override
-	public void update(IPublisher publisher) {
-		if(publisher instanceof MessageGenerator)
-			log(((MessageGenerator) publisher).generate());
-		else throw new RuntimeException("");
+	public void log(Throwable t) {
+		append(format(null, t));
+	}
+
+	@Override
+	public void log(Message message, Throwable t) {
+		if (checkDiscard(message)) return;
+		append(format(message, t));
+	}
+	private void append(String format) {
+		try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(PROJECT_PATH + path, true)))) {
+			pr.println(format);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

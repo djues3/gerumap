@@ -2,6 +2,7 @@ package raf.dsw.gerumap.app.gui.swing.tree;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
@@ -11,7 +12,8 @@ import raf.dsw.gerumap.app.mapRepository.model.Element;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
 import raf.dsw.gerumap.app.mapRepository.model.ProjectExplorer;
-
+import raf.dsw.gerumap.app.messageGenerator.Message;
+import raf.dsw.gerumap.app.messageGenerator.MessageType;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -47,12 +49,16 @@ public class MapTreeImplementation implements MapTree {
 
     @Override
     public void remove(MapTreeItem target) {
-        MapNode parent = target.getMapNode().getParent();
-        if (!(parent instanceof  MapNodeComposite))
-            return;
-        ((MapNodeComposite)target.getMapNode().getParent()).removeChild(target.getMapNode());
-        ((DefaultMutableTreeNode)target.getParent()).remove(target);
-        SwingUtilities.updateComponentTreeUI(treeView);
+        try {
+            MapNode parent = target.getMapNode().getParent();
+            if (!(parent instanceof  MapNodeComposite))
+                return;
+            ((DefaultMutableTreeNode) target.getParent()).remove(target);
+            SwingUtilities.updateComponentTreeUI(treeView);
+        } catch (NullPointerException e) {
+            AppCore.getInstance().getMessageGenerator()
+                    .generate(MessageType.NODE_CANNOT_BE_REMOVED, Message.Level.ERROR, e);
+        }
     }
 
     @Override

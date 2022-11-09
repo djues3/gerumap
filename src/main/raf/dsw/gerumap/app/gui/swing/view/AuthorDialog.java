@@ -7,6 +7,7 @@ import raf.dsw.gerumap.app.gui.observer.ISubscriber;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 
 @Getter
@@ -31,7 +32,7 @@ public class AuthorDialog extends JDialog implements ISubscriber {
 	}
 
 	private void initListeners() {
-		button.addActionListener(e -> {
+		ActionListener listener = e -> {
 			if(!(field.getText().equals("") || field.getText() == null))
 			{
 				project.setAuthor(field.getText());
@@ -39,7 +40,9 @@ public class AuthorDialog extends JDialog implements ISubscriber {
 			} else {
 				setVisible(false);
 			}
-		});
+		};
+		button.addActionListener(listener);
+		field.addActionListener(listener);
 	}
 
 	private void initComponents() {

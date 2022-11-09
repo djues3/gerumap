@@ -1,11 +1,28 @@
 package raf.dsw.gerumap.app.messageGenerator;
 
+import lombok.Getter;
+import lombok.Setter;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
+@Getter
+@Setter
 public class Message {
+	private Level level;
+	private String message;
+	private String timestamp = ZonedDateTime
+			.now(ZoneId.systemDefault())
+			.format(DateTimeFormatter.ofPattern("yyyy/MM/dd-HH:mm:ss.SSS"));
+	public enum Level {
+		DEBUG,
+		INFO,
+		WARNING,
+		ERROR
+	}
 
-
-	static class MessageType {
-		public static final String NODE_CANNOT_BE_ADDED = "Node cannot be added";
-		public static final String NODE_CANNOT_BE_REMOVED = "Node cannot be removed";
-		public static final String NODE_CANNOT_BE_EMPTY = "Node cannot be empty";
+	@Override
+	public String toString() {
+		return message;
 	}
 }
