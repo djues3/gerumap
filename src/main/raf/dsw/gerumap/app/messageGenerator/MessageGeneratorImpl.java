@@ -15,6 +15,7 @@ public class MessageGeneratorImpl extends IPublisherImpl implements MessageGener
 		message = new Message();
 		message.setMessage(msg);
 		message.setLevel(level);
+		throwable = null;
 		publish();
 	}
 

@@ -3,8 +3,8 @@ package raf.dsw.gerumap.app.log;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.messageGenerator.Message;
-
 import java.io.*;
+
 
 @Getter
 @Setter
@@ -12,6 +12,7 @@ public class FileLogger extends AbstractLogger {
 
 
 	public static final String DEFAULT_FILE_PATH = "/log.log";
+	public static final String PROJECT_PATH = System.getProperty("user.dir");
 
 	private String path = DEFAULT_FILE_PATH;
 
@@ -31,8 +32,7 @@ public class FileLogger extends AbstractLogger {
 		append(format(message, t));
 	}
 	private void append(String format) {
-		File logfile = new File(path);
-		try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(logfile, true)))) {
+		try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(PROJECT_PATH + path, true)))) {
 			pr.println(format);
 		} catch (IOException e) {
 			e.printStackTrace();
