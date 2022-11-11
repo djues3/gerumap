@@ -54,6 +54,7 @@ public class MapTreeImplementation implements MapTree {
             if (!(parent instanceof  MapNodeComposite))
                 return;
             ((DefaultMutableTreeNode) target.getParent()).remove(target);
+            ((MapNodeComposite) parent).removeChild(target.getMapNode());
             SwingUtilities.updateComponentTreeUI(treeView);
         } catch (NullPointerException e) {
             AppCore.getInstance().getMessageGenerator()

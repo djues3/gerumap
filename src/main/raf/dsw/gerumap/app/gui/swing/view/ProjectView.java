@@ -13,6 +13,7 @@ import raf.dsw.gerumap.app.mapRepository.model.Project;
 
 import javax.swing.*;
 import java.util.*;
+import java.util.jar.JarEntry;
 
 @Getter
 @Setter
@@ -21,12 +22,13 @@ public class ProjectView extends JTabbedPane implements ISubscriber {
 
     private JLabel label;
 
-    public ProjectView() {
-        for (MapNode x : AppCore.getInstance().getMapRepository().getProjectExplorer().getChildren()) {
-            if (x instanceof Project) {
-                x.addSubscriber(this);
-            }
+    public ProjectView(Project p) {
+        project = p;
+        project.addSubscriber(this);
+        for (MapNode x : project.getChildren()) {
+            this.addTab(x.getName(), new MindMapView((MindMap) x));
         }
+
     }
 
 
@@ -40,16 +42,6 @@ public class ProjectView extends JTabbedPane implements ISubscriber {
         }
         for (MindMap x : mindMaps) {
             this.add(x.getName(), new MindMapView(x));
-        }
-    }
-
-    public void setProject(Project project) {
-        if (project == this.project) return;
-        this.removeAll();
-        this.project = project;
-        project.addSubscriber(this);
-        for (MapNode x : project.getChildren()) {
-            this.addTab(x.getName(), new MindMapView((MindMap) x));
         }
     }
 }
