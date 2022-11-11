@@ -11,9 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
-public class NewProjectAction extends AbstractGerumapAction {
+public class NewAction extends AbstractGerumapAction {
 
-	public NewProjectAction() {
+	public NewAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK));
 		putValue(NAME, "New Project");
 		putValue(SMALL_ICON, loadScaledIcon("/images/addNew.png"));
