@@ -12,6 +12,7 @@ import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.*;
 import java.util.jar.JarEntry;
 
@@ -21,27 +22,66 @@ public class ProjectView extends JTabbedPane implements ISubscriber {
     private Project project;
 
     private JLabel label;
+    private HashMap<MindMap, MindMapView> map = new HashMap<>();
+
+    private void addMindMapView(MindMap m) {
+        if (!map.containsKey(m)) {
+            map.put(m, new MindMapView(m));
+            m.addSubscriber(this);
+        }
+    }
+
+    private void removeMindMapView(MindMap m) {
+        if (map.containsKey(m)) {
+            map.remove(m);
+            m.removeSubscriber(this);
+        }
+    }
 
     public ProjectView(Project p) {
         project = p;
         project.addSubscriber(this);
-        for (MapNode x : project.getChildren()) {
-            this.addTab(x.getName(), new MindMapView((MindMap) x));
+        for (MapNode x : p.getChildren()) {
+            ((MindMap)x).addSubscriber(this);
         }
-
+        for (MapNode x : project.getChildren()) {
+            addMindMapView((MindMap)x);
+        }
     }
 
 
     @Override
     public void update(IPublisher publisher) {
-        this.removeAll();
-        if (project == null) return;
-        List<MindMap> mindMaps = new LinkedList<>();
-        for (MapNode x : project.getChildren()) {
-            mindMaps.add((MindMap)x);
+        HashSet<MindMap> toRemove = new HashSet<>();
+
+        for (MindMap m : map.keySet()) {
+            if (!project.getChildren().contains(m)) {
+                toRemove.add(m);
+                for (int i = 0, size = getComponentCount() ; i < size; i++) {
+                    if (((MindMapView)getComponentAt(i)).getMindMap() == m) {
+                        this.removeTabAt(i);
+                        break;
+                    }
+                }
+            }
         }
-        for (MindMap x : mindMaps) {
-            this.add(x.getName(), new MindMapView(x));
+
+
+        Iterator<MapNode> it = (project.getChildren()).iterator();
+        while(it.hasNext()) {
+            MindMap m = (MindMap)it.next();
+            if (!map.containsKey(m)){
+                addMindMapView(m);
+                addTab(m.getName(), map.get(m));
+            }
         }
+        for (MindMap m : toRemove)
+            removeMindMapView(m);
+
+        for (int i = 0 , size = getComponentCount() ; i < size ; i++) {
+            this.setTitleAt(i, ((MindMapView) getComponentAt(i)).getMindMap().getName());
+        }
+
+        System.out.println(map.keySet());
     }
 }

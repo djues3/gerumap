@@ -79,13 +79,6 @@ public class MainFrame extends JFrame implements ISubscriber {
 	@Override
 	public void update(IPublisher publisher) {
 		projectView = pvm.getProjectView();
-//		projectView.revalidate();
-//		projectView.repaint();
 		splitPane.setRightComponent(projectView);
-//		splitPane.revalidate();
-//		splitPane.repaint();
-//		this.revalidate();
-//		this.repaint();
-
 	}
 }
