@@ -11,7 +11,7 @@ import java.io.*;
 public class FileLogger extends AbstractLogger {
 
 
-	public static final String DEFAULT_FILE_PATH = "/log.log";
+	public static final String DEFAULT_FILE_PATH = "/src/resources/log.txt";
 	public static final String PROJECT_PATH = System.getProperty("user.dir");
 
 	private String path = DEFAULT_FILE_PATH;
@@ -32,7 +32,8 @@ public class FileLogger extends AbstractLogger {
 		append(format(message, t));
 	}
 	private void append(String format) {
-		try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(PROJECT_PATH + path, true)))) {
+		try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(System.getProperty("user.dir")
+				+ "/src/resources/log.log", true)))) {
 			pr.println(format);
 		} catch (IOException e) {
 			e.printStackTrace();
