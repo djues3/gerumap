@@ -16,6 +16,12 @@ import java.nio.file.Path;
 public class Project extends MapNodeComposite {
 
 	private Path filePath;
+
+	public void setAuthor(String author) {
+		this.author = author;
+		publish();
+	}
+
 	private String author;
 
 	public Project(MapNode parent) {
