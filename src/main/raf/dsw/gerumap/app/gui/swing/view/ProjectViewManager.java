@@ -57,11 +57,13 @@ public class ProjectViewManager extends IPublisherImpl implements ISubscriber {
     @Override
     public void update(IPublisher publisher) {
         if (publisher instanceof ProjectExplorer) {
+            Project toRemove = null;
             for (Project p : map.keySet()) {
                 if (!((ProjectExplorer) publisher).getChildren().contains(p)) {
-                    removeProject(p);
+                    toRemove = p;
                 }
             }
+            removeProject(toRemove);
         }
     }
 }
