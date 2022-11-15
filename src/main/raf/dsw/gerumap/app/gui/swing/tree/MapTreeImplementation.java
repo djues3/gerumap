@@ -5,7 +5,6 @@ import lombok.Setter;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
-import raf.dsw.gerumap.app.gui.swing.view.ProjectViewManager;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
 import raf.dsw.gerumap.app.mapRepository.factory.FactoryUtil;
@@ -49,6 +48,9 @@ public class MapTreeImplementation implements MapTree {
     public void remove(MapTreeItem target) {
         try {
             MapNode parent = target.getMapNode().getParent();
+            if (parent instanceof ProjectExplorer) {
+                AppCore.getInstance().getMessageGenerator().generate(MessageType.PROJECT_EXPLORER_CANNOT_BE_REMOVED, Message.Level.ERROR);
+            }
             if (!(parent instanceof  MapNodeComposite))
                 return;
             ((DefaultMutableTreeNode) target.getParent()).remove(target);
