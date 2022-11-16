@@ -48,8 +48,9 @@ public class MapTreeImplementation implements MapTree {
     public void remove(MapTreeItem target) {
         try {
             MapNode parent = target.getMapNode().getParent();
-            if (parent instanceof ProjectExplorer) {
+            if (parent == null && target.getMapNode() instanceof ProjectExplorer) {
                 AppCore.getInstance().getMessageGenerator().generate(MessageType.PROJECT_EXPLORER_CANNOT_BE_REMOVED, Message.Level.ERROR);
+                return;
             }
             if (!(parent instanceof  MapNodeComposite))
                 return;
