@@ -14,7 +14,6 @@ import raf.dsw.gerumap.app.messageGenerator.MessageGeneratorImpl;
 public class AppCore extends ApplicationFramework {
     private static AppCore instance;
     private AppCore() {
-
     }
 
     public static AppCore getInstance() {

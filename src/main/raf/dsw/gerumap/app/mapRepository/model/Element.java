@@ -9,6 +9,8 @@ import raf.dsw.gerumap.app.mapRepository.MapNode;
 @NoArgsConstructor
 public class Element extends MapNode {
 
+	private int color; // 0xRRGGBBAA
+	private int thickness;
 	public Element(MapNode parent) {
 		this.parent = parent;
 	}

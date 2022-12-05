@@ -36,7 +36,8 @@ public class FileLogger extends AbstractLogger {
 				+ "/src/resources/log.log", true)))) {
 			pr.println(format);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println("Error while writing to file");
+			log(e);
 		}
 	}
 }

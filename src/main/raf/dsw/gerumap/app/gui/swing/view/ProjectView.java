@@ -1,29 +1,30 @@
 package raf.dsw.gerumap.app.gui.swing.view;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.gui.observer.ISubscriber;
+import raf.dsw.gerumap.app.gui.state.states.StateManager;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.util.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ProjectView extends JPanel implements ISubscriber {
     private Project project;
-
     private JTabbedPane tabs;
-
     private JPanel labels;
     private JLabel authorLabel;
     private JLabel nameLabel;
     private HashMap<MindMap, MindMapView> map = new HashMap<>();
+    private StateManager stateManager;
 
     private void addMindMapView(MindMap m) {
         if (!map.containsKey(m)) {
@@ -75,7 +76,6 @@ public class ProjectView extends JPanel implements ISubscriber {
         nameLabel.setText(project.getName());
         authorLabel.setText("Author : " + project.getAuthor());
         HashSet<MindMap> toRemove = new HashSet<>();
-
         for (MindMap m : map.keySet()) {
             if (!project.getChildren().contains(m)) {
                 toRemove.add(m);
@@ -87,12 +87,9 @@ public class ProjectView extends JPanel implements ISubscriber {
                 }
             }
         }
-
-
-        Iterator<MapNode> it = (project.getChildren()).iterator();
-        while(it.hasNext()) {
-            MindMap m = (MindMap)it.next();
-            if (!map.containsKey(m)){
+        for (MapNode mapNode : project.getChildren()) {
+            MindMap m = (MindMap) mapNode;
+            if (!map.containsKey(m)) {
                 addMindMapView(m);
                 tabs.addTab(m.getName(), map.get(m));
             }
@@ -103,5 +100,26 @@ public class ProjectView extends JPanel implements ISubscriber {
         for (int i = 0 , size = tabs.getComponentCount() ; i < size ; i++) {
             this.tabs.setTitleAt(i, ((MindMapView) tabs.getComponentAt(i)).getMindMap().getName());
         }
+    }
+    public void startTermState() {
+        stateManager.setTermState();
+    }
+    public void startConnectionState() {
+        stateManager.setConnectionState();
+    }
+    public void startSelectionState() {
+        stateManager.setSelectionState();
+    }
+    public void startDeleteState() {
+        stateManager.setDeleteState();
+    }
+    public void startEditState() {
+        stateManager.setEditState();
+    }
+    public void mousePressed(int x, int y, MindMap map) {
+        this.stateManager.getState().mousePressed(x, y, map);
+    }
+    public void mouseDragged(int x, int y, MindMap map) {
+        this.stateManager.getState().mouseDragged(x, y, map);
     }
 }
