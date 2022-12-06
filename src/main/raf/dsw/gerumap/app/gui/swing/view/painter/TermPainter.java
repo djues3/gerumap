@@ -23,5 +23,6 @@ public class TermPainter extends Painter {
 		g.fillOval(term.getX(), term.getY(), width, height);
 		g.setFont(new Font("Arial", Font.PLAIN, 12));
 		g.drawString(term.getText(), term.getX() + 10, term.getY() + 15);
+
 	}
 }

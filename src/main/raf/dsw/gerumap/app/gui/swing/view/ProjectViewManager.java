@@ -4,15 +4,12 @@ import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.gui.observer.IPublisherImpl;
 import raf.dsw.gerumap.app.gui.observer.ISubscriber;
-import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
 import raf.dsw.gerumap.app.mapRepository.model.ProjectExplorer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 public class ProjectViewManager extends IPublisherImpl implements ISubscriber {
     private static ProjectViewManager instance;

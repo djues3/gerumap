@@ -29,6 +29,9 @@ public class MindMapView extends JPanel implements ISubscriber {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        for (Painter painter : painters) {
+            painter.draw(g);
+        }
 
     }
 }

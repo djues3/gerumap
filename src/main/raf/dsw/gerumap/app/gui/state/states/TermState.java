@@ -1,5 +1,6 @@
-package raf.dsw.gerumap.app.gui.state;
+package raf.dsw.gerumap.app.gui.state.states;
 
+import raf.dsw.gerumap.app.gui.state.State;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 

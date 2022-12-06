@@ -26,86 +26,89 @@ public class ProjectView extends JPanel implements ISubscriber {
     private HashMap<MindMap, MindMapView> map = new HashMap<>();
     private StateManager stateManager;
 
-    private void addMindMapView(MindMap m) {
-        if (!map.containsKey(m)) {
-            map.put(m, new MindMapView(m));
-            m.addSubscriber(this);
-        }
-    }
+	private void addMindMapView(MindMap m) {
+		if (!map.containsKey(m)) {
+			map.put(m, new MindMapView(m));
+			m.addSubscriber(this);
+		}
+	}
 
-    private void removeMindMapView(MindMap m) {
-        if (map.containsKey(m)) {
-            map.remove(m);
-            m.removeSubscriber(this);
-        }
-    }
+	private void removeMindMapView(MindMap m) {
+		if (map.containsKey(m)) {
+			map.remove(m);
+			m.removeSubscriber(this);
+		}
+	}
 
-    public ProjectView(Project p) {
-        project = p;
-        project.addSubscriber(this);
+	public ProjectView(Project p) {
+		project = p;
+		project.addSubscriber(this);
 
-        labels = new JPanel();
+		labels = new JPanel();
 
-        nameLabel = new JLabel(project.getName());
-        authorLabel = new JLabel("Author : " + project.getAuthor());
+		nameLabel = new JLabel(project.getName());
+		authorLabel = new JLabel("Author : " + project.getAuthor());
 
-        labels.setMinimumSize(new Dimension(MainFrame.getInstance().getWidth(), 20));
-        labels.setMaximumSize(new Dimension(MainFrame.getInstance().getWidth(), 20));
-        labels.setLayout(new BorderLayout());
-        labels.add(authorLabel, BorderLayout.EAST);
-        labels.add(nameLabel, BorderLayout.WEST);
+		labels.setMinimumSize(new Dimension(MainFrame.getInstance().getWidth(), 20));
+		labels.setMaximumSize(new Dimension(MainFrame.getInstance().getWidth(), 20));
+		labels.setLayout(new BorderLayout());
+		labels.add(authorLabel, BorderLayout.EAST);
+		labels.add(nameLabel, BorderLayout.WEST);
 
-        tabs = new JTabbedPane();
+		tabs = new JTabbedPane();
 
-        BoxLayout box = new BoxLayout(this, BoxLayout.Y_AXIS);
-        this.setLayout(box);
+		BoxLayout box = new BoxLayout(this, BoxLayout.Y_AXIS);
+		this.setLayout(box);
 
-        this.add(labels);
-        this.add(tabs);
-        for (MapNode x : p.getChildren()) {
-            ((MindMap)x).addSubscriber(this);
-        }
-        for (MapNode x : project.getChildren()) {
-            addMindMapView((MindMap)x);
-        }
-    }
+		this.add(labels);
+		this.add(tabs);
+		for (MapNode x : p.getChildren()) {
+			((MindMap)x).addSubscriber(this);
+		}
+		for (MapNode x : project.getChildren()) {
+			addMindMapView((MindMap)x);
+		}
+	}
 
 
-    @Override
-    public void update(IPublisher publisher) {
-        nameLabel.setText(project.getName());
-        authorLabel.setText("Author : " + project.getAuthor());
-        HashSet<MindMap> toRemove = new HashSet<>();
-        for (MindMap m : map.keySet()) {
-            if (!project.getChildren().contains(m)) {
-                toRemove.add(m);
-                for (int i = 0, size = tabs.getComponentCount() ; i < size; i++) {
-                    if (((MindMapView)tabs.getComponentAt(i)).getMindMap() == m) {
-                        this.tabs.removeTabAt(i);
-                        break;
-                    }
-                }
-            }
-        }
-        for (MapNode mapNode : project.getChildren()) {
-            MindMap m = (MindMap) mapNode;
-            if (!map.containsKey(m)) {
-                addMindMapView(m);
-                tabs.addTab(m.getName(), map.get(m));
-            }
-        }
-        for (MindMap m : toRemove)
-            removeMindMapView(m);
+	@Override
+	public void update(IPublisher publisher) {
+		nameLabel.setText(project.getName());
+		authorLabel.setText("Author : " + project.getAuthor());
+		HashSet<MindMap> toRemove = new HashSet<>();
 
-        for (int i = 0 , size = tabs.getComponentCount() ; i < size ; i++) {
-            this.tabs.setTitleAt(i, ((MindMapView) tabs.getComponentAt(i)).getMindMap().getName());
-        }
-    }
+		for (MindMap m : map.keySet()) {
+			if (!project.getChildren().contains(m)) {
+				toRemove.add(m);
+				for (int i = 0, size = tabs.getComponentCount() ; i < size; i++) {
+					if (((MindMapView)tabs.getComponentAt(i)).getMindMap() == m) {
+						this.tabs.removeTabAt(i);
+						break;
+					}
+				}
+			}
+		}
+
+
+		for (MapNode mapNode : project.getChildren()) {
+			MindMap m = (MindMap)mapNode;
+			if (!map.containsKey(m)){
+				addMindMapView(m);
+				tabs.addTab(m.getName(), map.get(m));
+			}
+		}
+		for (MindMap m : toRemove)
+			removeMindMapView(m);
+
+		for (int i = 0 , size = tabs.getComponentCount() ; i < size ; i++) {
+			this.tabs.setTitleAt(i, ((MindMapView) tabs.getComponentAt(i)).getMindMap().getName());
+		}
+	}
     public void startTermState() {
         stateManager.setTermState();
     }
     public void startConnectionState() {
-        stateManager.setConnectionState();
+        stateManager.setLinkState();
     }
     public void startSelectionState() {
         stateManager.setSelectionState();
