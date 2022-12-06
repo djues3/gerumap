@@ -12,7 +12,8 @@ import raf.dsw.gerumap.app.mapRepository.model.Project;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
 
 @Getter
 @Setter
@@ -63,11 +64,12 @@ public class ProjectView extends JPanel implements ISubscriber {
 		this.add(labels);
 		this.add(tabs);
 		for (MapNode x : p.getChildren()) {
-			((MindMap)x).addSubscriber(this);
+			x.addSubscriber(this);
 		}
 		for (MapNode x : project.getChildren()) {
 			addMindMapView((MindMap)x);
 		}
+		this.stateManager = new StateManager();
 	}
 
 

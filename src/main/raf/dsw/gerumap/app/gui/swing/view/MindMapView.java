@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.gui.observer.ISubscriber;
+import raf.dsw.gerumap.app.gui.swing.controller.MouseController;
 import raf.dsw.gerumap.app.gui.swing.view.painter.Painter;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 
@@ -20,6 +21,7 @@ public class MindMapView extends JPanel implements ISubscriber {
 
     public MindMapView(MindMap mindMap) {
         this.mindMap = mindMap;
+        this.addMouseListener(new MouseController(this));
     }
 
     @Override
@@ -32,6 +34,5 @@ public class MindMapView extends JPanel implements ISubscriber {
         for (Painter painter : painters) {
             painter.draw(g);
         }
-
     }
 }

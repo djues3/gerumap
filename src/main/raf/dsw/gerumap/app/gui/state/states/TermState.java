@@ -10,6 +10,7 @@ public class TermState extends State {
 		Term term = new Term();
 		term.setX(x);
 		term.setY(y);
+		term.setText("New Term");
 		map.addChild(term);
 	}
 }
