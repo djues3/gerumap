@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
+import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
 @Getter
 @Setter
@@ -33,5 +34,17 @@ public class MindMap extends MapNodeComposite {
 			throw new RuntimeException("");
 		this.children.add(child);
 		publish();
+	}
+
+	public Term getTermAt(int x, int y) {
+		for (MapNode child : children) {
+			if (child instanceof Term term) {
+				if (term.getX() <= x && term.getX() + term.getWidth() >= x && term.getY() <= y
+						&& term.getY() + term.getHeight() >= y) {
+					return term;
+				}
+			}
+		}
+		return null;
 	}
 }

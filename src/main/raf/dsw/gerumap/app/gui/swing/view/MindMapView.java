@@ -17,11 +17,12 @@ import java.util.List;
 @Setter
 public class MindMapView extends JPanel implements ISubscriber {
     private MindMap mindMap;
-    List<Painter> painters = new ArrayList<>();
+    private List<Painter> painters = new ArrayList<>();
 
     public MindMapView(MindMap mindMap) {
         this.mindMap = mindMap;
         this.addMouseListener(new MouseController(this));
+        this.mindMap.addSubscriber(this);
     }
 
     @Override
@@ -34,5 +35,11 @@ public class MindMapView extends JPanel implements ISubscriber {
         for (Painter painter : painters) {
             painter.draw(g);
         }
+    }
+    public void addPainter(Painter painter) {
+        painters.add(painter);
+    }
+    public void removePainter(Painter painter) {
+        painters.remove(painter);
     }
 }

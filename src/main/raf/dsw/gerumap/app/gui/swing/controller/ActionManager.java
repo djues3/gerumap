@@ -3,6 +3,7 @@ package raf.dsw.gerumap.app.gui.swing.controller;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.gerumap.app.gui.swing.controller.state.*;
 
 @Getter
 @Setter
@@ -13,6 +14,12 @@ public class ActionManager {
 	private DeleteAction deleteAction;
 	private AuthorAction authorAction;
 	private InfoAction infoAction;
+	private EditStateAction editStateAction;
+	private SelectStateAction selectStateAction;
+	private TermStateAction termStateAction;
+	private DeleteStateAction deleteStateAction;
+	private LinkStateAction linkStateAction;
+
 	public ActionManager() {
 		initActions();
 	}
@@ -23,6 +30,10 @@ public class ActionManager {
 		infoAction = new InfoAction();
 		authorAction = new AuthorAction();
 		deleteAction = new DeleteAction();
+		editStateAction = new EditStateAction();
+		selectStateAction = new SelectStateAction();
+		termStateAction = new TermStateAction();
+		deleteStateAction = new DeleteStateAction();
+		linkStateAction = new LinkStateAction();
 	}
-
 }

@@ -20,9 +20,8 @@ public class MouseController extends MouseAdapter {
 	private MindMapView view;
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println("here");
 		try {
-			((ProjectView) MainFrame.getInstance().getProjectView()).mousePressed(e.getX(), e.getY(), view.getMindMap());
+			((ProjectView) MainFrame.getInstance().getProjectView()).mousePressed(e.getX(), e.getY(), view);
 		} catch (Exception ex) {
 			AppCore.getInstance().getLogger().log(ex);
 		}

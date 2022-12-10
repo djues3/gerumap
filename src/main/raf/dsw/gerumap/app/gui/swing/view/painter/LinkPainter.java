@@ -15,6 +15,9 @@ public class LinkPainter extends Painter {
 	Shape shape;
 	Link link;
 
+	public LinkPainter(Link link) {
+		this.link = link;
+	}
 	@Override
 	public void draw(Graphics g) {
 		setup();

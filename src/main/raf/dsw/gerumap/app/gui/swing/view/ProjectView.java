@@ -25,6 +25,7 @@ public class ProjectView extends JPanel implements ISubscriber {
     private JLabel authorLabel;
     private JLabel nameLabel;
     private HashMap<MindMap, MindMapView> map = new HashMap<>();
+	private StateToolbar stateToolbar = new StateToolbar();
     private StateManager stateManager;
 
 	private void addMindMapView(MindMap m) {
@@ -62,6 +63,7 @@ public class ProjectView extends JPanel implements ISubscriber {
 		this.setLayout(box);
 
 		this.add(labels);
+		this.add(stateToolbar);
 		this.add(tabs);
 		for (MapNode x : p.getChildren()) {
 			x.addSubscriber(this);
@@ -121,10 +123,10 @@ public class ProjectView extends JPanel implements ISubscriber {
     public void startEditState() {
         stateManager.setEditState();
     }
-    public void mousePressed(int x, int y, MindMap map) {
-        this.stateManager.getState().mousePressed(x, y, map);
+    public void mousePressed(int x, int y, MindMapView view) {
+        this.stateManager.getState().mousePressed(x, y, view);
     }
-    public void mouseDragged(int x, int y, MindMap map) {
-        this.stateManager.getState().mouseDragged(x, y, map);
+    public void mouseDragged(int x, int y, MindMapView view) {
+        this.stateManager.getState().mouseDragged(x, y, view);
     }
 }

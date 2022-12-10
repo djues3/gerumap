@@ -15,7 +15,7 @@ public class ProjectViewManager extends IPublisherImpl implements ISubscriber {
     private static ProjectViewManager instance;
     private Component projectView;
     private JPanel empty;
-    private HashMap<Project, ProjectView> map = new HashMap<Project, ProjectView>();
+    private HashMap<Project, ProjectView> map = new HashMap<>();
 
     private ProjectViewManager() {
         AppCore.getInstance().getMapRepository().getProjectExplorer().addSubscriber(this);
