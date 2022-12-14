@@ -7,6 +7,7 @@ import lombok.Setter;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 @Getter
 @Setter
@@ -20,10 +21,12 @@ public class TermPainter extends Painter {
 	@Getter(AccessLevel.NONE)
 	@Setter(AccessLevel.NONE)
 	private float y;
+	private boolean selected = false;
+
 	public TermPainter(Term term) {
 		this.term = term;
-		this.x = term.getX() - Term.DEFAULT_WIDTH / 2.0f;
-		this.y = term.getY() - Term.DEFAULT_HEIGHT / 2.0f;
+		this.x = term.getX() - term.getWidth() / 2.0f;
+		this.y = term.getY() - term.getHeight() / 2.0f;
 	}
 
 	@Override
@@ -32,6 +35,13 @@ public class TermPainter extends Painter {
 		createGraphic((Graphics2D) g);
 	}
 	private void createGraphic(Graphics2D g2d) {
+		if(selected) {
+			g2d.setColor(Color.RED);
+			g2d.fill(shape);
+		} else {
+			g2d.setColor(Color.WHITE);
+			g2d.fill(shape);
+		}
 		g2d.setColor(new Color(25, 63, 148));
 		g2d.setStroke(new BasicStroke(2));
 		g2d.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -42,7 +52,8 @@ public class TermPainter extends Painter {
 
 	@Override
 	public boolean elementAt(int x, int y) {
-		return shape.contains(x, y);
+		return shape.intersects(new Rectangle2D.Double(x - Term.DEFAULT_WIDTH / 2d, y - Term.DEFAULT_HEIGHT / 2d,
+				Term.DEFAULT_WIDTH, Term.DEFAULT_HEIGHT));
 	}
 
 	private void setup() {

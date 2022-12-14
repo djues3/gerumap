@@ -11,10 +11,13 @@ public class DeleteStateAction extends AbstractGerumapAction {
 	public DeleteStateAction() {
 		putValue(NAME, "Delete");
 		putValue(SHORT_DESCRIPTION, "Delete");
-		putValue(SMALL_ICON, loadIcon("/images/deleteState.png"));
+		putValue(SMALL_ICON, loadScaledIcon("/images/deleteState.png"));
+//		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke((char) KeyEvent.VK_DELETE));
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		((ProjectView) MainFrame.getInstance().getProjectView()).getStateManager().setDeleteState();
+		ProjectView pv = (ProjectView) MainFrame.getInstance().getProjectView();
+		pv.startDeleteState();
+//		pv.mousePressed(-1, -1, null);
 	}
 }

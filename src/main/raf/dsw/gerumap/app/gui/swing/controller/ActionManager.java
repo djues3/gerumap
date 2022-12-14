@@ -15,7 +15,7 @@ public class ActionManager {
 	private AuthorAction authorAction;
 	private InfoAction infoAction;
 	private EditStateAction editStateAction;
-	private SelectStateAction selectStateAction;
+	private SelectionStateAction selectionStateAction;
 	private TermStateAction termStateAction;
 	private DeleteStateAction deleteStateAction;
 	private LinkStateAction linkStateAction;
@@ -31,7 +31,7 @@ public class ActionManager {
 		authorAction = new AuthorAction();
 		deleteAction = new DeleteAction();
 		editStateAction = new EditStateAction();
-		selectStateAction = new SelectStateAction();
+		selectionStateAction = new SelectionStateAction();
 		termStateAction = new TermStateAction();
 		deleteStateAction = new DeleteStateAction();
 		linkStateAction = new LinkStateAction();

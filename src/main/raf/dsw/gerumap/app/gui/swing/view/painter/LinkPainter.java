@@ -7,6 +7,7 @@ import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 
 @Getter
 @Setter
@@ -14,6 +15,7 @@ import java.awt.geom.Line2D;
 public class LinkPainter extends Painter {
 	Shape shape;
 	Link link;
+	private boolean selected;
 
 	public LinkPainter(Link link) {
 		this.link = link;
@@ -22,16 +24,22 @@ public class LinkPainter extends Painter {
 	public void draw(Graphics g) {
 		setup();
 		Graphics2D g2d = (Graphics2D) g;
+		if(selected) {
+			g2d.setColor(Color.RED);
+		} else {
+			g2d.setColor(Color.BLACK);
+		}
 		g2d.draw(shape);
 	}
 
 	private void setup() {
+
 		shape = new Line2D.Double(link.getFrom().getX(), link.getFrom().getY(), link.getTo().getX(), link.getTo().getY());
 	}
 
 	@Override
 	public boolean elementAt(int x, int y) {
-		return shape.contains(x, y);
+		return shape.intersects(new Rectangle2D.Double(x - 5d, y - 5d, 10d, 10d));
 	}
 }
 

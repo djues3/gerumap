@@ -11,10 +11,10 @@ public class EditStateAction extends AbstractGerumapAction {
 	public EditStateAction() {
 		putValue(NAME, "Edit");
 		putValue(SHORT_DESCRIPTION, "Edit");
-		putValue(SMALL_ICON, loadIcon("/images/editState.png"));
+		putValue(SMALL_ICON, loadScaledIcon("/images/editState.png"));
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		((ProjectView) MainFrame.getInstance().getProjectView()).getStateManager().setEditState();
+		((ProjectView) MainFrame.getInstance().getProjectView()).startEditState();
 	}
 }

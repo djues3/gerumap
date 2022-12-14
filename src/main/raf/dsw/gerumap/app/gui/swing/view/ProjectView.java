@@ -111,9 +111,6 @@ public class ProjectView extends JPanel implements ISubscriber {
     public void startTermState() {
         stateManager.setTermState();
     }
-    public void startConnectionState() {
-        stateManager.setLinkState();
-    }
     public void startSelectionState() {
         stateManager.setSelectionState();
     }
@@ -123,10 +120,25 @@ public class ProjectView extends JPanel implements ISubscriber {
     public void startEditState() {
         stateManager.setEditState();
     }
+	public void startLinkState() {
+		this.stateManager.setLinkState();
+	}
     public void mousePressed(int x, int y, MindMapView view) {
         this.stateManager.getState().mousePressed(x, y, view);
     }
     public void mouseDragged(int x, int y, MindMapView view) {
         this.stateManager.getState().mouseDragged(x, y, view);
     }
+
+	public void mouseClicked(int x, int y, MindMapView view) {
+		this.stateManager.getState().mouseClicked(x, y, view);
+	}
+
+	public void mouseReleased(int x, int y, MindMapView view) {
+		this.stateManager.getState().mouseReleased(x, y, view);
+	}
+
+	public void mouseMoved(int x, int y, MindMapView view) {
+		this.stateManager.getState().mouseMoved(x, y, view);
+	}
 }

@@ -6,14 +6,14 @@ import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
 
 import java.awt.event.ActionEvent;
 
-public class SelectStateAction extends AbstractGerumapAction {
-	public SelectStateAction() {
+public class SelectionStateAction extends AbstractGerumapAction {
+	public SelectionStateAction() {
 		putValue(NAME, "Select");
 		putValue(SHORT_DESCRIPTION, "Select");
-		putValue(SMALL_ICON, loadIcon("/images/selectState.png"));
+		putValue(SMALL_ICON, loadScaledIcon("/images/selectState.png"));
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		((ProjectView) MainFrame.getInstance().getProjectView()).getStateManager().setSelectionState();
+		((ProjectView) MainFrame.getInstance().getProjectView()).startSelectionState();
 	}
 }

@@ -26,4 +26,37 @@ public class MouseController extends MouseAdapter {
 			AppCore.getInstance().getLogger().log(ex);
 		}
 	}
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		try {
+			((ProjectView) MainFrame.getInstance().getProjectView()).mouseDragged(e.getX(), e.getY(), view);
+		} catch (Exception ex) {
+			AppCore.getInstance().getLogger().log(ex);
+		}
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		try {
+			((ProjectView) MainFrame.getInstance().getProjectView()).mouseClicked(e.getX(), e.getY(), view);
+		} catch (Exception ex) {
+			AppCore.getInstance().getLogger().log(ex);
+		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		try {
+			((ProjectView) MainFrame.getInstance().getProjectView()).mouseReleased(e.getX(), e.getY(), view);
+		} catch (Exception ex) {
+			AppCore.getInstance().getLogger().log(ex);
+		}
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		try {
+			((ProjectView) MainFrame.getInstance().getProjectView()).mouseMoved(e.getX(), e.getY(), view);
+		} catch (Exception ex) {
+			AppCore.getInstance().getLogger().log(ex);
+		}
+	}
 }

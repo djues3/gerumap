@@ -10,10 +10,10 @@ public class TermStateAction extends AbstractGerumapAction {
 	public TermStateAction() {
 		putValue(NAME, "Term");
 		putValue(SHORT_DESCRIPTION, "Term");
-		putValue(SMALL_ICON, loadIcon("/images/termState.png"));
+		putValue(SMALL_ICON, loadScaledIcon("/images/termState.png"));
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		((ProjectView) MainFrame.getInstance().getProjectView()).getStateManager().setTermState();
+		((ProjectView) MainFrame.getInstance().getProjectView()).startTermState();
 	}
 }

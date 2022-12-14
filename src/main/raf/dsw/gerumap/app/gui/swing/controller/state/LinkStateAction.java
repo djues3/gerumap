@@ -11,11 +11,11 @@ public class LinkStateAction extends AbstractGerumapAction {
 	public LinkStateAction() {
 		putValue(NAME, "Link");
 		putValue(SHORT_DESCRIPTION, "Link");
-		putValue(SMALL_ICON, loadIcon("/images/linkState.png"));
+		putValue(SMALL_ICON, loadScaledIcon("/images/linkState.png"));
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		((ProjectView)MainFrame.getInstance().getProjectView()).getStateManager().setLinkState();
+		((ProjectView) MainFrame.getInstance().getProjectView()).startLinkState();
 	}
 }

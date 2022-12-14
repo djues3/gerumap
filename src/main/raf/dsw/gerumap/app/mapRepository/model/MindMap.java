@@ -39,8 +39,7 @@ public class MindMap extends MapNodeComposite {
 	public Term getTermAt(int x, int y) {
 		for (MapNode child : children) {
 			if (child instanceof Term term) {
-				if (term.getX() <= x && term.getX() + term.getWidth() >= x && term.getY() <= y
-						&& term.getY() + term.getHeight() >= y) {
+				if (term.contains(x, y)) {
 					return term;
 				}
 			}
