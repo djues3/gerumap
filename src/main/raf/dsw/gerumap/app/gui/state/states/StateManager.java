@@ -2,6 +2,7 @@ package raf.dsw.gerumap.app.gui.state.states;
 
 import lombok.Getter;
 import raf.dsw.gerumap.app.gui.state.State;
+import raf.dsw.gerumap.app.gui.swing.controller.state.MoveStateAction;
 
 @Getter
 public class StateManager {
@@ -9,7 +10,18 @@ public class StateManager {
 	private static final EditState editState = new EditState();
 	private static final DeleteState deleteState = new DeleteState();
 	private static final LinkState linkState = new LinkState();
-	private static final SelectionState selectionState = new SelectionState();
+
+	private static final MoveState moveState = new MoveState();
+
+	public State getCurrentState() {
+		return currentState;
+	}
+
+	public void setCurrentState(State currentState) {
+		this.currentState = currentState;
+	}
+
+	private SelectionState selectionState = new SelectionState();
 	private State currentState = termState;
 
 	public void setTermState() {
@@ -24,15 +36,18 @@ public class StateManager {
 		currentState = selectionState;
 	}
 
+	public void setMoveState() {
+		currentState = moveState;
+	}
+
 	public void setDeleteState() {
 		currentState = deleteState;
 	}
-
 	public void setEditState() {
 		currentState = editState;
 	}
+
 	public State getState() {
 		return getCurrentState();
 	}
-
 }

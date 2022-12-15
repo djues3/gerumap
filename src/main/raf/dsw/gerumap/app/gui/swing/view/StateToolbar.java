@@ -11,6 +11,7 @@ public class StateToolbar extends JToolBar {
 		add(MainFrame.getInstance().getActionManager().getTermStateAction());
 		add(MainFrame.getInstance().getActionManager().getDeleteStateAction());
 		add(MainFrame.getInstance().getActionManager().getEditStateAction());
+		add(MainFrame.getInstance().getActionManager().getMoveStateAction());
 	}
 
 }

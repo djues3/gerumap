@@ -19,6 +19,7 @@ public class ActionManager {
 	private TermStateAction termStateAction;
 	private DeleteStateAction deleteStateAction;
 	private LinkStateAction linkStateAction;
+	private MoveStateAction moveStateAction;
 
 	public ActionManager() {
 		initActions();
@@ -35,5 +36,6 @@ public class ActionManager {
 		termStateAction = new TermStateAction();
 		deleteStateAction = new DeleteStateAction();
 		linkStateAction = new LinkStateAction();
+		moveStateAction = new MoveStateAction();
 	}
 }
