@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raf.dsw.gerumap.app.gui.state.State;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
+import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.app.gui.swing.view.painter.LinkPainter;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
@@ -20,7 +22,11 @@ public class LinkState extends State {
 
 	@Override
 	public void mousePressed(int x, int y, MindMapView view) {
-		Term term = view.getMindMap().getTermAt(x, y);
+		Component tmp= ((Component) MainFrame.getInstance().getPvm().getProjectView());
+		ZoomState zoomState = null;
+		if (tmp instanceof ProjectView)
+			zoomState = ((ProjectView)tmp).getStateManager().getZoomState();
+		Term term = view.getMindMap().getTermAt(x - zoomState.getOffsetX().intValue(), y - zoomState.getOffsetY().intValue());
 		if (term != null) {
 			startX = x;
 			startY = y;
@@ -40,9 +46,13 @@ public class LinkState extends State {
 	}
 	@Override
 	public void mouseReleased(int x, int y, MindMapView view) {
+		Component tmp= ((Component) MainFrame.getInstance().getPvm().getProjectView());
+		ZoomState zoomState = null;
+		if (tmp instanceof ProjectView)
+			zoomState = ((ProjectView)tmp).getStateManager().getZoomState();
 		if(link.getFrom() == null)
 			return;
-		Term term = view.getMindMap().getTermAt(x, y);
+		Term term = view.getMindMap().getTermAt(x - zoomState.getOffsetX().intValue(), y - zoomState.getOffsetY().intValue());
 		if(term == null)
 			return;
 		link.setTo(term);

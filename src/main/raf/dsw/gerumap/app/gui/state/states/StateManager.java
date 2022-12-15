@@ -13,11 +13,11 @@ public class StateManager {
 
 	private static final MoveState moveState = new MoveState();
 
+	private final ZoomState zoomState = new ZoomState();
+
 	public ZoomState getZoomState() {
 		return zoomState;
 	}
-
-	private final ZoomState zoomState = new ZoomState();
 
 	public State getCurrentState() {
 		return currentState;

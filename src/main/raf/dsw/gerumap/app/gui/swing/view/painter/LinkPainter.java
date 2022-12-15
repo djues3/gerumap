@@ -3,6 +3,9 @@ package raf.dsw.gerumap.app.gui.swing.view.painter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import raf.dsw.gerumap.app.gui.state.states.ZoomState;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 
 import java.awt.*;
@@ -33,8 +36,11 @@ public class LinkPainter extends Painter {
 	}
 
 	private void setup() {
-
-		shape = new Line2D.Double(link.getFrom().getX(), link.getFrom().getY(), link.getTo().getX(), link.getTo().getY());
+		Component tmp= ((Component) MainFrame.getInstance().getPvm().getProjectView());
+		ZoomState zoomState = null;
+		if (tmp instanceof ProjectView)
+			zoomState = ((ProjectView)tmp).getStateManager().getZoomState();
+		shape = new Line2D.Double(link.getFrom().getX() + zoomState.getOffsetX(), link.getFrom().getY() + zoomState.getOffsetY(), link.getTo().getX() + zoomState.getOffsetX(), link.getTo().getY() + zoomState.getOffsetY());
 	}
 
 	@Override

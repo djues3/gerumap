@@ -10,8 +10,8 @@ import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;
 import java.awt.*;
 
 public class ZoomState extends State {
-    private Float startX;
-    private Float startY;
+    private Float startX = 0f;
+    private Float startY = 0f;
     private Float offsetX = 0f;
 
     private Float offsetY = 0f;
@@ -27,8 +27,8 @@ public class ZoomState extends State {
 
     @Override
     public void mousePressed(int x, int y, MindMapView view) {
-        startX = (float)x;
-        startY = (float)y;
+        startX = (float)x - offsetX;
+        startY = (float)y - offsetY;
     }
 
     @Override
