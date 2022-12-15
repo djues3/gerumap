@@ -20,6 +20,7 @@ public class ActionManager {
 	private DeleteStateAction deleteStateAction;
 	private LinkStateAction linkStateAction;
 	private MoveStateAction moveStateAction;
+	private ZoomStateAction zoomStateAction;
 
 	public ActionManager() {
 		initActions();
@@ -37,5 +38,6 @@ public class ActionManager {
 		deleteStateAction = new DeleteStateAction();
 		linkStateAction = new LinkStateAction();
 		moveStateAction = new MoveStateAction();
+		zoomStateAction = new ZoomStateAction();
 	}
 }

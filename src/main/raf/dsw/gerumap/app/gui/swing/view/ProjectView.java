@@ -114,10 +114,10 @@ public class ProjectView extends JPanel implements ISubscriber {
     public void startSelectionState() {
         stateManager.setSelectionState();
     }
-    public void startDeleteState() {
+	public void startDeleteState() {
         stateManager.setDeleteState();
     }
-    public void startEditState() {
+	public void startEditState() {
         stateManager.setEditState();
     }
 	public void startLinkState() {
@@ -126,6 +126,10 @@ public class ProjectView extends JPanel implements ISubscriber {
 	public void startMoveState() {
 		this.stateManager.setMoveState();
 	}
+	public void startZoomState() {
+		this.stateManager.setZoomState();
+	}
+
 	public void mousePressed(int x, int y, MindMapView view) {
         this.stateManager.getState().mousePressed(x, y, view);
 	}
