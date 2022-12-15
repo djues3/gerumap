@@ -47,10 +47,9 @@ public class TermPainter extends Painter {
 		g2d.setFont(new Font("Arial", Font.PLAIN, 12));
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.draw(shape);
-		x = term.getX();
-		y = term.getY();
-		//TODO unfuck the centering of text
-		g2d.drawString(term.getText(), x, y);
+		x = term.getX() - Term.DEFAULT_WIDTH / 2.0f;
+		y = term.getY() - Term.DEFAULT_HEIGHT / 2.0f;
+		g2d.drawString(term.getText(), x + 20f, y + 27.5f);
 	}
 
 	@Override
