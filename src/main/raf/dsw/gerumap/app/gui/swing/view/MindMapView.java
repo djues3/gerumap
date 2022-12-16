@@ -19,7 +19,9 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,13 +31,14 @@ public class MindMapView extends JPanel implements ISubscriber {
 
     private AffineTransform affineTransform;
 
-    private List<Painter> painters = new ArrayList<>();
+    private Set<Painter> painters = new HashSet<>();
 
     public MindMapView(MindMap mindMap) {
         this.mindMap = mindMap;
         MouseController mouseController = new MouseController(this);
         this.addMouseListener(mouseController);
         this.addMouseMotionListener(mouseController);
+        this.addMouseWheelListener(mouseController);
         this.mindMap.addSubscriber(this);
         this.stateManager = new StateManager();
         affineTransform = stateManager.getZoomState().getAffineTransform();

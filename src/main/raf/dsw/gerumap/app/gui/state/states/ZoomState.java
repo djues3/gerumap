@@ -23,6 +23,7 @@ public class ZoomState extends State {
     private Float offsetX = 0f;
 
     private Float offsetY = 0f;
+    private Float scale = 1.0f;
     private Float zoomPower;
 
     public Float getOffsetX() {
@@ -35,7 +36,7 @@ public class ZoomState extends State {
 
     public ZoomState() {
         affineTransform.setToIdentity();
-        affineTransform.setToScale(1.5f,1.5f);
+//        affineTransform.setToScale(1.5f,1.5f);
     }
 
     @Override
@@ -64,8 +65,15 @@ public class ZoomState extends State {
         offsetY = (float)y - startY;
 //        affineTransform.translate(offsetX, offsetY);
         affineTransform.setToTranslation(offsetX, offsetY);
-        affineTransform.scale(1.5f, 1.5f);
+        affineTransform.scale(scale, scale);
         view.repaint();
+    }
 
+    @Override
+    public void mouseWheelMoved(int x, MindMapView view) {
+        affineTransform.setToTranslation(offsetX, offsetY);
+        scale += x * .2f;
+        affineTransform.scale(scale, scale);
+        view.repaint();
     }
 }

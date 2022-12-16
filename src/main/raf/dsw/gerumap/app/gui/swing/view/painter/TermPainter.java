@@ -42,6 +42,7 @@ public class TermPainter extends Painter {
 		createGraphic((Graphics2D) g);
 	}
 	private void createGraphic(Graphics2D g2d) {
+		g2d.setTransform(zoomState.getAffineTransform());
 		if(selected) {
 			g2d.setColor(Color.RED);
 			g2d.fill(shape);
@@ -57,7 +58,6 @@ public class TermPainter extends Painter {
 		x = term.getX() - Term.DEFAULT_WIDTH / 2.0f;
 		y = term.getY() - Term.DEFAULT_HEIGHT / 2.0f;
 		g2d.drawString(term.getText(), x + 20f, y + 27.5f);
-		g2d.setTransform(zoomState.getAffineTransform());
 	}
 
 	@Override
