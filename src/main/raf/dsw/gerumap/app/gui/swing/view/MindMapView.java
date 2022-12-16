@@ -141,8 +141,7 @@ public class MindMapView extends JPanel implements ISubscriber {
         this.stateManager.getState().mouseMoved(x, y, view);
     }
 
-    public void mouseWheelMoved(int wheelRotation, MindMapView view) {
-        System.out.println(wheelRotation);
-        this.stateManager.getState().mouseWheelMoved(wheelRotation, view);
+    public void mouseWheelMoved(int x, int y, int wheelRotation, MindMapView view) {
+        this.stateManager.getState().mouseWheelMoved(x, y, wheelRotation, view);
     }
 }

@@ -11,5 +11,5 @@ public abstract class State {
 	public void mouseReleased(int x, int y, MindMapView view) {}
 
 	public void mouseMoved(int x, int y, MindMapView view) {}
-	public void mouseWheelMoved(int x, MindMapView view) {}
+	public void mouseWheelMoved(int x, int y, int step, MindMapView view) {}
 }

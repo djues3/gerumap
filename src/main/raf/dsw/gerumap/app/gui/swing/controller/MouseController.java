@@ -65,7 +65,7 @@ public class MouseController extends MouseAdapter {
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		System.out.println("lmao");
 		try {
-			((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().mouseWheelMoved(e.getWheelRotation(), view);
+			((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().mouseWheelMoved(e.getX(), e.getY(), e.getWheelRotation(), view);
 		} catch (Exception ex) {
 			AppCore.getInstance().getLogger().log(ex);
 		}

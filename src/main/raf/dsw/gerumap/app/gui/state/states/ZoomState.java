@@ -70,9 +70,18 @@ public class ZoomState extends State {
     }
 
     @Override
-    public void mouseWheelMoved(int x, MindMapView view) {
-        affineTransform.setToTranslation(offsetX, offsetY);
-        scale += x * .2f;
+    public void mouseWheelMoved(int x, int y, int step, MindMapView view) {
+        Point2D real = new Point2D.Double();
+        Point2D screen = new Point2D.Double(x, y);
+        try {
+            view.getAffineTransform().inverseTransform(screen, real);
+        } catch (NoninvertibleTransformException e) {
+            throw new RuntimeException(e);
+        }
+        scale += step * .05f;
+        scale = Math.max(scale, .2f);
+        affineTransform.setToTranslation(real.getX() - scale * real.getX(),
+                                         real.getY() - scale * real.getY());
         affineTransform.scale(scale, scale);
         view.repaint();
     }
