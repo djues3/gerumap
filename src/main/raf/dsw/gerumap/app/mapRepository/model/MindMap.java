@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
@@ -23,7 +24,7 @@ public class MindMap extends MapNodeComposite {
 	@Override
 	public void removeChild(MapNode child) {
 		if(!(child instanceof Element))
-			throw new RuntimeException("");
+			AppCore.getInstance().getLogger().log(new Exception("Child is not an element"));
 		this.getChildren().remove(child);
 		publish();
 	}

@@ -12,7 +12,7 @@ public class DeleteAction extends AbstractGerumapAction{
 //        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, ActionEvent.CTRL_MASK));
         putValue(NAME, "Delete");
-        putValue(SMALL_ICON, loadIcon("images/delete.png"));
+        putValue(SMALL_ICON, loadScaledIcon("/images/delete.png"));
         putValue(SHORT_DESCRIPTION, "Delete");
     }
 

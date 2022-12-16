@@ -3,9 +3,6 @@ package raf.dsw.gerumap.app.gui.swing.view.painter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import raf.dsw.gerumap.app.gui.state.states.ZoomState;
-import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
-import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 
 import java.awt.*;
@@ -28,11 +25,12 @@ public class LinkPainter extends Painter {
 		setup();
 		Graphics2D g2d = (Graphics2D) g;
 		if(selected) {
-			g2d.setColor(Color.RED);
+			g2d.setColor(new Color(255,0,0, 78));
 		} else {
 			g2d.setColor(Color.BLACK);
 		}
-
+		g2d.setStroke(new BasicStroke(2));
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.draw(shape);
 	}
 

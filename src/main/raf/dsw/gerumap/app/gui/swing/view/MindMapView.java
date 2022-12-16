@@ -5,18 +5,17 @@ import lombok.Setter;
 import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.gui.observer.ISubscriber;
 import raf.dsw.gerumap.app.gui.state.states.StateManager;
-import raf.dsw.gerumap.app.gui.state.states.ZoomState;
 import raf.dsw.gerumap.app.gui.swing.controller.MouseController;
 import raf.dsw.gerumap.app.gui.swing.view.painter.LinkPainter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.Painter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
+import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -40,8 +39,6 @@ public class MindMapView extends JPanel implements ISubscriber {
         this.addMouseMotionListener(mouseController);
         this.addMouseWheelListener(mouseController);
         this.mindMap.addSubscriber(this);
-        this.stateManager = new StateManager();
-        affineTransform = stateManager.getZoomState().getAffineTransform();
     }
 
     @Override
@@ -52,7 +49,12 @@ public class MindMapView extends JPanel implements ISubscriber {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         for (Painter painter : painters) {
-            painter.draw(g);
+            if(painter instanceof LinkPainter lp)
+                lp.draw(g);
+        }
+        for (Painter painter : painters) {
+            if(painter instanceof TermPainter tp)
+                tp.draw(g);
         }
     }
     public void addPainter(Painter painter) {
@@ -79,15 +81,6 @@ public class MindMapView extends JPanel implements ISubscriber {
         return terms;
     }
 
-    public Painter getPainterForLink(Link link) {
-        for(Painter painter : painters) {
-            if(painter instanceof LinkPainter lp) {
-                if(lp.getLink().equals(link))
-                    return painter;
-            }
-        }
-        return null;
-    }
 
     public List<LinkPainter> getLinksInRectangle(Rectangle2D.Double aDouble) {
         List<LinkPainter> links = new ArrayList<>();
@@ -100,48 +93,23 @@ public class MindMapView extends JPanel implements ISubscriber {
         }
         return links;
     }
-    public void startTermState() {
-        stateManager.setTermState();
-    }
-    public void startSelectionState() {
-        stateManager.setSelectionState();
-    }
-    public void startDeleteState() {
-        stateManager.setDeleteState();
-    }
-    public void startEditState() {
-        stateManager.setEditState();
-    }
-    public void startLinkState() {
-        this.stateManager.setLinkState();
-    }
-    public void startMoveState() {
-        this.stateManager.setMoveState();
-    }
-    public void startZoomState() {
-        this.stateManager.setZoomState();
+	public TermPainter getPainterForTerm(Term term) {
+	            for(Painter painter : painters) {
+            if(painter instanceof TermPainter tp) {
+                if(tp.getTerm().equals(term))
+                    return tp;
+            }
+        }
+        return null;
     }
 
-    public void mousePressed(int x, int y, MindMapView view) {
-        this.stateManager.getState().mousePressed(x, y, view);
-    }
-
-    public void mouseDragged(int x, int y, MindMapView view) {
-        this.stateManager.getState().mouseDragged(x, y, view);
-    }
-
-    public void mouseClicked(int x, int y, MindMapView view) {
-        this.stateManager.getState().mouseClicked(x, y, view);
-    }
-
-    public void mouseReleased(int x, int y, MindMapView view) {
-        this.stateManager.getState().mouseReleased(x, y, view);
-    }
-    public void mouseMoved(int x, int y, MindMapView view) {
-        this.stateManager.getState().mouseMoved(x, y, view);
-    }
-
-    public void mouseWheelMoved(int x, int y, int wheelRotation, MindMapView view) {
-        this.stateManager.getState().mouseWheelMoved(x, y, wheelRotation, view);
+    public Painter getPainterForLink(Link link) {
+        for(Painter painter : painters) {
+            if(painter instanceof LinkPainter lp) {
+                if(lp.getLink().equals(link))
+                    return painter;
+            }
+        }
+        return null;
     }
 }

@@ -1,8 +1,9 @@
 package raf.dsw.gerumap.app.gui.swing.view.painter;
 
+import javax.swing.*;
 import java.awt.*;
 
-public abstract class Painter extends Component {
+public abstract class Painter extends JComponent {
 
 	public abstract void draw(Graphics g);
 

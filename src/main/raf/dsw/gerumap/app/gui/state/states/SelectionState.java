@@ -2,8 +2,11 @@ package raf.dsw.gerumap.app.gui.state.states;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.state.State;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
+import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.app.gui.swing.view.painter.LinkPainter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.Painter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;
@@ -28,7 +31,7 @@ public class SelectionState extends State {
 		Point2D real = new Point2D.Double();
 		Point2D screen = new Point2D.Double(x, y);
 		try {
-			view.getAffineTransform().inverseTransform(screen, real);
+			((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
 		} catch (NoninvertibleTransformException e) {
 			throw new RuntimeException(e);
 		}
@@ -56,9 +59,9 @@ public class SelectionState extends State {
 		Point2D real = new Point2D.Double();
 		Point2D screen = new Point2D.Double(x, y);
 		try {
-			view.getAffineTransform().inverseTransform(screen, real);
+			((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
 		} catch (NoninvertibleTransformException e) {
-			throw new RuntimeException(e);
+			AppCore.getInstance().getLogger().log(e);
 		}
 		view.getGraphics()
 				.drawRect(min(startX, x), min(startY, y), abs(startX - x), abs(startY - y));
@@ -94,9 +97,9 @@ public class SelectionState extends State {
 		Point2D real = new Point2D.Double();
 		Point2D screen = new Point2D.Double(x, y);
 		try {
-			view.getAffineTransform().inverseTransform(screen, real);
+			((ProjectView) MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
 		} catch (NoninvertibleTransformException e) {
-			throw new RuntimeException(e);
+			AppCore.getInstance().getLogger().log(e);
 		}
 		x = (int)real.getX();
 		y = (int)real.getY();

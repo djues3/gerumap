@@ -4,9 +4,11 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.gui.state.states.ZoomState;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
+import raf.dsw.gerumap.app.gui.observer.ISubscriber;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -15,7 +17,8 @@ import java.awt.geom.Rectangle2D;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TermPainter extends Painter {
+public class TermPainter extends Painter implements ISubscriber  {
+	private Color color;
 	private Shape shape;
 	private Term term;
 	@Getter(AccessLevel.NONE)
@@ -25,15 +28,13 @@ public class TermPainter extends Painter {
 	@Setter(AccessLevel.NONE)
 	private float y;
 	private boolean selected = false;
-	private ZoomState zoomState;
-//	private ZoomState zoomState = ((ProjectView)MainFrame.getInstance().getProjectView()).getStateManager().getZoomState();
 
 	public TermPainter(Term term) {
-		if (MainFrame.getInstance().getPvm().getProjectView() instanceof ProjectView)
-			zoomState = (((ProjectView)(MainFrame.getInstance().getPvm().getProjectView())).getMindMapView().getStateManager().getZoomState());
 		this.term = term;
 		this.x = term.getX() - term.getWidth() / 2.0f;
 		this.y = term.getY() - term.getHeight() / 2.0f;
+		color = new Color(term.getColor());
+		term.addSubscriber(this);
 	}
 
 	@Override
@@ -42,15 +43,23 @@ public class TermPainter extends Painter {
 		createGraphic((Graphics2D) g);
 	}
 	private void createGraphic(Graphics2D g2d) {
-		g2d.setTransform(zoomState.getAffineTransform());
+		ZoomState zoomState = null;
+		if (MainFrame.getInstance().getPvm().getProjectView() instanceof ProjectView pv)
+			zoomState = pv.getStateManager().getZoomState();
+		if (zoomState != null)
+			g2d.setTransform(zoomState.getAffineTransform());
+		createGraphic(g2d, color);
+	}
+	private void createGraphic(Graphics2D g2d, Color color) {
+		this.color = color;
 		if(selected) {
-			g2d.setColor(Color.RED);
+			g2d.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha() * 39 / 100));
 			g2d.fill(shape);
 		} else {
-			g2d.setColor(Color.WHITE);
+			g2d.setColor(color);
 			g2d.fill(shape);
 		}
-		g2d.setColor(new Color(25, 63, 148));
+		g2d.setColor(new Color(25, 63, 148, 255));
 		g2d.setStroke(new BasicStroke(2));
 		g2d.setFont(new Font("Arial", Font.PLAIN, 12));
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -73,9 +82,22 @@ public class TermPainter extends Painter {
 	private void setup(int width, int height) {
 		shape = new Ellipse2D.Double(term.getX() - width / 2.0f,term.getY() - height / 2.0f, width, height);
 	}
-
-	public void draw(Graphics g, int width, int height) {
-		setup(width, height);
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		createGraphic((Graphics2D) g);
+	}
+
+	@Override
+	public void update(IPublisher publisher) {
+		if(publisher instanceof Term term) {
+			this.term = term;
+			this.x = term.getX() - term.getWidth() / 2.0f;
+			this.y = term.getY() - term.getHeight() / 2.0f;
+			color = new Color(term.getColor());
+		}
 	}
 }

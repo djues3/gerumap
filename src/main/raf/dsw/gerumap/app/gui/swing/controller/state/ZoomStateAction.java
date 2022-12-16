@@ -16,6 +16,6 @@ public class ZoomStateAction extends AbstractGerumapAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().startZoomState();
+        ((ProjectView) MainFrame.getInstance().getProjectView()).startZoomState();
     }
 }

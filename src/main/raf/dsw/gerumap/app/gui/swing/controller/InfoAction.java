@@ -32,36 +32,36 @@ public class InfoAction extends AbstractGerumapAction{
 		dialog.setVisible(true);
 	}
 	private void chooseStudent(JPanel panel) {
-		JLabel ime;
-		JLabel prezime;
-		JLabel indeks;
+		JLabel name;
+		JLabel surname;
+		JLabel index;
 		JLabel image;
 		if(Math.random() < 0.5) {
-			ime = new JLabel("Ime: David");
-			ime.setAlignmentX(Component.CENTER_ALIGNMENT);
-			prezime = new JLabel("Prezime: Djuretanovic");
-			prezime.setAlignmentX(Component.CENTER_ALIGNMENT);
-			indeks = new JLabel("Broj indeksa: RN86/22");
-			indeks.setAlignmentX(Component.CENTER_ALIGNMENT);
+			name = new JLabel("Ime: David");
+			name.setAlignmentX(Component.CENTER_ALIGNMENT);
+			surname = new JLabel("Prezime: Djuretanovic");
+			surname.setAlignmentX(Component.CENTER_ALIGNMENT);
+			index = new JLabel("Broj indeksa: RN86/22");
+			index.setAlignmentX(Component.CENTER_ALIGNMENT);
 			image = new JLabel(loadIcon("/images/soon.png"));
 			image.setAlignmentX(Component.CENTER_ALIGNMENT);
 		} else {
-			ime = new JLabel("Ime: Dusan");
-			ime.setAlignmentX(Component.CENTER_ALIGNMENT);
-			prezime = new JLabel("Prezime: Obradovic");
-			prezime.setAlignmentX(Component.CENTER_ALIGNMENT);
-			indeks = new JLabel("Broj indeksa: RN131/22");
-			indeks.setAlignmentX(Component.CENTER_ALIGNMENT);
+			name = new JLabel("Ime: Dusan");
+			name.setAlignmentX(Component.CENTER_ALIGNMENT);
+			surname = new JLabel("Prezime: Obradovic");
+			surname.setAlignmentX(Component.CENTER_ALIGNMENT);
+			index = new JLabel("Broj indeksa: RN131/22");
+			index.setAlignmentX(Component.CENTER_ALIGNMENT);
 			image = new JLabel(loadIcon("/images/no.png"));
 			image.setAlignmentX(Component.CENTER_ALIGNMENT);
 		}
 		Component strut = Box.createVerticalStrut(20);
 		panel.add(strut);
-		panel.add(ime);
+		panel.add(name);
 		panel.add(strut);
-		panel.add(prezime);
+		panel.add(surname);
 		panel.add(strut);
-		panel.add(indeks);
+		panel.add(index);
 		panel.add(strut);
 		panel.add(image);
 	}

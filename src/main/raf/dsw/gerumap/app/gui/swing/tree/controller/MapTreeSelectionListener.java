@@ -18,8 +18,6 @@ public class MapTreeSelectionListener implements TreeSelectionListener {
 //        ProjectView projectView = (ProjectView) MainFrame.getInstance().getProjectView();
         ProjectViewManager projectViewManager = ProjectViewManager.getInstance();
         if(treeItemSelected.getMapNode() instanceof Project) {
-            System.out.println("Selektovan cvor: " + treeItemSelected.getMapNode().getName() +
-                    " Autor je: " + ((Project) treeItemSelected.getMapNode()).getAuthor());
 
 //            projectView.setProject((Project) treeItemSelected.getMapNode());
             projectViewManager.setProjectView((Project) treeItemSelected.getMapNode());
@@ -37,7 +35,6 @@ public class MapTreeSelectionListener implements TreeSelectionListener {
 //                    projectView.setProject((Project) current);
             }
         }
-        System.out.println("getPath: "+e.getPath());
     }
 }
 

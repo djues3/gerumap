@@ -2,14 +2,11 @@ package raf.dsw.gerumap.app.gui.state.states;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.state.State;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
-import raf.dsw.gerumap.app.gui.swing.view.painter.Painter;
-import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;
-
-import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
@@ -21,7 +18,6 @@ public class ZoomState extends State {
     private Float startX = 0f;
     private Float startY = 0f;
     private Float offsetX = 0f;
-
     private Float offsetY = 0f;
     private Float scale = 1.0f;
     private Float zoomPower;
@@ -44,9 +40,9 @@ public class ZoomState extends State {
         Point2D real = new Point2D.Double();
         Point2D screen = new Point2D.Double(x, y);
         try {
-            view.getAffineTransform().inverseTransform(screen, real);
+            ((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
         } catch (NoninvertibleTransformException e) {
-            throw new RuntimeException(e);
+            AppCore.getInstance().getLogger().log(e);
         }
         startX = (float)x - offsetX;
         startY = (float)y - offsetY;
@@ -57,9 +53,9 @@ public class ZoomState extends State {
         Point2D real = new Point2D.Double();
         Point2D screen = new Point2D.Double(x, y);
         try {
-            view.getAffineTransform().inverseTransform(screen, real);
+            ((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
         } catch (NoninvertibleTransformException e) {
-            throw new RuntimeException(e);
+            AppCore.getInstance().getLogger().log(e);
         }
         offsetX = (float)x - startX;
         offsetY = (float)y - startY;
@@ -74,9 +70,9 @@ public class ZoomState extends State {
         Point2D real = new Point2D.Double();
         Point2D screen = new Point2D.Double(x, y);
         try {
-            view.getAffineTransform().inverseTransform(screen, real);
+            ((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
         } catch (NoninvertibleTransformException e) {
-            throw new RuntimeException(e);
+            AppCore.getInstance().getLogger().log(e);
         }
         scale += step * .05f;
         scale = Math.max(scale, .2f);

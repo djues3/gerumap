@@ -2,32 +2,19 @@ package raf.dsw.gerumap.app.gui.state.states;
 
 import lombok.Getter;
 import raf.dsw.gerumap.app.gui.state.State;
-import raf.dsw.gerumap.app.gui.swing.controller.state.MoveStateAction;
+import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;
+
+import java.util.List;
 
 @Getter
 public class StateManager {
-	private static final TermState termState = new TermState();
-	private static final EditState editState = new EditState();
-	private static final DeleteState deleteState = new DeleteState();
-	private static final LinkState linkState = new LinkState();
-
-	private static final MoveState moveState = new MoveState();
-
+	private final TermState termState = new TermState();
+	private final EditState editState = new EditState();
+	private final DeleteState deleteState = new DeleteState();
+	private final LinkState linkState = new LinkState();
+	private final MoveState moveState = new MoveState();
 	private final ZoomState zoomState = new ZoomState();
-
-	public ZoomState getZoomState() {
-		return zoomState;
-	}
-
-	public State getCurrentState() {
-		return currentState;
-	}
-
-	public void setCurrentState(State currentState) {
-		this.currentState = currentState;
-	}
-
-	private SelectionState selectionState = new SelectionState();
+	private final SelectionState selectionState = new SelectionState();
 	private State currentState = termState;
 
 	public void setTermState() {
@@ -49,7 +36,10 @@ public class StateManager {
 	public void setDeleteState() {
 		currentState = deleteState;
 	}
+
 	public void setEditState() {
+		if(editState.tryToEdit())
+			return;
 		currentState = editState;
 	}
 
@@ -60,4 +50,9 @@ public class StateManager {
 	public State getState() {
 		return getCurrentState();
 	}
+
+	public List<TermPainter> getSelectedTerms() {
+		return selectionState.getSelectedTerms();
+	}
+
 }

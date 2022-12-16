@@ -12,6 +12,7 @@ import raf.dsw.gerumap.app.mapRepository.model.Project;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -19,13 +20,15 @@ import java.util.HashSet;
 @Setter
 @NoArgsConstructor
 public class ProjectView extends JPanel implements ISubscriber {
-    private Project project;
+	private AffineTransform affineTransform;
+	private Project project;
     private JTabbedPane tabs;
     private JPanel labels;
     private JLabel authorLabel;
     private JLabel nameLabel;
     private HashMap<MindMap, MindMapView> map = new HashMap<>();
 	private StateToolbar stateToolbar = new StateToolbar();
+    private StateManager stateManager;
 
 	private void addMindMapView(MindMap m) {
 		if (!map.containsKey(m)) {
@@ -70,6 +73,8 @@ public class ProjectView extends JPanel implements ISubscriber {
 		for (MapNode x : project.getChildren()) {
 			addMindMapView((MindMap)x);
 		}
+		this.stateManager = new StateManager();
+		affineTransform = stateManager.getZoomState().getAffineTransform();
 	}
 
 
@@ -105,6 +110,50 @@ public class ProjectView extends JPanel implements ISubscriber {
 		for (int i = 0 , size = tabs.getComponentCount() ; i < size ; i++) {
 			this.tabs.setTitleAt(i, ((MindMapView) tabs.getComponentAt(i)).getMindMap().getName());
 		}
+	}
+	public void startTermState() {
+		stateManager.setTermState();
+	}
+	public void startSelectionState() {
+		stateManager.setSelectionState();
+	}
+	public void startDeleteState() {
+		stateManager.setDeleteState();
+	}
+	public void startEditState() {
+		stateManager.setEditState();
+	}
+	public void startLinkState() {
+		this.stateManager.setLinkState();
+	}
+	public void startMoveState() {
+		this.stateManager.setMoveState();
+	}
+	public void startZoomState() {
+		this.stateManager.setZoomState();
+	}
+
+	public void mousePressed(int x, int y, MindMapView view) {
+		this.stateManager.getState().mousePressed(x, y, view);
+	}
+
+	public void mouseDragged(int x, int y, MindMapView view) {
+		this.stateManager.getState().mouseDragged(x, y, view);
+	}
+
+	public void mouseClicked(int x, int y, MindMapView view) {
+		this.stateManager.getState().mouseClicked(x, y, view);
+	}
+
+	public void mouseReleased(int x, int y, MindMapView view) {
+		this.stateManager.getState().mouseReleased(x, y, view);
+	}
+	public void mouseMoved(int x, int y, MindMapView view) {
+		this.stateManager.getState().mouseMoved(x, y, view);
+	}
+
+	public void mouseWheelMoved(int x, int y, int wheelRotation, MindMapView view) {
+		this.stateManager.getState().mouseWheelMoved(x, y, wheelRotation, view);
 	}
 	public MindMapView getMindMapView() {
 		return (MindMapView)(tabs.getSelectedComponent());

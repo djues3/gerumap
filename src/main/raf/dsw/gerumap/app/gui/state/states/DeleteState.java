@@ -1,7 +1,9 @@
 package raf.dsw.gerumap.app.gui.state.states;
 
 import raf.dsw.gerumap.app.gui.state.State;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
+import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.app.gui.swing.view.painter.LinkPainter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.Painter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;
@@ -11,6 +13,7 @@ import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
+import java.util.Iterator;
 
 public class DeleteState extends State {
 	@Override
@@ -18,7 +21,7 @@ public class DeleteState extends State {
 		Point2D real = new Point2D.Double();
 		Point2D screen = new Point2D.Double(x, y);
 		try {
-			view.getAffineTransform().inverseTransform(screen, real);
+			((ProjectView) MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
 		} catch (NoninvertibleTransformException e) {
 			throw new RuntimeException(e);
 		}
@@ -29,10 +32,15 @@ public class DeleteState extends State {
 			if(p instanceof TermPainter tp) {
 				if(tp.elementAt(x, y)) {
 					Term term = tp.getTerm();
-					for(Link l: term.getLinks()) {
-						view.removePainter(view.getPainterForLink(l));
-					}
 					view.removePainter(tp);
+					Iterator<Link> it = term.getLinks().iterator();
+					while(it.hasNext()) {
+						Link l = it.next();
+						view.removePainter(view.getPainterForLink(l));
+						l.getFrom().getLinks().remove(l);
+						l.getTo().getLinks().remove(l);
+						it.remove();
+					}
 					break;
 				}
 			}
