@@ -14,6 +14,6 @@ public class TermStateAction extends AbstractGerumapAction {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		((ProjectView) MainFrame.getInstance().getProjectView()).startTermState();
+		((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().startTermState();
 	}
 }

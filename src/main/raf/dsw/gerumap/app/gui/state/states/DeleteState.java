@@ -9,9 +9,21 @@ import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Point2D;
+
 public class DeleteState extends State {
 	@Override
 	public void mousePressed(int x, int y, MindMapView view) {
+		Point2D real = new Point2D.Double();
+		Point2D screen = new Point2D.Double(x, y);
+		try {
+			view.getAffineTransform().inverseTransform(screen, real);
+		} catch (NoninvertibleTransformException e) {
+			throw new RuntimeException(e);
+		}
+		x = (int)real.getX();
+		y = (int)real.getY();
 		MindMap map = view.getMindMap();
 		for(Painter p: view.getPainters()) {
 			if(p instanceof TermPainter tp) {

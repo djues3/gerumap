@@ -17,7 +17,8 @@ public class DeleteStateAction extends AbstractGerumapAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ProjectView pv = (ProjectView) MainFrame.getInstance().getProjectView();
-		pv.startDeleteState();
+//		pv.startDeleteState();
+		pv.getMindMapView().startDeleteState();
 //		pv.mousePressed(-1, -1, null);
 	}
 }

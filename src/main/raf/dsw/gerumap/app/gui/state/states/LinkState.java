@@ -12,24 +12,33 @@ import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
 import java.awt.*;
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Point2D;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class LinkState extends State {
-	private Integer startX, startY;
+	private Integer startX, startY, startXReal, startYReal;
 	private Link link = new Link();
 
 	@Override
 	public void mousePressed(int x, int y, MindMapView view) {
-		Component tmp= ((Component) MainFrame.getInstance().getPvm().getProjectView());
-		ZoomState zoomState = null;
-		if (tmp instanceof ProjectView)
-			zoomState = ((ProjectView)tmp).getStateManager().getZoomState();
-		Term term = view.getMindMap().getTermAt(x - zoomState.getOffsetX().intValue(), y - zoomState.getOffsetY().intValue());
+		Point2D real = new Point2D.Double();
+		Point2D screen = new Point2D.Double(x, y);
+		try {
+			view.getAffineTransform().inverseTransform(screen, real);
+		} catch (NoninvertibleTransformException e) {
+			throw new RuntimeException(e);
+		}
+		Term term = view.getMindMap().getTermAt((int)real.getX(), (int)real.getY());
 		if (term != null) {
 			startX = x;
 			startY = y;
+			x = (int)real.getX();
+			y = (int)real.getY();
+			startXReal = x;
+			startYReal = y;
 			if (link.getFrom() == null) {
 				link.setFrom(term);
 			}
@@ -37,6 +46,15 @@ public class LinkState extends State {
 	}
 	@Override
 	public void mouseDragged(int x, int y, MindMapView view) {
+		Point2D real = new Point2D.Double();
+		Point2D screen = new Point2D.Double(x, y);
+		try {
+			view.getAffineTransform().inverseTransform(screen, real);
+		} catch (NoninvertibleTransformException e) {
+			throw new RuntimeException(e);
+		}
+//		x = (int)real.getX();
+//		y = (int)real.getY();
 		if(startX == null || startY == null)
 			return;
 		Graphics g = view.getGraphics();
@@ -46,13 +64,18 @@ public class LinkState extends State {
 	}
 	@Override
 	public void mouseReleased(int x, int y, MindMapView view) {
-		Component tmp= ((Component) MainFrame.getInstance().getPvm().getProjectView());
-		ZoomState zoomState = null;
-		if (tmp instanceof ProjectView)
-			zoomState = ((ProjectView)tmp).getStateManager().getZoomState();
+		Point2D real = new Point2D.Double();
+		Point2D screen = new Point2D.Double(x, y);
+		try {
+			view.getAffineTransform().inverseTransform(screen, real);
+		} catch (NoninvertibleTransformException e) {
+			throw new RuntimeException(e);
+		}
+		x = (int)real.getX();
+		y = (int)real.getY();
 		if(link.getFrom() == null)
 			return;
-		Term term = view.getMindMap().getTermAt(x - zoomState.getOffsetX().intValue(), y - zoomState.getOffsetY().intValue());
+		Term term = view.getMindMap().getTermAt(x, y);
 		if(term == null)
 			return;
 		link.setTo(term);

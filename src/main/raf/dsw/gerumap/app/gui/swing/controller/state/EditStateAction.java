@@ -15,6 +15,6 @@ public class EditStateAction extends AbstractGerumapAction {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		((ProjectView) MainFrame.getInstance().getProjectView()).startEditState();
+		((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().startEditState();
 	}
 }

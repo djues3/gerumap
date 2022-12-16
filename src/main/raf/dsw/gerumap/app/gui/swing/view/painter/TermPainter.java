@@ -25,13 +25,15 @@ public class TermPainter extends Painter {
 	@Setter(AccessLevel.NONE)
 	private float y;
 	private boolean selected = false;
-
-	private ZoomState zoomState = ((ProjectView)MainFrame.getInstance().getProjectView()).getStateManager().getZoomState();
+	private ZoomState zoomState;
+//	private ZoomState zoomState = ((ProjectView)MainFrame.getInstance().getProjectView()).getStateManager().getZoomState();
 
 	public TermPainter(Term term) {
+		if (MainFrame.getInstance().getPvm().getProjectView() instanceof ProjectView)
+			zoomState = (((ProjectView)(MainFrame.getInstance().getPvm().getProjectView())).getMindMapView().getStateManager().getZoomState());
 		this.term = term;
-		this.x = zoomState.getOffsetX() + term.getX() - term.getWidth() / 2.0f;
-		this.y = zoomState.getOffsetY() + term.getY() - term.getHeight() / 2.0f;
+		this.x = term.getX() - term.getWidth() / 2.0f;
+		this.y = term.getY() - term.getHeight() / 2.0f;
 	}
 
 	@Override
@@ -52,9 +54,10 @@ public class TermPainter extends Painter {
 		g2d.setFont(new Font("Arial", Font.PLAIN, 12));
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.draw(shape);
-		x = zoomState.getOffsetX() + term.getX() - Term.DEFAULT_WIDTH / 2.0f;
-		y = zoomState.getOffsetY() + term.getY() - Term.DEFAULT_HEIGHT / 2.0f;
+		x = term.getX() - Term.DEFAULT_WIDTH / 2.0f;
+		y = term.getY() - Term.DEFAULT_HEIGHT / 2.0f;
 		g2d.drawString(term.getText(), x + 20f, y + 27.5f);
+		g2d.setTransform(zoomState.getAffineTransform());
 	}
 
 	@Override
@@ -68,7 +71,7 @@ public class TermPainter extends Painter {
 	}
 
 	private void setup(int width, int height) {
-		shape = new Ellipse2D.Double(zoomState.getOffsetX() + term.getX() - width / 2.0f, zoomState.getOffsetY() + term.getY() - height / 2.0f, width, height);
+		shape = new Ellipse2D.Double(term.getX() - width / 2.0f,term.getY() - height / 2.0f, width, height);
 	}
 
 	public void draw(Graphics g, int width, int height) {

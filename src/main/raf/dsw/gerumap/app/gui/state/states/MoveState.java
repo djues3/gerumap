@@ -23,7 +23,7 @@ public class MoveState extends State {
     public void mouseDragged(int x, int y, MindMapView view) {
         Component pv = MainFrame.getInstance().getPvm().getProjectView();
         if (!(pv instanceof ProjectView)) return;
-        for (TermPainter curr : ((ProjectView) pv).getStateManager().getSelectionState().getSelectedTerms()) {
+        for (TermPainter curr : ((ProjectView) pv).getMindMapView().getStateManager().getSelectionState().getSelectedTerms()) {
             curr.getTerm().setX(curr.getTerm().getX() + (x - startX));
             curr.getTerm().setY(curr.getTerm().getY() + (y - startY));
 //            curr.getTerm().setY(y - startY);

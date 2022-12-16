@@ -32,15 +32,12 @@ public class LinkPainter extends Painter {
 		} else {
 			g2d.setColor(Color.BLACK);
 		}
+
 		g2d.draw(shape);
 	}
 
 	private void setup() {
-		Component tmp= ((Component) MainFrame.getInstance().getPvm().getProjectView());
-		ZoomState zoomState = null;
-		if (tmp instanceof ProjectView)
-			zoomState = ((ProjectView)tmp).getStateManager().getZoomState();
-		shape = new Line2D.Double(link.getFrom().getX() + zoomState.getOffsetX(), link.getFrom().getY() + zoomState.getOffsetY(), link.getTo().getX() + zoomState.getOffsetX(), link.getTo().getY() + zoomState.getOffsetY());
+		shape = new Line2D.Double(link.getFrom().getX(), link.getFrom().getY(), link.getTo().getX(), link.getTo().getY());
 	}
 
 	@Override

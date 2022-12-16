@@ -14,6 +14,6 @@ public class SelectionStateAction extends AbstractGerumapAction {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		((ProjectView) MainFrame.getInstance().getProjectView()).startSelectionState();
+		((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().startSelectionState();
 	}
 }

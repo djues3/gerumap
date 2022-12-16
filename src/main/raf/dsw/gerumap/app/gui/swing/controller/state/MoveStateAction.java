@@ -15,6 +15,6 @@ public class MoveStateAction extends AbstractGerumapAction {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        ((ProjectView) MainFrame.getInstance().getProjectView()).startMoveState();
+        ((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().startMoveState();
     }
 }

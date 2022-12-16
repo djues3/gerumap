@@ -16,6 +16,6 @@ public class LinkStateAction extends AbstractGerumapAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		((ProjectView) MainFrame.getInstance().getProjectView()).startLinkState();
+		((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().startLinkState();
 	}
 }

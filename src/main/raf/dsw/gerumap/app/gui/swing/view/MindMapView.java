@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.gui.observer.ISubscriber;
+import raf.dsw.gerumap.app.gui.state.states.StateManager;
+import raf.dsw.gerumap.app.gui.state.states.ZoomState;
 import raf.dsw.gerumap.app.gui.swing.controller.MouseController;
 import raf.dsw.gerumap.app.gui.swing.view.painter.LinkPainter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.Painter;
@@ -13,6 +15,8 @@ import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +25,10 @@ import java.util.List;
 @Setter
 public class MindMapView extends JPanel implements ISubscriber {
     private MindMap mindMap;
+    private StateManager stateManager;
+
+    private AffineTransform affineTransform;
+
     private List<Painter> painters = new ArrayList<>();
 
     public MindMapView(MindMap mindMap) {
@@ -29,6 +37,8 @@ public class MindMapView extends JPanel implements ISubscriber {
         this.addMouseListener(mouseController);
         this.addMouseMotionListener(mouseController);
         this.mindMap.addSubscriber(this);
+        this.stateManager = new StateManager();
+        affineTransform = stateManager.getZoomState().getAffineTransform();
     }
 
     @Override
@@ -86,5 +96,50 @@ public class MindMapView extends JPanel implements ISubscriber {
             }
         }
         return links;
+    }
+    public void startTermState() {
+        stateManager.setTermState();
+    }
+    public void startSelectionState() {
+        stateManager.setSelectionState();
+    }
+    public void startDeleteState() {
+        stateManager.setDeleteState();
+    }
+    public void startEditState() {
+        stateManager.setEditState();
+    }
+    public void startLinkState() {
+        this.stateManager.setLinkState();
+    }
+    public void startMoveState() {
+        this.stateManager.setMoveState();
+    }
+    public void startZoomState() {
+        this.stateManager.setZoomState();
+    }
+
+    public void mousePressed(int x, int y, MindMapView view) {
+        this.stateManager.getState().mousePressed(x, y, view);
+    }
+
+    public void mouseDragged(int x, int y, MindMapView view) {
+        this.stateManager.getState().mouseDragged(x, y, view);
+    }
+
+    public void mouseClicked(int x, int y, MindMapView view) {
+        this.stateManager.getState().mouseClicked(x, y, view);
+    }
+
+    public void mouseReleased(int x, int y, MindMapView view) {
+        this.stateManager.getState().mouseReleased(x, y, view);
+    }
+    public void mouseMoved(int x, int y, MindMapView view) {
+        this.stateManager.getState().mouseMoved(x, y, view);
+    }
+
+    public void mouseWheelMoved(int wheelRotation, MindMapView view) {
+        System.out.println(wheelRotation);
+        this.stateManager.getState().mouseWheelMoved(wheelRotation, view);
     }
 }
