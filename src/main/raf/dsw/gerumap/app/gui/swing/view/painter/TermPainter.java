@@ -52,15 +52,16 @@ public class TermPainter extends Painter implements ISubscriber  {
 	}
 	private void createGraphic(Graphics2D g2d, Color color) {
 		this.color = color;
-		if(selected) {
-			g2d.setColor(new Color(color.getRed(), 0, 0, color.getAlpha() * 39 / 100));
-			g2d.fill(shape);
-		} else {
+
 			g2d.setColor(color);
 			g2d.fill(shape);
-		}
 		g2d.setColor(new Color(25, 63, 148, 255));
-		g2d.setStroke(new BasicStroke(2));
+		float[] dash = {10f, 10f};
+		if (selected) {
+			g2d.setStroke(new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 1, dash, 1));
+		} else {
+			g2d.setStroke(new BasicStroke(2));
+		}
 		g2d.setFont(new Font("Arial", Font.PLAIN, 12));
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.draw(shape);
