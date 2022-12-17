@@ -13,7 +13,6 @@ import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
 
 public class TermState extends State {
-	private ZoomState zoomState;
 	@Override
 	public void mousePressed(int x, int y, MindMapView view) {
 		Point2D real = new Point2D.Double();

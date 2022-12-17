@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.app.mapRepository.model.elements;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Term extends Element {
 	public static final int DEFAULT_WIDTH = 100;

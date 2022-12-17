@@ -1,6 +1,5 @@
 package raf.dsw.gerumap.app.mapRepository.model.elements;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,9 +1,14 @@
 package raf.dsw.gerumap.app.gui.swing.view;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+@Getter
+@Setter
 public class EditDialog extends JPanel{
      private JTextField textField;
      private JButton doneButton, colorButton;

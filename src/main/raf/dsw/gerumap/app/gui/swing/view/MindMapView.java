@@ -109,7 +109,7 @@ public class MindMapView extends JPanel implements ISubscriber {
         for(Painter painter : painters) {
             if(painter instanceof LinkPainter lp) {
                 if(lp.getLink().equals(link))
-                    return painter;
+                    return lp;
             }
         }
         return null;

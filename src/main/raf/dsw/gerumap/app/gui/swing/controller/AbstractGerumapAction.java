@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.app.gui.swing.controller;
 
+import raf.dsw.gerumap.app.AppCore;
+
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
@@ -16,7 +18,7 @@ public abstract class AbstractGerumapAction extends AbstractAction {
 			icon = new ImageIcon(imageURL);
 		}
 		else {
-			System.err.println("Resource not found: " + fileName);
+			AppCore.getInstance().getLogger().log(new RuntimeException("Resource not found" + fileName));
 		}
 		return icon;
 	}

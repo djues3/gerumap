@@ -21,19 +21,17 @@ public class EditState extends State {
 		if(terms == null)
 			return false;
 		if(!terms.isEmpty()) {
-//			Color color = EditDialog.showDialog(MainFrame.getInstance(), "Choose a color", Color.BLACK);
 			Toolkit toolkit = Toolkit.getDefaultToolkit();
 			Dimension screenSize = toolkit.getScreenSize();
 			JDialog dialog = new JDialog();
 			EditDialog edit = new EditDialog();
+			edit.getTextField().setText(terms.get(0).getTerm().getText());
 			dialog.setModal(true);
 			dialog.setSize(screenSize.width / 3, screenSize.height / 3);
-
 			dialog.setContentPane(edit);
+			dialog.getRootPane().setDefaultButton(edit.getDoneButton());
 			dialog.setLocationRelativeTo(MainFrame.getInstance());
-
 			dialog.setVisible(true);
-
 			Color color = edit.getColor();
 			String text = edit.getText();
 			if (color != null) {
@@ -50,7 +48,7 @@ public class EditState extends State {
 				}
 				((ProjectView)MainFrame.getInstance().getProjectView()).getMindMapView().repaint();
 			}
-			if (text != null) {
+			if (text != null && !text.equals("")) {
 				for (TermPainter tp : terms) {
 					Term term = tp.getTerm();
 					term.setText(text);
@@ -83,6 +81,7 @@ public class EditState extends State {
 		Dimension screenSize = toolkit.getScreenSize();
 		JDialog dialog = new JDialog();
 		EditDialog edit = new EditDialog();
+		edit.getTextField().setText(term.getText());
 		dialog.setModal(true);
 		dialog.setSize(screenSize.width / 3, screenSize.height / 3);
 
@@ -105,7 +104,7 @@ public class EditState extends State {
 			term.publish();
 			view.repaint();
 		}
-		if (text != null) {
+		if (text != null && !text.equals("")) {
 			term.setText(text);
 			term.publish();
 			view.repaint();

@@ -5,15 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raf.dsw.gerumap.app.gui.observer.IPublisher;
-import raf.dsw.gerumap.app.gui.state.states.ZoomState;
-import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
-import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
-import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.app.gui.observer.ISubscriber;
-import raf.dsw.gerumap.app.mapRepository.model.MindMap;
+import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
@@ -68,9 +63,13 @@ public class TermPainter extends Painter implements ISubscriber  {
 
 	private void createGraphic(Graphics2D g2d, Color color) {
 		this.color = color;
-
-		g2d.setColor(color);
-		g2d.fill(shape);
+		if(selected) {
+			g2d.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha() * 39 / 100));
+			g2d.fill(shape);
+		} else {
+			g2d.setColor(color);
+			g2d.fill(shape);
+		}
 		g2d.setColor(new Color(25, 63, 148, 255));
 		float[] dash = {10f, 10f};
 		if (selected) {

@@ -12,7 +12,6 @@ import raf.dsw.gerumap.app.mapRepository.model.Project;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -111,6 +110,7 @@ public class ProjectView extends JPanel implements ISubscriber {
 	}
 	public void startTermState() {
 		stateManager.setTermState();
+		tabs.getSelectedComponent().repaint();
 	}
 	public void startSelectionState() {
 		stateManager.setSelectionState();
@@ -123,6 +123,7 @@ public class ProjectView extends JPanel implements ISubscriber {
 	}
 	public void startLinkState() {
 		this.stateManager.setLinkState();
+		tabs.getSelectedComponent().repaint();
 	}
 	public void startMoveState() {
 		this.stateManager.setMoveState();

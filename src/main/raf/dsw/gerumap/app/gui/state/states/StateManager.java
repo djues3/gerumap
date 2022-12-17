@@ -18,10 +18,12 @@ public class StateManager {
 	private State currentState = termState;
 
 	public void setTermState() {
+		selectionState.clearSelected();
 		currentState = termState;
 	}
 
 	public void setLinkState() {
+		selectionState.clearSelected();
 		currentState = linkState;
 	}
 

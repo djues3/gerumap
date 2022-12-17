@@ -23,8 +23,8 @@ import static java.lang.Math.min;
 @Getter
 @Setter
 public class SelectionState extends State {
-	private List<TermPainter> selectedTerms;
-	private List<LinkPainter> selectedLinks;
+	private List<TermPainter> selectedTerms = new ArrayList<>();
+	private List<LinkPainter> selectedLinks = new ArrayList<>();
 	private Integer startX, startY, startXReal, startYReal;
 	@Override
 	public void mousePressed(int x, int y, MindMapView view) {
@@ -108,5 +108,15 @@ public class SelectionState extends State {
 		selectedLinks = view.getLinksInRectangle(
 				new Rectangle2D.Double(min(startX, x), min(startY, y), abs(startX - x), abs(startY - y)));
 		view.repaint();
+	}
+	public void clearSelected() {
+		for(TermPainter tp : selectedTerms) {
+			tp.setSelected(false);
+		}
+		for(LinkPainter lp : selectedLinks) {
+			lp.setSelected(false);
+		}
+		selectedTerms = new ArrayList<>();
+		selectedLinks = new ArrayList<>();
 	}
 }
