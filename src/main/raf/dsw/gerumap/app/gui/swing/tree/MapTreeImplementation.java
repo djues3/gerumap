@@ -9,6 +9,7 @@ import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
 import raf.dsw.gerumap.app.mapRepository.factory.FactoryUtil;
 import raf.dsw.gerumap.app.mapRepository.factory.NodeFactory;
+import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.ProjectExplorer;
 import raf.dsw.gerumap.app.messageGenerator.Message;
 import raf.dsw.gerumap.app.messageGenerator.MessageType;
@@ -34,7 +35,7 @@ public class MapTreeImplementation implements MapTree {
     @Override
     public void addChild(MapTreeItem parent) {
 
-        if (!(parent.getMapNode() instanceof MapNodeComposite))
+        if (!(parent.getMapNode() instanceof MapNodeComposite) || parent.getMapNode() instanceof MindMap)
             return;
 
         MapNode child = createChild(parent.getMapNode());

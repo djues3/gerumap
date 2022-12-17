@@ -1,8 +1,10 @@
 package raf.dsw.gerumap.app.gui.swing.controller;
 
+import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.swing.view.AuthorDialog;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
+import raf.dsw.gerumap.app.messageGenerator.Message;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -24,7 +26,8 @@ public class AuthorAction extends AbstractGerumapAction {
 			AuthorDialog dialog = new AuthorDialog(project);
 			dialog.setVisible(true);
 		} else {
-			System.err.println("Nije selektovan projekat");
+			AppCore.getInstance().getMessageGenerator()
+					.generate("Project must be selected", Message.Level.WARNING);
 		}
 	}
 }

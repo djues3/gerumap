@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.app.mapRepository.model;
 
+import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
 
@@ -12,7 +13,7 @@ public class ProjectExplorer extends MapNodeComposite {
 	@Override
 	public void removeChild(MapNode child) {
 		if (!(child instanceof Project))
-			throw new RuntimeException("");
+			AppCore.getInstance().getLogger().log(new Exception("Child is not a project"));
 		this.children.remove(child);
 		publish();
 	}

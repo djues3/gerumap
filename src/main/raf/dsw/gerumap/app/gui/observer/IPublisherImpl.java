@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-// Every model class will implicitly extend this class by common superclass
 public class IPublisherImpl implements IPublisher{
 	protected final List<ISubscriber> subscribers = new ArrayList<>();
 
