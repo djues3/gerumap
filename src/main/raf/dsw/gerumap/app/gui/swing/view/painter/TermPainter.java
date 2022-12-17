@@ -12,6 +12,8 @@ import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.app.gui.observer.ISubscriber;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
@@ -50,11 +52,25 @@ public class TermPainter extends Painter implements ISubscriber  {
 		g2d.setTransform(mindMapView.getAffineTransform());
 		createGraphic(g2d, color);
 	}
+
+	protected void drawCenteredString(Graphics g, String text, Rectangle rect, Font font) {
+		// Get the FontMetrics
+		FontMetrics metrics = g.getFontMetrics(font);
+		// Determine the X coordinate for the text
+		int x = rect.x + (rect.width - metrics.stringWidth(text)) / 2;
+		// Determine the Y coordinate for the text (note we add the ascent, as in java 2d 0 is top of the screen)
+		int y = rect.y + ((rect.height - metrics.getHeight()) / 2) + metrics.getAscent();
+		// Set the font
+		g.setFont(font);
+		// Draw the String
+		g.drawString(text, x, y);
+	}
+
 	private void createGraphic(Graphics2D g2d, Color color) {
 		this.color = color;
 
-			g2d.setColor(color);
-			g2d.fill(shape);
+		g2d.setColor(color);
+		g2d.fill(shape);
 		g2d.setColor(new Color(25, 63, 148, 255));
 		float[] dash = {10f, 10f};
 		if (selected) {
@@ -67,7 +83,15 @@ public class TermPainter extends Painter implements ISubscriber  {
 		g2d.draw(shape);
 		x = term.getX() - Term.DEFAULT_WIDTH / 2.0f;
 		y = term.getY() - Term.DEFAULT_HEIGHT / 2.0f;
-		g2d.drawString(term.getText(), x + 20f, y + 27.5f);
+//		g2d.drawString(term.getText(), x + 20f, y + 27.5f);
+
+		String text = term.getText();
+		FontMetrics fm = g2d.getFontMetrics();
+
+		int x = (getWidth() - fm.stringWidth(text)) / 2;
+		int y = ((getHeight() - fm.getHeight()) / 2) + fm.getAscent();
+
+		g2d.drawString(text, term.getX() + x, term.getY() + y);
 	}
 
 	@Override
