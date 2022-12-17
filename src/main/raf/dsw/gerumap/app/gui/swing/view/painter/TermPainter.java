@@ -7,8 +7,10 @@ import lombok.Setter;
 import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.gui.state.states.ZoomState;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.app.gui.observer.ISubscriber;
+import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -28,9 +30,11 @@ public class TermPainter extends Painter implements ISubscriber  {
 	@Setter(AccessLevel.NONE)
 	private float y;
 	private boolean selected = false;
+	private MindMapView mindMapView;
 
-	public TermPainter(Term term) {
+	public TermPainter(Term term, MindMapView mindMapView) {
 		this.term = term;
+		this.mindMapView = mindMapView;
 		this.x = term.getX() - term.getWidth() / 2.0f;
 		this.y = term.getY() - term.getHeight() / 2.0f;
 		color = new Color(term.getColor());
@@ -43,17 +47,13 @@ public class TermPainter extends Painter implements ISubscriber  {
 		createGraphic((Graphics2D) g);
 	}
 	private void createGraphic(Graphics2D g2d) {
-		ZoomState zoomState = null;
-		if (MainFrame.getInstance().getPvm().getProjectView() instanceof ProjectView pv)
-			zoomState = pv.getStateManager().getZoomState();
-		if (zoomState != null)
-			g2d.setTransform(zoomState.getAffineTransform());
+		g2d.setTransform(mindMapView.getAffineTransform());
 		createGraphic(g2d, color);
 	}
 	private void createGraphic(Graphics2D g2d, Color color) {
 		this.color = color;
 		if(selected) {
-			g2d.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha() * 39 / 100));
+			g2d.setColor(new Color(color.getRed(), 0, 0, color.getAlpha() * 39 / 100));
 			g2d.fill(shape);
 		} else {
 			g2d.setColor(color);

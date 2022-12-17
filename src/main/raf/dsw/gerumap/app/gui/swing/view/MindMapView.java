@@ -33,6 +33,8 @@ public class MindMapView extends JPanel implements ISubscriber {
     private Set<Painter> painters = new HashSet<>();
 
     public MindMapView(MindMap mindMap) {
+        affineTransform = new AffineTransform();
+        affineTransform.setToIdentity();
         this.mindMap = mindMap;
         MouseController mouseController = new MouseController(this);
         this.addMouseListener(mouseController);

@@ -20,7 +20,7 @@ public class TermState extends State {
 		Point2D screen = new Point2D.Double(x, y);
 		try {
 
-			((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
+			((ProjectView)MainFrame.getInstance().getProjectView()).getMindMapView().getAffineTransform().inverseTransform(screen, real);
 		} catch (NoninvertibleTransformException e) {
 			AppCore.getInstance().getLogger().log(e);
 		}
@@ -31,7 +31,7 @@ public class TermState extends State {
 		term.setY((int)real.getY());
 		term.setText("New Term");
 		view.getMindMap().addChild(term);
-		TermPainter tp = new TermPainter(term);
+		TermPainter tp = new TermPainter(term, view);
 		view.addPainter(tp);
 	}
 
@@ -39,7 +39,7 @@ public class TermState extends State {
 		Point2D real = new Point2D.Double();
 		Point2D screen = new Point2D.Double(x, y);
 		try {
-			((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
+			((ProjectView)MainFrame.getInstance().getProjectView()).getMindMapView().getAffineTransform().inverseTransform(screen, real);
 		} catch (NoninvertibleTransformException e) {
 			throw new RuntimeException(e);
 		}

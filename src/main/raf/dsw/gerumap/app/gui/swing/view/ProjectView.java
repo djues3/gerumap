@@ -20,7 +20,6 @@ import java.util.HashSet;
 @Setter
 @NoArgsConstructor
 public class ProjectView extends JPanel implements ISubscriber {
-	private AffineTransform affineTransform;
 	private Project project;
     private JTabbedPane tabs;
     private JPanel labels;
@@ -74,7 +73,6 @@ public class ProjectView extends JPanel implements ISubscriber {
 			addMindMapView((MindMap)x);
 		}
 		this.stateManager = new StateManager();
-		affineTransform = stateManager.getZoomState().getAffineTransform();
 	}
 
 

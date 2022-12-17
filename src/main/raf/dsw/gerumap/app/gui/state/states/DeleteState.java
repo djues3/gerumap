@@ -21,7 +21,7 @@ public class DeleteState extends State {
 		Point2D real = new Point2D.Double();
 		Point2D screen = new Point2D.Double(x, y);
 		try {
-			((ProjectView) MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
+			((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().getAffineTransform().inverseTransform(screen, real);
 		} catch (NoninvertibleTransformException e) {
 			throw new RuntimeException(e);
 		}

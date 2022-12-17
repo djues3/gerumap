@@ -27,7 +27,7 @@ public class LinkState extends State {
 		Point2D real = new Point2D.Double();
 		Point2D screen = new Point2D.Double(x, y);
 		try {
-			((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
+			((ProjectView)MainFrame.getInstance().getProjectView()).getMindMapView().getAffineTransform().inverseTransform(screen, real);
 		} catch (NoninvertibleTransformException e) {
 			throw new RuntimeException(e);
 		}
@@ -49,7 +49,7 @@ public class LinkState extends State {
 		Point2D real = new Point2D.Double();
 		Point2D screen = new Point2D.Double(x, y);
 		try {
-			((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
+			((ProjectView)MainFrame.getInstance().getProjectView()).getMindMapView().getAffineTransform().inverseTransform(screen, real);
 		} catch (NoninvertibleTransformException e) {
 			throw new RuntimeException(e);
 		}
@@ -67,7 +67,7 @@ public class LinkState extends State {
 		Point2D real = new Point2D.Double();
 		Point2D screen = new Point2D.Double(x, y);
 		try {
-			((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
+			((ProjectView)MainFrame.getInstance().getProjectView()).getMindMapView().getAffineTransform().inverseTransform(screen, real);
 		} catch (NoninvertibleTransformException e) {
 			throw new RuntimeException(e);
 		}
@@ -82,7 +82,7 @@ public class LinkState extends State {
 		link.getTo().addLink(link.getFrom());
 		link.getFrom().addLink(link.getTo());
 		view.getMindMap().addChild(link);
-		view.addPainter(new LinkPainter(link));
+		view.addPainter(new LinkPainter(link, view));
 		startX = null;
 		startY = null;
 		link = new Link();

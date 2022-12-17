@@ -14,7 +14,7 @@ import java.awt.geom.Point2D;
 @Getter
 @Setter
 public class ZoomState extends State {
-    private AffineTransform affineTransform = new AffineTransform();
+    private AffineTransform affineTransform;
     private Float startX = 0f;
     private Float startY = 0f;
     private Float offsetX = 0f;
@@ -31,16 +31,15 @@ public class ZoomState extends State {
     }
 
     public ZoomState() {
-        affineTransform.setToIdentity();
-//        affineTransform.setToScale(1.5f,1.5f);
     }
 
     @Override
     public void mousePressed(int x, int y, MindMapView view) {
+        affineTransform = view.getAffineTransform();
         Point2D real = new Point2D.Double();
         Point2D screen = new Point2D.Double(x, y);
         try {
-            ((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
+            affineTransform.inverseTransform(screen, real);
         } catch (NoninvertibleTransformException e) {
             AppCore.getInstance().getLogger().log(e);
         }
@@ -50,10 +49,11 @@ public class ZoomState extends State {
 
     @Override
     public void mouseDragged(int x, int y, MindMapView view) {
+        affineTransform = view.getAffineTransform();
         Point2D real = new Point2D.Double();
         Point2D screen = new Point2D.Double(x, y);
         try {
-            ((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
+            affineTransform.inverseTransform(screen, real);
         } catch (NoninvertibleTransformException e) {
             AppCore.getInstance().getLogger().log(e);
         }
@@ -67,10 +67,11 @@ public class ZoomState extends State {
 
     @Override
     public void mouseWheelMoved(int x, int y, int step, MindMapView view) {
+        affineTransform = view.getAffineTransform();
         Point2D real = new Point2D.Double();
         Point2D screen = new Point2D.Double(x, y);
         try {
-            ((ProjectView)MainFrame.getInstance().getProjectView()).getAffineTransform().inverseTransform(screen, real);
+            affineTransform.inverseTransform(screen, real);
         } catch (NoninvertibleTransformException e) {
             AppCore.getInstance().getLogger().log(e);
         }
