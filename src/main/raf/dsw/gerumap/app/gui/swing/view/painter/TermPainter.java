@@ -45,7 +45,7 @@ public class TermPainter extends Painter implements ISubscriber  {
 
 	@Override
 	public void draw(Graphics g) {
-		setup();
+		setup((Graphics2D) g);
 		createGraphic((Graphics2D) g);
 	}
 	private void createGraphic(Graphics2D g2d) {
@@ -100,8 +100,13 @@ public class TermPainter extends Painter implements ISubscriber  {
 				Term.DEFAULT_WIDTH, Term.DEFAULT_HEIGHT));
 	}
 
-	private void setup() {
-		setup(Term.DEFAULT_WIDTH, Term.DEFAULT_HEIGHT);
+	private void setup(Graphics2D g2d) {
+		String text = term.getText();
+		FontMetrics fm = g2d.getFontMetrics();
+
+		int width = Math.max(Term.DEFAULT_WIDTH, fm.stringWidth(text) + 20);
+
+		setup(width, Term.DEFAULT_HEIGHT);
 	}
 
 	private void setup(int width, int height) {
