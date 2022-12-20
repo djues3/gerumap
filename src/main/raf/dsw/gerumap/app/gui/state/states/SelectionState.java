@@ -68,12 +68,12 @@ public class SelectionState extends State {
 		x = (int)real.getX();
 		y = (int)real.getY();
 		selectedTerms = view.getTermsInRectangle(
-				new Rectangle2D.Double(min(startX, x), min(startY, y), abs(startX - x), abs(startY - y)));
+				new Rectangle2D.Double(min(startXReal, x), min(startYReal, y), abs(startXReal - x), abs(startYReal - y)));
 		for(TermPainter tp : selectedTerms) {
 			tp.setSelected(true);
 		}
 		selectedLinks = view.getLinksInRectangle(
-				new Rectangle2D.Double(min(startX, x), min(startY, y), abs(startX - x), abs(startY - y)));
+				new Rectangle2D.Double(min(startXReal, x), min(startYReal, y), abs(startXReal - x), abs(startYReal - y)));
 		for(LinkPainter lp : selectedLinks) {
 			lp.setSelected(true);
 		}
@@ -104,9 +104,9 @@ public class SelectionState extends State {
 		x = (int)real.getX();
 		y = (int)real.getY();
 		selectedTerms = view.getTermsInRectangle(
-				new Rectangle2D.Double(min(startX, x), min(startY, y), abs(startX - x), abs(startY - y)));
+				new Rectangle2D.Double(min(startXReal, x), min(startYReal, y), abs(startXReal - x), abs(startYReal - y)));
 		selectedLinks = view.getLinksInRectangle(
-				new Rectangle2D.Double(min(startX, x), min(startY, y), abs(startX - x), abs(startY - y)));
+				new Rectangle2D.Double(min(startXReal, x), min(startYReal, y), abs(startXReal - x), abs(startYReal - y)));
 		view.repaint();
 	}
 }
