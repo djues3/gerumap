@@ -1,9 +1,6 @@
 package raf.dsw.gerumap.app.mapRepository.model.elements;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import raf.dsw.gerumap.app.mapRepository.model.Element;
 
 import java.util.ArrayList;
@@ -13,6 +10,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
+@ToString
 public class Term extends Element {
 	public static final int DEFAULT_WIDTH = 100;
 	public static final int DEFAULT_HEIGHT = 50;
@@ -23,7 +21,8 @@ public class Term extends Element {
 	private int width = DEFAULT_WIDTH;
 	private int height = DEFAULT_HEIGHT;
 	private String text;
-	private List<Link> links = new ArrayList<>();
+	@ToString.Exclude
+	private transient List<Link> links = new ArrayList<>();
 
 	public void addLink(Term term) {
 		links.add(new Link(this, term));

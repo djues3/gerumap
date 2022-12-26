@@ -1,6 +1,5 @@
 package raf.dsw.gerumap.app.mapRepository.factory;
 
-import raf.dsw.gerumap.app.mapRepository.factory.factories.ElementFactory;
 import raf.dsw.gerumap.app.mapRepository.factory.factories.MindMapFactory;
 import raf.dsw.gerumap.app.mapRepository.factory.factories.ProjectFactory;
 

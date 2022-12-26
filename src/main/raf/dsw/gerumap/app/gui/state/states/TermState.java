@@ -7,6 +7,7 @@ import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.app.gui.swing.view.painter.Painter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;
+import raf.dsw.gerumap.app.mapRepository.model.Project;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
 import java.awt.geom.NoninvertibleTransformException;
@@ -32,6 +33,7 @@ public class TermState extends State {
 		view.getMindMap().addChild(term);
 		TermPainter tp = new TermPainter(term, view);
 		view.addPainter(tp);
+		((Project)view.getMindMap().getParent()).setModified(true);
 	}
 
 	private boolean checkIntersect(int x, int y, MindMapView view) {

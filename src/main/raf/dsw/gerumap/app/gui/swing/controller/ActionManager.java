@@ -21,6 +21,10 @@ public class ActionManager {
 	private LinkStateAction linkStateAction;
 	private MoveStateAction moveStateAction;
 	private ZoomStateAction zoomStateAction;
+	private SaveAction saveAction;
+	private SaveAsAction saveAsAction;
+	private OpenAction openAction;
+	private ExportAction exportAction;
 
 	public ActionManager() {
 		initActions();
@@ -39,5 +43,9 @@ public class ActionManager {
 		linkStateAction = new LinkStateAction();
 		moveStateAction = new MoveStateAction();
 		zoomStateAction = new ZoomStateAction();
+		saveAction = new SaveAction();
+		saveAsAction = new SaveAsAction();
+		openAction = new OpenAction();
+		exportAction = new ExportAction();
 	}
 }

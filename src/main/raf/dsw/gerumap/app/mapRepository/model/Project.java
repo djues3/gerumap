@@ -1,21 +1,20 @@
 package raf.dsw.gerumap.app.mapRepository.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
 
-import java.nio.file.Path;
+import java.io.File;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(callSuper = true)
 public class Project extends MapNodeComposite {
 
-	private Path filePath;
+	private transient File file;
+	private transient boolean modified;
 
 	public void setAuthor(String author) {
 		this.author = author;
@@ -41,5 +40,13 @@ public class Project extends MapNodeComposite {
 			throw new RuntimeException("");
 		this.children.add(child);
 		publish();
+	}
+
+	public boolean isModified() {
+		return modified;
+	}
+
+	public void setModified(boolean modified) {
+		this.modified = modified;
 	}
 }

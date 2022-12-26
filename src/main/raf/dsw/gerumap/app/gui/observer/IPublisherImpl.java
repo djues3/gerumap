@@ -1,11 +1,14 @@
 package raf.dsw.gerumap.app.gui.observer;
 
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class IPublisherImpl implements IPublisher{
-	protected final List<ISubscriber> subscribers = new ArrayList<>();
+@ToString
+public class IPublisherImpl implements IPublisher {
+	protected transient final List<ISubscriber> subscribers = new ArrayList<>();
 
 	public void addSubscriber(ISubscriber subscriber) {
 		if (subscriber != null && !subscribers.contains(subscriber))

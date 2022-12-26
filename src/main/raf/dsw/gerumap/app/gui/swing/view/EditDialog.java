@@ -25,9 +25,7 @@ public class EditDialog extends JPanel{
         add(textField);
         add(doneButton);
         add(colorButton);
-        colorButton.addActionListener(e -> {
-            color = JColorChooser.showDialog(this, "Pick a color", Color.BLACK);
-        });
+        colorButton.addActionListener(e -> color = JColorChooser.showDialog(this, "Pick a color", Color.BLACK));
         doneButton.addActionListener(e -> {
             Component component = (Component) e.getSource();
             JDialog dialog = (JDialog) SwingUtilities.getRoot(component);
@@ -37,7 +35,6 @@ public class EditDialog extends JPanel{
 
     public String getText() {return textField.getText();}
     public Color getColor() {
-        System.out.println(color);
         return color;
     }
 }

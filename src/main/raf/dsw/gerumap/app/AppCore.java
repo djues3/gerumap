@@ -7,6 +7,7 @@ import raf.dsw.gerumap.app.gui.swing.SwingGui;
 import raf.dsw.gerumap.app.log.ConsoleLogger;
 import raf.dsw.gerumap.app.mapRepository.MapRepositoryImpl;
 import raf.dsw.gerumap.app.messageGenerator.MessageGeneratorImpl;
+import raf.dsw.gerumap.app.serializer.GsonSerializer;
 
 @Getter
 @Setter
@@ -27,7 +28,8 @@ public class AppCore extends ApplicationFramework {
         Logger logger = new ConsoleLogger();
         MessageGenerator generator = new MessageGeneratorImpl();
         ApplicationFramework app = AppCore.getInstance();
-        app.init(gui, repo, logger, generator);
+        Serializer serializer = new GsonSerializer();
+        app.init(gui, repo, logger, generator, serializer);
         app.run();
     }
 
