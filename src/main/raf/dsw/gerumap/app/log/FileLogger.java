@@ -3,7 +3,11 @@ package raf.dsw.gerumap.app.log;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.messageGenerator.Message;
-import java.io.*;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 
 @Getter

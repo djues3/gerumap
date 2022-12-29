@@ -6,8 +6,9 @@ import raf.dsw.gerumap.app.core.Serializer;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
-import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
+import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
+import raf.dsw.gerumap.app.messageGenerator.Message;
 
 import java.io.File;
 import java.io.FileReader;
@@ -37,7 +38,7 @@ public class GsonSerializer implements Serializer {
 			System.out.println("p = " + p);
 			return p;
 		} catch (IOException e) {
-			AppCore.getInstance().getLogger().log(e);
+						AppCore.getInstance().getMessageGenerator().generate(e.getMessage(), Message.Level.ERROR, e);
 			return null;
 		}
 	}
@@ -48,7 +49,7 @@ public class GsonSerializer implements Serializer {
 			System.out.println(gson.toJson(project, Project.class));
 			gson.toJson(project, writer);
 		} catch (IOException e) {
-			AppCore.getInstance().getLogger().log(e);
+						AppCore.getInstance().getMessageGenerator().generate(e.getMessage(), Message.Level.ERROR, e);
 		}
 	}
 	private static class MapNodeSerializer implements JsonSerializer<MapNode> {

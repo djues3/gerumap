@@ -10,7 +10,7 @@ public class SelectionStateAction extends AbstractGerumapAction {
 	public SelectionStateAction() {
 		putValue(NAME, "Select");
 		putValue(SHORT_DESCRIPTION, "Select");
-		putValue(SMALL_ICON, loadScaledIcon("/images/selectState.png"));
+		putValue(SMALL_ICON, loadScaledIcon("/images/select.png"));
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

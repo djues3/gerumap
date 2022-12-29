@@ -10,7 +10,7 @@ public class TermStateAction extends AbstractGerumapAction {
 	public TermStateAction() {
 		putValue(NAME, "Term");
 		putValue(SHORT_DESCRIPTION, "Term");
-		putValue(SMALL_ICON, loadScaledIcon("/images/termState.png"));
+		putValue(SMALL_ICON, loadScaledIcon("/images/term.png"));
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

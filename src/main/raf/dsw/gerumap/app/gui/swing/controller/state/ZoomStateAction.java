@@ -11,7 +11,7 @@ public class ZoomStateAction extends AbstractGerumapAction {
     public ZoomStateAction() {
         putValue(NAME, "Zoom");
         putValue(SHORT_DESCRIPTION, "Zoom");
-        putValue(SMALL_ICON, loadScaledIcon("/images/zoomState.png"));
+        putValue(SMALL_ICON, loadScaledIcon("/images/zoom.png"));
     }
 
     @Override

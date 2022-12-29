@@ -1,6 +1,5 @@
 package raf.dsw.gerumap.app.gui.state.states;
 
-import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.state.State;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
@@ -16,14 +15,7 @@ import java.awt.geom.Point2D;
 public class TermState extends State {
 	@Override
 	public void mousePressed(int x, int y, MindMapView view) {
-		Point2D real = new Point2D.Double();
-		Point2D screen = new Point2D.Double(x, y);
-		try {
-
-			((ProjectView)MainFrame.getInstance().getProjectView()).getMindMapView().getAffineTransform().inverseTransform(screen, real);
-		} catch (NoninvertibleTransformException e) {
-			AppCore.getInstance().getLogger().log(e);
-		}
+		Point2D real = mapPoints(x, y, view.getAffineTransform());
 		if(checkIntersect((int)real.getX(), (int)real.getY(), view))
 			return;
 		Term term = new Term();

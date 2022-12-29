@@ -3,6 +3,7 @@ package raf.dsw.gerumap.app.mapRepository.factory.factories;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.factory.NodeFactory;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
+
 import java.util.Random;
 
 public class ProjectFactory implements NodeFactory {

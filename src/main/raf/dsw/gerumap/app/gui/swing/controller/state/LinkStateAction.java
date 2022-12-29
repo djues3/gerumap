@@ -11,7 +11,7 @@ public class LinkStateAction extends AbstractGerumapAction {
 	public LinkStateAction() {
 		putValue(NAME, "Link");
 		putValue(SHORT_DESCRIPTION, "Link");
-		putValue(SMALL_ICON, loadScaledIcon("/images/linkState.png"));
+		putValue(SMALL_ICON, loadScaledIcon("/images/addLink.png"));
 	}
 
 	@Override

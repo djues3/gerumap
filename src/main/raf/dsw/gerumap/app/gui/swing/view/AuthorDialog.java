@@ -5,6 +5,7 @@ import lombok.Setter;
 import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.gui.observer.ISubscriber;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
