@@ -1,13 +1,12 @@
 package raf.dsw.gerumap.app.log;
 
-import lombok.Getter;
-import lombok.Setter;
-import raf.dsw.gerumap.app.messageGenerator.Message;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import lombok.Getter;
+import lombok.Setter;
+import raf.dsw.gerumap.app.messageGenerator.Message;
 
 
 @Getter
@@ -32,11 +31,15 @@ public class FileLogger extends AbstractLogger {
 
 	@Override
 	public void log(Message message, Throwable t) {
-		if (checkDiscard(message)) return;
+		if (checkDiscard(message)) {
+			return;
+		}
 		append(format(message, t));
 	}
+
 	private void append(String format) {
-		try (PrintWriter pr = new PrintWriter(new BufferedWriter(new FileWriter(System.getProperty("user.dir")
+		try (PrintWriter pr = new PrintWriter(
+			new BufferedWriter(new FileWriter(System.getProperty("user.dir")
 				+ "/src/resources/log.log", true)))) {
 			pr.println(format);
 		} catch (IOException e) {

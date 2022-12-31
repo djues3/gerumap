@@ -1,11 +1,13 @@
 package raf.dsw.gerumap.app.core;
 
-import raf.dsw.gerumap.app.mapRepository.model.Project;
-
 import java.io.File;
+import raf.dsw.gerumap.app.mapRepository.model.Project;
 
 public interface Serializer {
 
 	Project loadProject(File file);
+
 	void saveProject(Project node);
+//	MindMap loadMindMap(File file);
+//	void saveMindMap(MindMap node);
 }

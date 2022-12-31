@@ -1,10 +1,13 @@
 package raf.dsw.gerumap.app.mapRepository.model.elements;
 
-import lombok.*;
-import raf.dsw.gerumap.app.mapRepository.model.Element;
-
 import java.util.ArrayList;
 import java.util.List;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import raf.dsw.gerumap.app.mapRepository.model.Element;
 
 @Getter
 @Setter
@@ -12,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class Term extends Element {
+
 	public static final int DEFAULT_WIDTH = 100;
 	public static final int DEFAULT_HEIGHT = 50;
 	public static final int DEFAULT_COLOR = 0xC8BAFAFF;
@@ -20,6 +24,7 @@ public class Term extends Element {
 	private int y;
 	private int width = DEFAULT_WIDTH;
 	private int height = DEFAULT_HEIGHT;
+	private boolean centralTerm;
 	private String text;
 	@ToString.Exclude
 	private transient List<Link> links = new ArrayList<>();
@@ -30,6 +35,7 @@ public class Term extends Element {
 
 	public boolean contains(int x, int y) {
 		return (x >= (this.x - DEFAULT_WIDTH / 2)) && (y >= (this.y - DEFAULT_HEIGHT / 2)) &&
-				(x <= (this.x - DEFAULT_WIDTH / 2 + width)) && (y <= (this.y - DEFAULT_HEIGHT / 2 + height));
+			(x <= (this.x - DEFAULT_WIDTH / 2 + width)) && (y <= (this.y - DEFAULT_HEIGHT / 2
+			+ height));
 	}
 }

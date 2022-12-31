@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import raf.dsw.gerumap.app.gui.observer.IPublisherImpl;
+import raf.dsw.gerumap.app.observer.IPublisherImpl;
 
 @Getter
 @Setter

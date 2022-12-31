@@ -1,9 +1,12 @@
 package raf.dsw.gerumap.app.mapRepository.model.elements;
 
-import lombok.*;
-import raf.dsw.gerumap.app.mapRepository.model.Element;
-
 import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import raf.dsw.gerumap.app.mapRepository.model.Element;
 
 @Getter
 @Setter
@@ -17,11 +20,15 @@ public class Link extends Element {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 		Link link = (Link) o;
 		return (Objects.equals(from, link.from) && Objects.equals(to, link.to)) ||
-				(Objects.equals(from, link.to) && Objects.equals(to, link.from));
+			(Objects.equals(from, link.to) && Objects.equals(to, link.from));
 	}
 
 }

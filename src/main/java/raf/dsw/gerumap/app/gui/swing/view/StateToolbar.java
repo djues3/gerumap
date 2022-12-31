@@ -1,8 +1,9 @@
 package raf.dsw.gerumap.app.gui.swing.view;
 
-import javax.swing.*;
+import javax.swing.JToolBar;
 
 public class StateToolbar extends JToolBar {
+
 	public StateToolbar() {
 		super(HORIZONTAL);
 		setFloatable(false);
@@ -13,6 +14,7 @@ public class StateToolbar extends JToolBar {
 		add(MainFrame.getInstance().getActionManager().getEditStateAction());
 		add(MainFrame.getInstance().getActionManager().getMoveStateAction());
 		add(MainFrame.getInstance().getActionManager().getZoomStateAction());
+		add(MainFrame.getInstance().getActionManager().getCentralTermAction());
 	}
 
 }

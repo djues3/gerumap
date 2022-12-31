@@ -1,19 +1,24 @@
 package raf.dsw.gerumap.app.gui.swing.view.painter;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 
-import java.awt.*;
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
-
 @Getter
 @Setter
 @NoArgsConstructor
 public class LinkPainter extends Painter {
+
 	Shape shape;
 	Link link;
 
@@ -24,13 +29,14 @@ public class LinkPainter extends Painter {
 		this.mindMapView = mindMapView;
 		this.link = link;
 	}
+
 	@Override
 	public void draw(Graphics g) {
 		setup();
 		Graphics2D g2d = (Graphics2D) g;
 		((Graphics2D) g).setTransform(mindMapView.getAffineTransform());
-		if(selected) {
-			g2d.setColor(new Color(255,0,0, 78));
+		if (selected) {
+			g2d.setColor(new Color(255, 0, 0, 78));
 		} else {
 			g2d.setColor(Color.BLACK);
 		}
@@ -40,7 +46,8 @@ public class LinkPainter extends Painter {
 	}
 
 	private void setup() {
-		shape = new Line2D.Double(link.getFrom().getX(), link.getFrom().getY(), link.getTo().getX(), link.getTo().getY());
+		shape = new Line2D.Double(link.getFrom().getX(), link.getFrom().getY(), link.getTo().getX(),
+			link.getTo().getY());
 	}
 
 	@Override

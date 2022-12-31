@@ -1,28 +1,27 @@
 package raf.dsw.gerumap.app.gui.swing.tree.model;
 
-import raf.dsw.gerumap.app.mapRepository.MapNode;
-
 import javax.swing.tree.DefaultMutableTreeNode;
+import raf.dsw.gerumap.app.mapRepository.MapNode;
 
 
 public class MapTreeItem extends DefaultMutableTreeNode {
 
-    private final MapNode mapNode;
+	private final MapNode mapNode;
 
-    public MapTreeItem(MapNode nodeModel) {
-        this.mapNode = nodeModel;
-    }
+	public MapTreeItem(MapNode node) {
+		this.mapNode = node;
+	}
 
-    @Override
-    public String toString() {
-        return mapNode.getName();
-    }
+	@Override
+	public String toString() {
+		return mapNode.getName();
+	}
 
-    public void setName(String name) {
-        this.mapNode.setName(name);
-    }
+	public void setName(String name) {
+		this.mapNode.setName(name);
+	}
 
-    public MapNode getMapNode() {
-        return mapNode;
-    }
+	public MapNode getMapNode() {
+		return mapNode;
+	}
 }

@@ -1,22 +1,30 @@
 package raf.dsw.gerumap.app.gui.swing.view.painter;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import raf.dsw.gerumap.app.gui.observer.IPublisher;
-import raf.dsw.gerumap.app.gui.observer.ISubscriber;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
-
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
+import raf.dsw.gerumap.app.observer.IPublisher;
+import raf.dsw.gerumap.app.observer.ISubscriber;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class TermPainter extends Painter implements ISubscriber  {
+public class TermPainter extends Painter implements ISubscriber {
+
 	private Color color;
 	private Shape shape;
 	private Term term;
@@ -42,6 +50,7 @@ public class TermPainter extends Painter implements ISubscriber  {
 		setup((Graphics2D) g);
 		createGraphic((Graphics2D) g);
 	}
+
 	private void createGraphic(Graphics2D g2d) {
 		g2d.setTransform(mindMapView.getAffineTransform());
 		createGraphic(g2d, color);
@@ -62,8 +71,9 @@ public class TermPainter extends Painter implements ISubscriber  {
 
 	private void createGraphic(Graphics2D g2d, Color color) {
 		this.color = color;
-		if(selected) {
-			g2d.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha() * 39 / 100));
+		if (selected) {
+			g2d.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(),
+				color.getAlpha() * 39 / 100));
 			g2d.fill(shape);
 		} else {
 			g2d.setColor(color);
@@ -72,7 +82,8 @@ public class TermPainter extends Painter implements ISubscriber  {
 		g2d.setColor(new Color(25, 63, 148, 255));
 		float[] dash = {10f, 10f};
 		if (selected) {
-			g2d.setStroke(new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 1, dash, 1));
+			g2d.setStroke(
+				new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 1, dash, 1));
 		} else {
 			g2d.setStroke(new BasicStroke(2));
 		}
@@ -94,7 +105,8 @@ public class TermPainter extends Painter implements ISubscriber  {
 
 	@Override
 	public boolean elementAt(int x, int y) {
-		return shape.intersects(new Rectangle2D.Double(x - Term.DEFAULT_WIDTH / 2d, y - Term.DEFAULT_HEIGHT / 2d,
+		return shape.intersects(
+			new Rectangle2D.Double(x - Term.DEFAULT_WIDTH / 2d, y - Term.DEFAULT_HEIGHT / 2d,
 				Term.DEFAULT_WIDTH, Term.DEFAULT_HEIGHT));
 	}
 
@@ -108,11 +120,10 @@ public class TermPainter extends Painter implements ISubscriber  {
 	}
 
 	private void setup(int width, int height) {
-		shape = new Ellipse2D.Double(term.getX() - width / 2.0f,term.getY() - height / 2.0f, width, height);
+		shape = new Ellipse2D.Double(term.getX() - width / 2.0f, term.getY() - height / 2.0f, width,
+			height);
 	}
-	public void setColor(Color color) {
-		this.color = color;
-	}
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -121,7 +132,7 @@ public class TermPainter extends Painter implements ISubscriber  {
 
 	@Override
 	public void update(IPublisher publisher) {
-		if(publisher instanceof Term t) {
+		if (publisher instanceof Term t) {
 			this.term = t;
 			this.x = t.getX() - t.getWidth() / 2.0f;
 			this.y = t.getY() - t.getHeight() / 2.0f;

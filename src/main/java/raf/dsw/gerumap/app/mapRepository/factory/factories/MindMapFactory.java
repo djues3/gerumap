@@ -1,12 +1,12 @@
 package raf.dsw.gerumap.app.mapRepository.factory.factories;
 
+import java.util.Random;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.factory.NodeFactory;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 
-import java.util.Random;
-
 public class MindMapFactory implements NodeFactory {
+
 	@Override
 	public MapNode createNode() {
 		MindMap mindMap = new MindMap();

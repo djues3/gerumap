@@ -1,14 +1,20 @@
 package raf.dsw.gerumap.app.gui.swing.view;
 
+import java.awt.Dialog;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.app.gui.observer.IPublisher;
-import raf.dsw.gerumap.app.gui.observer.ISubscriber;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
+import raf.dsw.gerumap.app.observer.IPublisher;
+import raf.dsw.gerumap.app.observer.ISubscriber;
 
 
 @Getter
@@ -34,8 +40,7 @@ public class AuthorDialog extends JDialog implements ISubscriber {
 
 	private void initListeners() {
 		ActionListener listener = e -> {
-			if(!(field.getText().equals("") || field.getText() == null))
-			{
+			if (!(field.getText().equals("") || field.getText() == null)) {
 				project.setAuthor(field.getText());
 				setVisible(false);
 			} else {
@@ -71,7 +76,7 @@ public class AuthorDialog extends JDialog implements ISubscriber {
 
 	@Override
 	public void update(IPublisher publisher) {
-		if(publisher instanceof Project) {
+		if (publisher instanceof Project) {
 			label.setText(project.getAuthor());
 		}
 	}

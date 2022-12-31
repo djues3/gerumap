@@ -1,15 +1,14 @@
 package raf.dsw.gerumap.app.gui.swing.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.KeyStroke;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.messageGenerator.Message;
 import raf.dsw.gerumap.app.messageGenerator.MessageType;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 
 public class NewAction extends AbstractGerumapAction {
 
@@ -24,7 +23,8 @@ public class NewAction extends AbstractGerumapAction {
 	public void actionPerformed(ActionEvent arg0) {
 		MapTreeItem selected = MainFrame.getInstance().getMapTree().getSelectedNode();
 		if (selected == null) {
-			AppCore.getInstance().getMessageGenerator().generate(MessageType.NODE_CANNOT_BE_ADDED, Message.Level.ERROR);
+			AppCore.getInstance().getMessageGenerator()
+				.generate(MessageType.NODE_CANNOT_BE_ADDED, Message.Level.ERROR);
 			return;
 		}
 		MainFrame.getInstance().getMapTree().addChild(selected);

@@ -1,6 +1,6 @@
 package raf.dsw.gerumap.app.gui.swing.view;
 
-import javax.swing.*;
+import javax.swing.JToolBar;
 
 public class Toolbar extends JToolBar {
 
@@ -17,6 +17,7 @@ public class Toolbar extends JToolBar {
 		add(MainFrame.getInstance().getActionManager().getInfoAction());
 		add(MainFrame.getInstance().getActionManager().getAuthorAction());
 		add(MainFrame.getInstance().getActionManager().getExportAction());
+		add(MainFrame.getInstance().getActionManager().getTemplateAction());
 	}
 
 

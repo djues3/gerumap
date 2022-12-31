@@ -1,5 +1,11 @@
 package raf.dsw.gerumap.app.gui.state.states;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.geom.Point2D;
+import java.util.List;
+import javax.swing.JDialog;
 import raf.dsw.gerumap.app.gui.swing.view.EditDialog;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
@@ -7,19 +13,17 @@ import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.Point2D;
-import java.util.List;
-
 public class EditState extends State {
+
 	public boolean tryToEdit() {
 		ProjectView pv = (ProjectView) MainFrame.getInstance().getProjectView();
 		List<TermPainter> terms = pv.getStateManager().getSelectedTerms();
-		if (terms == null)
+		if (terms == null) {
 			return false;
-		if (terms.isEmpty())
+		}
+		if (terms.isEmpty()) {
 			return false;
+		}
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = toolkit.getScreenSize();
 		JDialog dialog = new JDialog();
@@ -52,13 +56,14 @@ public class EditState extends State {
 		}
 		return true;
 	}
+
 	private int getRGBA(Color color) {
 		int r, g, b, a;
 		r = color.getRed();
 		g = color.getGreen();
 		b = color.getBlue();
 		a = color.getAlpha();
-		return  (a << 24) | (r << 16) | (g << 8) | b;
+		return (a << 24) | (r << 16) | (g << 8) | b;
 	}
 
 	@Override
@@ -67,8 +72,9 @@ public class EditState extends State {
 		x = (int) real.getX();
 		y = (int) real.getY();
 		Term term = view.getMindMap().getTermAt(x, y);
-		if(term == null)
+		if (term == null) {
 			return;
+		}
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = toolkit.getScreenSize();
 		JDialog dialog = new JDialog();

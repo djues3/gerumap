@@ -1,14 +1,20 @@
 package raf.dsw.gerumap.app.gui.swing.controller;
 
-import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 
-public class InfoAction extends AbstractGerumapAction{
+public class InfoAction extends AbstractGerumapAction {
 
 	public InfoAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_DOWN_MASK));
@@ -16,6 +22,7 @@ public class InfoAction extends AbstractGerumapAction{
 		putValue(NAME, "Info");
 		putValue(SHORT_DESCRIPTION, "Info");
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -31,12 +38,13 @@ public class InfoAction extends AbstractGerumapAction{
 		dialog.setLocationRelativeTo(MainFrame.getInstance());
 		dialog.setVisible(true);
 	}
+
 	private void chooseStudent(JPanel panel) {
 		JLabel name;
 		JLabel surname;
 		JLabel index;
 		JLabel image;
-		if(Math.random() < 0.5) {
+		if (Math.random() < 0.5) {
 			name = new JLabel("Ime: David");
 			name.setAlignmentX(Component.CENTER_ALIGNMENT);
 			surname = new JLabel("Prezime: Djuretanovic");

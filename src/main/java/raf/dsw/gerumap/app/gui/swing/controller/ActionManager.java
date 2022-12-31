@@ -3,7 +3,13 @@ package raf.dsw.gerumap.app.gui.swing.controller;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.app.gui.swing.controller.state.*;
+import raf.dsw.gerumap.app.gui.swing.controller.state.DeleteStateAction;
+import raf.dsw.gerumap.app.gui.swing.controller.state.EditStateAction;
+import raf.dsw.gerumap.app.gui.swing.controller.state.LinkStateAction;
+import raf.dsw.gerumap.app.gui.swing.controller.state.MoveStateAction;
+import raf.dsw.gerumap.app.gui.swing.controller.state.SelectionStateAction;
+import raf.dsw.gerumap.app.gui.swing.controller.state.TermStateAction;
+import raf.dsw.gerumap.app.gui.swing.controller.state.ZoomStateAction;
 
 @Getter
 @Setter
@@ -25,6 +31,8 @@ public class ActionManager {
 	private SaveAsAction saveAsAction;
 	private OpenAction openAction;
 	private ExportAction exportAction;
+	private TemplateAction templateAction;
+	private CentralTermAction centralTermAction;
 
 	public ActionManager() {
 		initActions();
@@ -47,5 +55,7 @@ public class ActionManager {
 		saveAsAction = new SaveAsAction();
 		openAction = new OpenAction();
 		exportAction = new ExportAction();
+		templateAction = new TemplateAction();
+		centralTermAction = new CentralTermAction();
 	}
 }

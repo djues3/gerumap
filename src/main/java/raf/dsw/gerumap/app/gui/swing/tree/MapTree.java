@@ -7,12 +7,13 @@ import raf.dsw.gerumap.app.mapRepository.model.ProjectExplorer;
 
 public interface MapTree {
 
-    MapTreeView generateTree(ProjectExplorer projectExplorer);
-    void addChild(MapTreeItem parent);
+	MapTreeView generateTree(ProjectExplorer projectExplorer);
 
-    void remove(MapTreeItem target);
+	void addChild(MapTreeItem parent);
 
-    MapTreeItem getSelectedNode();
+	void remove(MapTreeItem target);
 
-    void loadProject(Project node);
+	MapTreeItem getSelectedNode();
+
+	void loadProject(Project node);
 }

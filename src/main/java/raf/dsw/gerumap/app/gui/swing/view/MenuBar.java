@@ -1,7 +1,8 @@
 package raf.dsw.gerumap.app.gui.swing.view;
 
-import javax.swing.*;
 import java.awt.event.KeyEvent;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 
 public class MenuBar extends JMenuBar {
 
@@ -17,6 +18,7 @@ public class MenuBar extends JMenuBar {
 		fileMenu.add(MainFrame.getInstance().getActionManager().getSaveAction());
 		fileMenu.add(MainFrame.getInstance().getActionManager().getSaveAsAction());
 		fileMenu.add(MainFrame.getInstance().getActionManager().getExportAction());
+		fileMenu.add(MainFrame.getInstance().getActionManager().getTemplateAction());
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 		helpMenu.add(MainFrame.getInstance().getActionManager().getInfoAction());

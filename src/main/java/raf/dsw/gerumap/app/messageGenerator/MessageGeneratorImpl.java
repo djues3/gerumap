@@ -4,12 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.core.MessageGenerator;
-import raf.dsw.gerumap.app.gui.observer.IPublisherImpl;
+import raf.dsw.gerumap.app.observer.IPublisherImpl;
+
 @Getter
 @Setter
 public class MessageGeneratorImpl extends IPublisherImpl implements MessageGenerator {
+
 	Message message;
 	Throwable throwable;
+
 	@Override
 	public void generate(String msg, Message.Level level) {
 		message = new Message();

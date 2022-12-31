@@ -1,22 +1,22 @@
 package raf.dsw.gerumap.app.gui.swing.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
 import raf.dsw.gerumap.app.messageGenerator.Message;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.event.ActionEvent;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import java.io.File;
-
 public class OpenAction extends AbstractGerumapAction {
 
 	public OpenAction() {
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
-				KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
+			KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
 		putValue(SMALL_ICON, loadScaledIcon("/images/open.png"));
 		putValue(NAME, "Open action");
 		putValue(SHORT_DESCRIPTION, "Open action");
@@ -34,7 +34,8 @@ public class OpenAction extends AbstractGerumapAction {
 				MainFrame.getInstance().getMapTree().loadProject(p);
 
 			} catch (Exception ex) {
-				AppCore.getInstance().getMessageGenerator().generate("Error while opening the project", Message.Level.ERROR, ex);
+				AppCore.getInstance().getMessageGenerator()
+					.generate("Error while opening project", Message.Level.ERROR, ex);
 			}
 		}
 	}

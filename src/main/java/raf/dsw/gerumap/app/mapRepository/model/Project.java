@@ -1,15 +1,20 @@
 package raf.dsw.gerumap.app.mapRepository.model;
 
-import lombok.*;
+import java.io.File;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
-
-import java.io.File;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class Project extends MapNodeComposite {
 
@@ -28,16 +33,18 @@ public class Project extends MapNodeComposite {
 	}
 
 	public void removeChild(MapNode child) {
-		if (!(child instanceof MindMap))
+		if (!(child instanceof MindMap)) {
 			throw new RuntimeException("");
+		}
 		this.getChildren().remove(child);
 		publish();
 	}
 
 	@Override
 	public void addChild(MapNode child) {
-		if(!(child instanceof MindMap))
+		if (!(child instanceof MindMap)) {
 			throw new RuntimeException("");
+		}
 		this.children.add(child);
 		publish();
 	}

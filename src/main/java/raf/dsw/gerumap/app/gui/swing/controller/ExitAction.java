@@ -1,9 +1,9 @@
 package raf.dsw.gerumap.app.gui.swing.controller;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.KeyStroke;
 
 public class ExitAction extends AbstractGerumapAction {
 
