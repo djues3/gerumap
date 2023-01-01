@@ -2,6 +2,7 @@ package raf.dsw.gerumap.app.gui.swing.tree;
 
 import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.AppCore;
@@ -79,14 +80,14 @@ public class MapTreeImplementation implements MapTree {
 	@Override
 	public void loadProject(Project node) {
 		MapTreeItem root = treeModel.getRoot();
-		MapTreeItem project = new MapTreeItem(node);
+		MapTreeItem mti = new MapTreeItem(node);
 		for (MapNode child : node.getChildren()) {
 			MapTreeItem childItem = new MapTreeItem(child);
-			project.add(childItem);
+			mti.add(childItem);
 			child.setParent(node);
 		}
-		root.add(project);
-		treeView.expandPath(treeView.getSelectionPath());
+		root.add(mti);
+		treeView.expandPath(new TreePath(mti.getPath()));
 		SwingUtilities.updateComponentTreeUI(treeView);
 		ProjectViewManager pvm = MainFrame.getInstance().getPvm();
 		pvm.setProjectView(node);

@@ -26,8 +26,12 @@ public class SwingGui implements GUI {
 				case INFO -> optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
 				case WARNING -> optionPane.setMessageType(JOptionPane.WARNING_MESSAGE);
 				case ERROR -> optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+				default -> {
+					return;
+				}
+
 			}
-			optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+//			optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
 			optionPane.createDialog(MainFrame.getInstance(), message.getLevel().name())
 				.setVisible(true);
 

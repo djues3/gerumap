@@ -49,6 +49,7 @@ public class MindMapView extends JPanel implements ISubscriber {
 				painters.add(new LinkPainter(link, this));
 			}
 		}
+		repaint();
 	}
 
 	@Override

@@ -39,6 +39,8 @@ public class ProjectView extends JPanel implements ISubscriber {
 
 		labels = new JPanel();
 
+		this.stateManager = new StateManager();
+
 		nameLabel = new JLabel(project.getName());
 		authorLabel = new JLabel("Author : " + project.getAuthor());
 
@@ -49,10 +51,13 @@ public class ProjectView extends JPanel implements ISubscriber {
 		labels.add(nameLabel, BorderLayout.WEST);
 
 		tabs = new JTabbedPane();
-		if (!project.getChildren().isEmpty()) {
-			for (MapNode node : project.getChildren()) {
-				addMindMapView((MindMap) node);
+		tabs.addChangeListener(e -> {
+			if (tabs.getSelectedIndex() != -1) {
+				stateManager.clearSelected();
 			}
+		});
+		for (MapNode node : project.getChildren()) {
+			addMindMapView((MindMap) node);
 		}
 		BoxLayout box = new BoxLayout(this, BoxLayout.Y_AXIS);
 		this.setLayout(box);
@@ -60,7 +65,6 @@ public class ProjectView extends JPanel implements ISubscriber {
 		this.add(labels);
 		this.add(stateToolbar);
 		this.add(tabs);
-		this.stateManager = new StateManager();
 	}
 
 
@@ -69,7 +73,9 @@ public class ProjectView extends JPanel implements ISubscriber {
 			MindMapView mv = new MindMapView(m);
 			map.put(m, mv);
 			m.addSubscriber(this);
-			update((IPublisher) null);
+			tabs.addTab(m.getName(), mv);
+//			update((IPublisher) null);
+//			repaint();
 		}
 	}
 

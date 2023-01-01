@@ -64,5 +64,8 @@ public class StateManager {
 	public List<TermPainter> getSelectedTerms() {
 		return selectionState.getSelectedTerms();
 	}
+	public void clearSelected() {
+		selectionState.clearSelected();
+	}
 
 }
