@@ -2,6 +2,7 @@ package raf.dsw.gerumap.app.gui.state.states;
 
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.state.State;
+import raf.dsw.gerumap.app.gui.swing.commands.implementation.AddTermCommand;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
@@ -29,9 +30,10 @@ public class TermState extends State {
 		term.setX((int)real.getX());
 		term.setY((int)real.getY());
 		term.setText("New Term");
-		view.getMindMap().addChild(term);
-		TermPainter tp = new TermPainter(term, view);
-		view.addPainter(tp);
+//		view.getMindMap().addChild(term);
+		AddTermCommand command = new AddTermCommand(view, term);
+		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
+
 	}
 
 	private boolean checkIntersect(int x, int y, MindMapView view) {
