@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.swing.commands.implementation.AddTreeChildCommand;
+import raf.dsw.gerumap.app.gui.swing.commands.implementation.RemoveTreeChildCommand;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
@@ -17,6 +18,7 @@ import raf.dsw.gerumap.app.messageGenerator.MessageType;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -58,9 +60,11 @@ public class MapTreeImplementation implements MapTree {
             }
             if (!(parent instanceof  MapNodeComposite))
                 return;
-            ((DefaultMutableTreeNode) target.getParent()).remove(target);
-            ((MapNodeComposite) parent).removeChild(target.getMapNode());
-            SwingUtilities.updateComponentTreeUI(treeView);
+//            ((DefaultMutableTreeNode) target.getParent()).remove(target);
+//            ((MapNodeComposite) parent).removeChild(target.getMapNode());
+//            SwingUtilities.updateComponentTreeUI(treeView);
+            RemoveTreeChildCommand command = new RemoveTreeChildCommand((MapTreeItem) target.getParent(), target);
+            AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
         } catch (NullPointerException e) {
             AppCore.getInstance().getMessageGenerator()
                     .generate(MessageType.NODE_CANNOT_BE_REMOVED, Message.Level.ERROR, e);
