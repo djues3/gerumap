@@ -1,6 +1,9 @@
 package raf.dsw.gerumap.app.gui.state.states;
 
+import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.state.State;
+import raf.dsw.gerumap.app.gui.swing.commands.implementation.DeleteCommand;
+import raf.dsw.gerumap.app.gui.swing.commands.implementation.RemoveTermCommand;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
@@ -35,32 +38,33 @@ public class DeleteState extends State {
 			if(p instanceof TermPainter tp) {
 				if(tp.elementAt(x, y)) {
 					Term term = tp.getTerm();
-					view.removePainter(tp);
 					termToRemove = term;
-					//						view.removePainter(view.getPainterForLink(l));
-					//						l.getFrom().getLinks().remove(l);
-					//						l.getTo().getLinks().remove(l);
-					//						it.remove();
 					linksToRemove.addAll(term.getLinks());
 					break;
 				}
 			}
 			if(p instanceof LinkPainter lp) {
 				if(lp.elementAt(x, y)) {
-					lp.getLink().getFrom().getLinks().remove(lp.getLink());
-					lp.getLink().getTo().getLinks().remove(lp.getLink());
-//					map.removeChild(lp.getLink());
-					view.removePainter(lp);
+//					lp.getLink().getFrom().getLinks().remove(lp.getLink());
+//					lp.getLink().getTo().getLinks().remove(lp.getLink());
+//					view.getMindMap().removeChild(lp.getLink());
+					linksToRemove.add(lp.getLink());
 					break;
 				}
 			}
 		}
-		if (termToRemove != null)
-			view.removePainter(view.getPainterForTerm(termToRemove));
-		for (Link l : linksToRemove) {
-			map.removeChild(l);
-			view.removePainter(view.getPainterForLink(l));
-		}
+		List<Term> termsToRemove = new ArrayList<>();
+		termsToRemove.add(termToRemove);
+		DeleteCommand command = new DeleteCommand(termsToRemove, linksToRemove, view);
+//		if (termToRemove != null) {
+//			view.getMindMap().removeChild(termToRemove);
+//			view.removePainter(view.getPainterForTerm(termToRemove));
+//		}
+//		for (Link l : linksToRemove) {
+//			map.removeChild(l);
+//			view.removePainter(view.getPainterForLink(l));
+//		}
+		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
 		view.repaint();
 	}
 }
