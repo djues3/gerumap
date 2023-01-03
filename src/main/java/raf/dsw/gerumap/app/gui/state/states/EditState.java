@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.awt.geom.Point2D;
 import java.util.List;
 import javax.swing.JDialog;
+import raf.dsw.gerumap.app.gui.state.State;
 import raf.dsw.gerumap.app.gui.swing.view.EditDialog;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;

@@ -9,6 +9,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import lombok.NoArgsConstructor;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
+import raf.dsw.gerumap.app.mapRepository.model.Element;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
 import raf.dsw.gerumap.app.mapRepository.model.ProjectExplorer;
@@ -16,11 +17,11 @@ import raf.dsw.gerumap.app.mapRepository.model.ProjectExplorer;
 @NoArgsConstructor
 public class MapTreeCellRenderer extends DefaultTreeCellRenderer {
 
-	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected,
+	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel,
 		boolean expanded,
 		boolean leaf, int row, boolean hasFocus) {
 
-		super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
+		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 		URL imageURL = null;
 
 		if (((MapTreeItem) value).getMapNode() instanceof ProjectExplorer) {
@@ -29,6 +30,8 @@ public class MapTreeCellRenderer extends DefaultTreeCellRenderer {
 			imageURL = getClass().getResource("/images/project.png");
 		} else if (((MapTreeItem) value).getMapNode() instanceof MindMap) {
 			imageURL = getClass().getResource("/images/mindMap.png");
+		} else if (((MapTreeItem) value).getMapNode() instanceof Element) {
+			imageURL = getClass().getResource("/images/element.png");
 		}
 
 		Icon icon = null;

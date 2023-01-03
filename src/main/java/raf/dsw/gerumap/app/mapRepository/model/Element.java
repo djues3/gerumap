@@ -12,4 +12,7 @@ import raf.dsw.gerumap.app.mapRepository.MapNode;
 @NoArgsConstructor
 public class Element extends MapNode {
 
+	public Element(MapNode parent) {
+		this.parent = parent;
+	}
 }

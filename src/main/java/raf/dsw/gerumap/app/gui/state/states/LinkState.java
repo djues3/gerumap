@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import raf.dsw.gerumap.app.gui.state.State;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.gui.swing.view.painter.LinkPainter;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Link;

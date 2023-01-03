@@ -9,6 +9,8 @@ import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import raf.dsw.gerumap.app.AppCore;
+import raf.dsw.gerumap.app.gui.swing.commands.implementation.ChangeNameCommand;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 
 public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionListener {
@@ -25,22 +27,28 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
 		boolean expanded,
 		boolean leaf, int row) {
 		clickedOn = value;
-		edit = new JTextField(value.toString());
-		edit.addActionListener(e -> ((MapTreeItem) value).getMapNode().setName(edit.getText()));
+		String before = value.toString();
+		edit = new JTextField(before);
+		edit.addActionListener(e -> {
+//            ((MapTreeItem)value).getMapNode().setName(edit.getText());
+			ChangeNameCommand command = new ChangeNameCommand((MapTreeItem) value, before,
+				edit.getText());
+			AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
+		});
 		return edit;
 	}
 
 	public boolean isCellEditable(EventObject event) {
-		if (event instanceof MouseEvent) {
-			return ((MouseEvent) event).getClickCount() == 3;
-		}
+        if (event instanceof MouseEvent) {
+            return ((MouseEvent) event).getClickCount() == 3;
+        }
 		return false;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (!(clickedOn instanceof MapTreeItem clicked)) {
-			return;
-		}
+        if (!(clickedOn instanceof MapTreeItem clicked)) {
+            return;
+        }
 		clicked.setName(e.getActionCommand());
 	}
 

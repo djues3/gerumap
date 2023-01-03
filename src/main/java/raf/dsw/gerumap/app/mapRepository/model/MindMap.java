@@ -1,29 +1,31 @@
 package raf.dsw.gerumap.app.mapRepository.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
-import raf.dsw.gerumap.app.messageGenerator.Message;
 
 @Getter
 @Setter
 @NoArgsConstructor
-//@AllArgsConstructor
-@ToString(callSuper = true)
+@AllArgsConstructor
 public class MindMap extends MapNodeComposite {
 
-//	private boolean template;
+	private boolean template;
+
+	public MindMap(MapNode parent) {
+		this.parent = parent;
+	}
 
 	@Override
 	public void removeChild(MapNode child) {
 		if (!(child instanceof Element)) {
-			AppCore.getInstance().getMessageGenerator()
-				.generate("Child is not an element", Message.Level.ERROR);
+			AppCore.getInstance().getLogger().log(new Exception("Child is not an element"));
+			System.out.println(child);
 		}
 		this.getChildren().remove(child);
 		publish();
@@ -32,9 +34,12 @@ public class MindMap extends MapNodeComposite {
 	@Override
 	public void addChild(MapNode child) {
 		if (!(child instanceof Element)) {
+			System.out.println(child);
 			throw new RuntimeException("");
 		}
 		this.children.add(child);
+//		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(new AddTreeChildCommand(this, child));
+
 		publish();
 	}
 

@@ -22,7 +22,6 @@ import raf.dsw.gerumap.app.gui.swing.tree.MapTreeImplementation;
 import raf.dsw.gerumap.app.observer.IPublisher;
 import raf.dsw.gerumap.app.observer.ISubscriber;
 
-
 @Getter
 @Setter
 public class MainFrame extends JFrame implements ISubscriber {
@@ -56,7 +55,6 @@ public class MainFrame extends JFrame implements ISubscriber {
 		setVisible(true);
 	}
 
-
 	private void initGUI() {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 
@@ -83,7 +81,6 @@ public class MainFrame extends JFrame implements ISubscriber {
 		contentPanel.add(splitPane);
 		add(contentPanel, BorderLayout.CENTER);
 	}
-
 
 	@Override
 	public void update(IPublisher publisher) {

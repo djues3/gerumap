@@ -3,11 +3,14 @@ package raf.dsw.gerumap.app.gui.state.states;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import raf.dsw.gerumap.app.gui.state.State;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ZoomState extends State {
 
 	private AffineTransform affineTransform;
@@ -18,8 +21,6 @@ public class ZoomState extends State {
 	private Float scale = 1.0f;
 	private Float zoomPower;
 
-	public ZoomState() {
-	}
 
 	@Override
 	public void mousePressed(int x, int y, MindMapView view) {
@@ -31,6 +32,7 @@ public class ZoomState extends State {
 	@Override
 	public void mouseDragged(int x, int y, MindMapView view) {
 		affineTransform = view.getAffineTransform();
+
 		offsetX = (float) x - startX;
 		offsetY = (float) y - startY;
 		affineTransform.setToTranslation(offsetX, offsetY);
@@ -41,6 +43,7 @@ public class ZoomState extends State {
 	@Override
 	public void mouseWheelMoved(int x, int y, int step, MindMapView view) {
 		affineTransform = view.getAffineTransform();
+
 		Point2D real = mapPoints(x, y, affineTransform);
 		scale += step * .05f;
 		scale = Math.max(scale, .2f);

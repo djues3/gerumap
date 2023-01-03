@@ -36,9 +36,7 @@ public class MindMapView extends JPanel implements ISubscriber {
 	private AffineTransform affineTransform;
 
 	private Set<Painter> painters = new HashSet<>();
-
 	private Shape tempShape; // used for drawing the selection rectangle and lines for links.
-
 	public MindMapView(MindMap mindMap) {
 		affineTransform = new AffineTransform();
 		affineTransform.setToIdentity();
@@ -147,7 +145,6 @@ public class MindMapView extends JPanel implements ISubscriber {
 		}
 		return null;
 	}
-
 	public void rearrange(Term term) {
 		if (term.getLinks().isEmpty()) {
 			return;

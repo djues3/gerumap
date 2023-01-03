@@ -28,11 +28,10 @@ public abstract class AbstractLogger implements Logger {
 			if (generator.getThrowable() == null) {
 				if (generator.getMessage() != null) {
 					log(((MessageGeneratorImpl) publisher).getMessage());
-					return;
 				} else {
 					log((Throwable) null);
-					return;
 				}
+				return;
 			}
 			log(generator.getMessage(), generator.getThrowable());
 		}

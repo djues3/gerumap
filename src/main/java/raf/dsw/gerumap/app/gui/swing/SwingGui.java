@@ -31,7 +31,6 @@ public class SwingGui implements GUI {
 				}
 
 			}
-//			optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
 			optionPane.createDialog(MainFrame.getInstance(), message.getLevel().name())
 				.setVisible(true);
 

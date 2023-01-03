@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(callSuper = true)
 public abstract class MapNodeComposite extends MapNode {
 
 	protected List<MapNode> children = new ArrayList<>();

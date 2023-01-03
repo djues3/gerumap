@@ -29,9 +29,6 @@ public class Term extends Element {
 	@ToString.Exclude
 	private transient List<Link> links = new ArrayList<>();
 
-	public void addLink(Term term) {
-		links.add(new Link(this, term));
-	}
 
 	public boolean contains(int x, int y) {
 		return (x >= (this.x - DEFAULT_WIDTH / 2)) && (y >= (this.y - DEFAULT_HEIGHT / 2)) &&

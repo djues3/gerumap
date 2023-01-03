@@ -137,7 +137,7 @@ public class TermPainter extends Painter implements ISubscriber {
 			this.x = t.getX() - t.getWidth() / 2.0f;
 			this.y = t.getY() - t.getHeight() / 2.0f;
 			color = new Color(t.getColor());
-			if(t.isCentralTerm()) {
+			if (t.isCentralTerm()) {
 				this.mindMapView.rearrange(this.getTerm());
 				this.mindMapView.repaint();
 			}

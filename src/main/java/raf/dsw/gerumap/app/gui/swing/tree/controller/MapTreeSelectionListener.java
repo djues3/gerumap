@@ -24,14 +24,14 @@ public class MapTreeSelectionListener implements TreeSelectionListener {
 			if (!(treeItemSelected.getMapNode() instanceof Project)) {
 				MapNode current = treeItemSelected.getMapNode();
 				while (!(current instanceof Project)) {
-					if (current == null) {
-						break;
-					}
+                    if (current == null) {
+                        break;
+                    }
 					current = current.getParent();
 				}
-				if (current != null) {
-					projectViewManager.setProjectView((Project) current);
-				}
+                if (current != null) {
+                    projectViewManager.setProjectView((Project) current);
+                }
 //                    projectView.setProject((Project) current);
 			}
 		}

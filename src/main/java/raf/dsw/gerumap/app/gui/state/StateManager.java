@@ -7,7 +7,6 @@ import raf.dsw.gerumap.app.gui.state.states.EditState;
 import raf.dsw.gerumap.app.gui.state.states.LinkState;
 import raf.dsw.gerumap.app.gui.state.states.MoveState;
 import raf.dsw.gerumap.app.gui.state.states.SelectionState;
-import raf.dsw.gerumap.app.gui.state.states.State;
 import raf.dsw.gerumap.app.gui.state.states.TermState;
 import raf.dsw.gerumap.app.gui.state.states.ZoomState;
 import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;

@@ -6,7 +6,6 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import raf.dsw.gerumap.app.AppCore;
-import raf.dsw.gerumap.app.messageGenerator.Message;
 
 public abstract class AbstractGerumapAction extends AbstractAction {
 
@@ -19,8 +18,8 @@ public abstract class AbstractGerumapAction extends AbstractAction {
 		if (imageURL != null) {
 			icon = new ImageIcon(imageURL);
 		} else {
-			AppCore.getInstance().getMessageGenerator()
-				.generate("Resource not found: " + fileName, Message.Level.ERROR);
+			AppCore.getInstance().getLogger()
+				.log(new RuntimeException("Resource not found" + fileName));
 		}
 		return icon;
 	}

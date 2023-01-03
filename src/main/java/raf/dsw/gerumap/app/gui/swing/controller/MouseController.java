@@ -11,7 +11,6 @@ import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
-import raf.dsw.gerumap.app.messageGenerator.Message;
 
 @Getter
 @Setter
@@ -27,9 +26,7 @@ public class MouseController extends MouseAdapter {
 			((ProjectView) MainFrame.getInstance().getProjectView()).mousePressed(e.getX(),
 				e.getY(), view);
 		} catch (Exception ex) {
-			AppCore.getInstance().getMessageGenerator()
-				.generate("Exception in method mousePressed for component "
-					+ view + "!", Message.Level.ERROR, ex);
+			AppCore.getInstance().getLogger().log(ex);
 		}
 	}
 
@@ -39,9 +36,7 @@ public class MouseController extends MouseAdapter {
 			((ProjectView) MainFrame.getInstance().getProjectView()).mouseDragged(e.getX(),
 				e.getY(), view);
 		} catch (Exception ex) {
-			AppCore.getInstance().getMessageGenerator()
-				.generate("Exception in method mouseDragged for component "
-					+ view + "!", Message.Level.ERROR, ex);
+			AppCore.getInstance().getLogger().log(ex);
 		}
 	}
 
@@ -51,9 +46,7 @@ public class MouseController extends MouseAdapter {
 			((ProjectView) MainFrame.getInstance().getProjectView()).mouseClicked(e.getX(),
 				e.getY(), view);
 		} catch (Exception ex) {
-			AppCore.getInstance().getMessageGenerator()
-				.generate("Exception in method mouseClicked for component "
-					+ view + "!", Message.Level.ERROR, ex);
+			AppCore.getInstance().getLogger().log(ex);
 		}
 	}
 
@@ -63,9 +56,7 @@ public class MouseController extends MouseAdapter {
 			((ProjectView) MainFrame.getInstance().getProjectView()).mouseReleased(e.getX(),
 				e.getY(), view);
 		} catch (Exception ex) {
-			AppCore.getInstance().getMessageGenerator()
-				.generate("Exception in method mouseReleased for component "
-					+ view + "!", Message.Level.ERROR, ex);
+			AppCore.getInstance().getLogger().log(ex);
 		}
 	}
 
@@ -75,9 +66,7 @@ public class MouseController extends MouseAdapter {
 			((ProjectView) MainFrame.getInstance().getProjectView()).mouseMoved(e.getX(), e.getY(),
 				view);
 		} catch (Exception ex) {
-			AppCore.getInstance().getMessageGenerator()
-				.generate("Exception in method mouseMoved for component "
-					+ view + "!", Message.Level.ERROR, ex);
+			AppCore.getInstance().getLogger().log(ex);
 		}
 	}
 
@@ -87,9 +76,7 @@ public class MouseController extends MouseAdapter {
 			((ProjectView) MainFrame.getInstance().getProjectView()).mouseWheelMoved(e.getX(),
 				e.getY(), e.getWheelRotation(), view);
 		} catch (Exception ex) {
-			AppCore.getInstance().getMessageGenerator()
-				.generate("Exception in method mouseWheelMoved for component "
-					+ view + "!", Message.Level.ERROR, ex);
+			AppCore.getInstance().getLogger().log(ex);
 		}
 	}
 }

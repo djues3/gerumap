@@ -61,7 +61,7 @@ public class GsonSerializer implements Serializer {
 
 	@Override
 	public MindMap loadMindMap(File file) {
-		MindMap map = null;
+		MindMap map;
 		try (FileReader reader = new FileReader(file)) {
 			map = gson.fromJson(reader, MindMap.class);
 		} catch (IOException e) {

@@ -32,7 +32,6 @@ public class ProjectView extends JPanel implements ISubscriber {
 	private StateToolbar stateToolbar = new StateToolbar();
 	private StateManager stateManager;
 
-
 	public ProjectView(Project p) {
 		project = p;
 		project.addSubscriber(this);
@@ -74,8 +73,7 @@ public class ProjectView extends JPanel implements ISubscriber {
 			map.put(m, mv);
 			m.addSubscriber(this);
 			tabs.addTab(m.getName(), mv);
-//			update((IPublisher) null);
-//			repaint();
+			repaint();
 		}
 	}
 
@@ -124,7 +122,6 @@ public class ProjectView extends JPanel implements ISubscriber {
 			this.tabs.setTitleAt(i, ((MindMapView) tabs.getComponentAt(i)).getMindMap().getName());
 		}
 	}
-
 
 	public void startTermState() {
 		stateManager.setTermState();

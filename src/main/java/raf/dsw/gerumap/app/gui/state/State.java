@@ -1,4 +1,4 @@
-package raf.dsw.gerumap.app.gui.state.states;
+package raf.dsw.gerumap.app.gui.state;
 
 import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
@@ -27,7 +27,6 @@ public abstract class State {
 
 	public void mouseWheelMoved(int x, int y, int step, MindMapView view) {
 	}
-
 	public Point2D mapPoints(int x, int y, AffineTransform transform) {
 		Point2D dest = new Point2D.Double();
 		Point2D src = new Point2D.Double(x, y);

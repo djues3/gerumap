@@ -6,3 +6,4 @@ module gerumap.tim.daviddjuretanovic.dusanobradovic {
     opens raf.dsw.gerumap.app.mapRepository to com.google.gson;
     opens raf.dsw.gerumap.app.mapRepository.model.elements to com.google.gson;
 }
+
