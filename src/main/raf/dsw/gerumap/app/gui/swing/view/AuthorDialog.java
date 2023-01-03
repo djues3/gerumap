@@ -2,8 +2,10 @@ package raf.dsw.gerumap.app.gui.swing.view;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.gui.observer.ISubscriber;
+import raf.dsw.gerumap.app.gui.swing.commands.implementation.ChangeAuthorCommand;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +37,9 @@ public class AuthorDialog extends JDialog implements ISubscriber {
 		ActionListener listener = e -> {
 			if(!(field.getText().equals("") || field.getText() == null))
 			{
-				project.setAuthor(field.getText());
+//				project.setAuthor(field.getText());
+				ChangeAuthorCommand command = new ChangeAuthorCommand(project, project.getAuthor(), field.getText());
+				AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
 				setVisible(false);
 			} else {
 				setVisible(false);
