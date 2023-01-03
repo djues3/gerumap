@@ -31,4 +31,13 @@ public class Link extends Element {
 			(Objects.equals(from, link.to) && Objects.equals(to, link.from));
 	}
 
+	public Term getOtherTerm(Term term) {
+		if (term.equals(from)) {
+			return to;
+		} else if (term.equals(to)) {
+			return from;
+		} else {
+			return null;
+		}
+	}
 }

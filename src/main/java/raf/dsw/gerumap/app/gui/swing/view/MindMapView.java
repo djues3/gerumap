@@ -1,6 +1,10 @@
 package raf.dsw.gerumap.app.gui.swing.view;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -33,6 +37,8 @@ public class MindMapView extends JPanel implements ISubscriber {
 
 	private Set<Painter> painters = new HashSet<>();
 
+	private Shape tempShape; // used for drawing the selection rectangle and lines for links.
+
 	public MindMapView(MindMap mindMap) {
 		affineTransform = new AffineTransform();
 		affineTransform.setToIdentity();
@@ -64,9 +70,18 @@ public class MindMapView extends JPanel implements ISubscriber {
 			if (painter instanceof LinkPainter lp) {
 				lp.draw(g);
 			}
+		}
+		for (Painter painter : painters) {
 			if (painter instanceof TermPainter tp) {
 				tp.draw(g);
 			}
+		}
+		float[] dash = {8f, 8f};
+		g.setColor(new Color(25, 63, 148, 255));
+		((Graphics2D) g).setStroke(
+			new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 1, dash, 1));
+		if (tempShape != null) {
+			((Graphics2D) g).draw(tempShape);
 		}
 	}
 
@@ -131,5 +146,25 @@ public class MindMapView extends JPanel implements ISubscriber {
 			}
 		}
 		return null;
+	}
+
+	public void rearrange(Term term) {
+		if (term.getLinks().isEmpty()) {
+			return;
+		}
+		double angleDeg = 360d / term.getLinks().size();
+		double angleRad = Math.toRadians(angleDeg);
+		TermPainter termPainter = getPainterForTerm(term);
+		for (int i = 0, size = term.getLinks().size(); i < size; i++) {
+			Link l = term.getLinks().get(i);
+			Term other = l.getOtherTerm(term);
+			double distance = Math.sqrt(
+				Math.pow(term.getX() - other.getX(), 2) + Math.pow(term.getY() - other.getY(), 2));
+			other.setX(
+				Math.toIntExact(Math.round(term.getX() + distance * Math.cos(angleRad * i))));
+			other.setY(
+				Math.toIntExact(Math.round(term.getY() + distance * Math.sin(angleRad * i))));
+			rearrange(other);
+		}
 	}
 }

@@ -4,6 +4,11 @@ import java.awt.event.ActionEvent;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
 public class CentralTermAction extends AbstractGerumapAction {
+	public CentralTermAction() {
+		putValue(NAME, "Central Term");
+		putValue(SHORT_DESCRIPTION, "Central Term");
+		putValue(SMALL_ICON, loadScaledIcon("/images/centralTerm.png"));
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

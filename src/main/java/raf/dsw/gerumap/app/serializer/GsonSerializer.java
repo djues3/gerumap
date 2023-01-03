@@ -58,6 +58,27 @@ public class GsonSerializer implements Serializer {
 				.generate(e.getMessage(), Message.Level.ERROR, e);
 		}
 	}
+
+	@Override
+	public MindMap loadMindMap(File file) {
+		MindMap map = null;
+		try (FileReader reader = new FileReader(file)) {
+			map = gson.fromJson(reader, MindMap.class);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		return map;
+	}
+
+	@Override
+	public void saveMindMap(MindMap node, File file) {
+		try (FileWriter writer = new FileWriter(file)) {
+			gson.toJson(node, writer);
+		} catch (IOException e) {
+			AppCore.getInstance().getMessageGenerator()
+				.generate(e.getMessage(), Message.Level.ERROR, e);
+		}
+	}
 }
 
 

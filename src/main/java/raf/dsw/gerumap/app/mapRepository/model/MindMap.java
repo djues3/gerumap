@@ -1,6 +1,5 @@
 package raf.dsw.gerumap.app.mapRepository.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,11 +13,11 @@ import raf.dsw.gerumap.app.messageGenerator.Message;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @ToString(callSuper = true)
 public class MindMap extends MapNodeComposite {
 
-	private boolean template;
+//	private boolean template;
 
 	@Override
 	public void removeChild(MapNode child) {

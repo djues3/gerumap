@@ -9,6 +9,7 @@ import javax.swing.KeyStroke;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
+import raf.dsw.gerumap.app.messageGenerator.Message;
 
 public class SaveAction extends AbstractGerumapAction {
 
@@ -26,6 +27,8 @@ public class SaveAction extends AbstractGerumapAction {
 
 		if (!(MainFrame.getInstance().getMapTree().getSelectedNode()
 			.getMapNode() instanceof Project project)) {
+			AppCore.getInstance().getMessageGenerator().generate(
+				"Only projects can be saved", Message.Level.ERROR);
 			return;
 		}
 

@@ -3,6 +3,7 @@ package raf.dsw.gerumap.app.gui.state.states;
 import static java.lang.Math.abs;
 import static java.lang.Math.min;
 
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -38,8 +39,8 @@ public class SelectionState extends State {
 	@Override
 	public void mouseDragged(int x, int y, MindMapView view) {
 		Point2D real = mapPoints(x, y, view.getAffineTransform());
-		view.getGraphics()
-			.drawRect(min(startX, x), min(startY, y), abs(startX - x), abs(startY - y));
+		view.setTempShape(
+			new Rectangle(min(startX, x), min(startY, y), abs(startX - x), abs(startY - y)));
 		x = (int) real.getX();
 		y = (int) real.getY();
 		setSelected(x, y, view);
@@ -52,6 +53,7 @@ public class SelectionState extends State {
 		x = (int) real.getX();
 		y = (int) real.getY();
 		setSelected(x, y, view);
+		view.setTempShape(null);
 		view.repaint();
 	}
 
