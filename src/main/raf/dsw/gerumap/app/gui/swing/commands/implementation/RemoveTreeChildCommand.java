@@ -24,9 +24,7 @@ public class RemoveTreeChildCommand extends AbstractCommand {
         if(child == null ||  parent==null) return;
         child.removeFromParent();
         ((MapNodeComposite)(parent.getMapNode())).removeChild(child.getMapNode());
-        MapTreeView treeView = (MainFrame.getInstance().getMapTree()).getMapTreeView();
-        treeView.expandPath(treeView.getSelectionPath());
-        SwingUtilities.updateComponentTreeUI(treeView);
+
     }
 
     @Override
@@ -34,8 +32,6 @@ public class RemoveTreeChildCommand extends AbstractCommand {
         if(child == null ||  parent==null) return;
         parent.add(child);
         ((MapNodeComposite) parent.getMapNode()).addChild(child.getMapNode());
-        MapTreeView treeView = (MainFrame.getInstance().getMapTree()).getMapTreeView();
-        treeView.expandPath(treeView.getSelectionPath());
-        SwingUtilities.updateComponentTreeUI(treeView);
+
     }
 }

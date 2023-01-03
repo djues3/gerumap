@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.app.gui.swing.tree.controller;
 
+import raf.dsw.gerumap.app.AppCore;
+import raf.dsw.gerumap.app.gui.swing.commands.implementation.ChangeNameCommand;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 
 import javax.swing.*;
@@ -24,8 +26,13 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
     public Component getTreeCellEditorComponent(JTree tree, Object value, boolean isSelected, boolean expanded,
                                                 boolean leaf, int row) {
         clickedOn = value;
-        edit = new JTextField(value.toString());
-        edit.addActionListener(e -> ((MapTreeItem)value).getMapNode().setName(edit.getText()));
+        String before = value.toString();
+        edit = new JTextField(before);
+        edit.addActionListener(e -> {
+//            ((MapTreeItem)value).getMapNode().setName(edit.getText());
+            ChangeNameCommand command = new ChangeNameCommand((MapTreeItem)value, before, edit.getText());
+            AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
+        });
         return edit;
     }
 
