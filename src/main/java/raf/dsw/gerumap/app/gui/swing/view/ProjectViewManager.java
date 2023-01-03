@@ -4,18 +4,21 @@ import java.awt.Component;
 import java.util.HashMap;
 import javax.swing.JPanel;
 import raf.dsw.gerumap.app.AppCore;
-import raf.dsw.gerumap.app.gui.observer.IPublisher;
-import raf.dsw.gerumap.app.gui.observer.IPublisherImpl;
-import raf.dsw.gerumap.app.gui.observer.ISubscriber;
+import raf.dsw.gerumap.app.mapRepository.MapNode;
+import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
 import raf.dsw.gerumap.app.mapRepository.model.ProjectExplorer;
+import raf.dsw.gerumap.app.observer.IPublisher;
+import raf.dsw.gerumap.app.observer.IPublisherImpl;
+import raf.dsw.gerumap.app.observer.ISubscriber;
 
 public class ProjectViewManager extends IPublisherImpl implements ISubscriber {
 
 	private static ProjectViewManager instance;
+	private final JPanel empty;
+	private final HashMap<Project, ProjectView> map = new HashMap<>();
 	private Component projectView;
-	private JPanel empty;
-	private HashMap<Project, ProjectView> map = new HashMap<>();
+
 
 	private ProjectViewManager() {
 		AppCore.getInstance().getMapRepository().getProjectExplorer().addSubscriber(this);
@@ -24,9 +27,9 @@ public class ProjectViewManager extends IPublisherImpl implements ISubscriber {
 	}
 
 	public static ProjectViewManager getInstance() {
-        if (instance == null) {
-            instance = new ProjectViewManager();
-        }
+		if (instance == null) {
+			instance = new ProjectViewManager();
+		}
 		return instance;
 	}
 
@@ -41,25 +44,29 @@ public class ProjectViewManager extends IPublisherImpl implements ISubscriber {
 	}
 
 	private void addProject(Project p) {
-        if (!map.containsKey(p)) {
-            map.put(p, new ProjectView(p));
-        }
+		if (!map.containsKey(p)) {
+			ProjectView pv = new ProjectView(p);
+			map.put(p, pv);
+			for (MapNode node : p.getChildren()) {
+				pv.addMindMapView((MindMap) node);
+			}
+		}
 	}
 
 	public void removeProject(Project p) {
 		map.remove(p);
-        if (map.isEmpty()) {
-            projectView = empty;
-        }
+		if (map.isEmpty()) {
+			projectView = empty;
+		}
 		publish();
 	}
 
 	@Override
 	public void update(IPublisher publisher) {
-		if (publisher instanceof ProjectExplorer) {
+		if (publisher instanceof ProjectExplorer projectExplorer) {
 			Project toRemove = null;
 			for (Project p : map.keySet()) {
-				if (!((ProjectExplorer) publisher).getChildren().contains(p)) {
+				if (!(projectExplorer.getChildren().contains(p))) {
 					toRemove = p;
 				}
 			}

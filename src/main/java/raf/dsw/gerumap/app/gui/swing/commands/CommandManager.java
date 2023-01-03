@@ -7,8 +7,8 @@ import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 
 public class CommandManager {
 
-	private Stack<AbstractCommand> undoStack = new Stack<>(),
-		redoStack = new Stack<>();
+	private final Stack<AbstractCommand> undoStack = new Stack<>();
+	private final Stack<AbstractCommand> redoStack = new Stack<>();
 
 	public void addCommand(AbstractCommand command) {
 		undoStack.push(command);

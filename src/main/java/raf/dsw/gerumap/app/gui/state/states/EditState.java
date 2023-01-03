@@ -3,7 +3,6 @@ package raf.dsw.gerumap.app.gui.state.states;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
 import java.util.List;
 import javax.swing.JDialog;
@@ -23,59 +22,54 @@ public class EditState extends State {
 		if (terms == null) {
 			return false;
 		}
-		if (!terms.isEmpty()) {
-			Toolkit toolkit = Toolkit.getDefaultToolkit();
-			Dimension screenSize = toolkit.getScreenSize();
-			JDialog dialog = new JDialog();
-			EditDialog edit = new EditDialog();
-			edit.getTextField().setText(terms.get(0).getTerm().getText());
-			dialog.setModal(true);
-			dialog.setSize(screenSize.width / 3, screenSize.height / 3);
-			dialog.setContentPane(edit);
-			dialog.getRootPane().setDefaultButton(edit.getDoneButton());
-			dialog.setLocationRelativeTo(MainFrame.getInstance());
-			dialog.setVisible(true);
-			Color color = edit.getColor();
-			String text = edit.getText();
-			if (color != null) {
-				int r, g, b, a;
-				r = color.getRed();
-				g = color.getGreen();
-				b = color.getBlue();
-				a = color.getAlpha();
-				int rgba = (a << 24) | (r << 16) | (g << 8) | b;
-				for (TermPainter tp : terms) {
-					Term term = tp.getTerm();
-					term.setColor(rgba);
-					term.publish();
-				}
-				((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().repaint();
-			}
-			if (text != null && !text.equals("")) {
-				for (TermPainter tp : terms) {
-					Term term = tp.getTerm();
-					term.setText(text);
-					term.publish();
-				}
-				((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().repaint();
-
-			}
-		} else {
-			return true;
+		if (terms.isEmpty()) {
+			return false;
 		}
-		return false;
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Dimension screenSize = toolkit.getScreenSize();
+		JDialog dialog = new JDialog();
+		EditDialog edit = new EditDialog();
+		edit.getTextField().setText(terms.get(0).getTerm().getText());
+		dialog.setModal(true);
+		dialog.setSize(screenSize.width / 3, screenSize.height / 3);
+		dialog.setContentPane(edit);
+		dialog.getRootPane().setDefaultButton(edit.getDoneButton());
+		dialog.setLocationRelativeTo(MainFrame.getInstance());
+		dialog.setVisible(true);
+		Color color = edit.getColor();
+		String text = edit.getText();
+		if (color != null) {
+			int rgba = getRGBA(color);
+			for (TermPainter tp : terms) {
+				Term term = tp.getTerm();
+				term.setColor(rgba);
+				term.publish();
+			}
+			((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().repaint();
+		}
+		if (text != null && !text.equals("")) {
+			for (TermPainter tp : terms) {
+				Term term = tp.getTerm();
+				term.setText(text);
+				term.publish();
+			}
+			((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView().repaint();
+		}
+		return true;
+	}
+
+	private int getRGBA(Color color) {
+		int r, g, b, a;
+		r = color.getRed();
+		g = color.getGreen();
+		b = color.getBlue();
+		a = color.getAlpha();
+		return (a << 24) | (r << 16) | (g << 8) | b;
 	}
 
 	@Override
 	public void mouseClicked(int x, int y, MindMapView view) {
-		Point2D real = new Point2D.Double();
-		Point2D screen = new Point2D.Double(x, y);
-		try {
-			((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView()
-				.getAffineTransform().inverseTransform(screen, real);
-		} catch (NoninvertibleTransformException e) {
-			throw new RuntimeException(e);
-		}
+		Point2D real = mapPoints(x, y, view.getAffineTransform());
 		x = (int) real.getX();
 		y = (int) real.getY();
 		Term term = view.getMindMap().getTermAt(x, y);
@@ -99,13 +93,7 @@ public class EditState extends State {
 		String text = edit.getText();
 
 		if (color != null) {
-			int r, g, b, a;
-			r = color.getRed();
-			g = color.getGreen();
-			b = color.getBlue();
-			a = color.getAlpha();
-			int rgba = (a << 24) | (r << 16) | (g << 8) | b;
-			term.setColor(rgba);
+			term.setColor(getRGBA(color));
 			term.publish();
 			view.repaint();
 		}

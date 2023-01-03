@@ -1,6 +1,5 @@
 package raf.dsw.gerumap.app.gui.state.states;
 
-import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,26 +27,17 @@ public class MoveState extends State {
 
 	@Override
 	public void mousePressed(int x, int y, MindMapView view) {
-		Point2D real = new Point2D.Double();
-		Point2D screen = new Point2D.Double(x, y);
-		try {
-			((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView()
-				.getAffineTransform().inverseTransform(screen, real);
-		} catch (NoninvertibleTransformException e) {
-			AppCore.getInstance().getLogger().log(e);
-		}
-		x = (int) real.getX();
-		y = (int) real.getY();
-		startXReal = x;
-		startYReal = y;
+		startX = x;
+		startY = y;
+		Point2D real = mapPoints(x, y, view.getAffineTransform());
+		startXReal = (int) real.getX();
+		startYReal = (int) real.getY();
 		Term term = view.getMindMap().getTermAt(x, y);
 		toMove = new ArrayList<>();
 		if (term == null) {
 			return;
 		}
 		ProjectView pv = (ProjectView) MainFrame.getInstance().getProjectView();
-		startX = (int) screen.getX();
-		startY = (int) screen.getY();
 
 		boolean flag = false;
 		for (TermPainter tp : pv.getStateManager().getSelectedTerms()) {
@@ -60,50 +50,34 @@ public class MoveState extends State {
 			toMove = pv.getStateManager().getSelectedTerms();
 		} else {
 			TermPainter tp = view.getPainterForTerm(term);
-
 			toMove.add(tp);
 		}
 	}
 
 	@Override
 	public void mouseDragged(int x, int y, MindMapView view) {
-		Point2D real = new Point2D.Double();
-		Point2D screen = new Point2D.Double(x, y);
-		try {
-			((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView()
-				.getAffineTransform().inverseTransform(screen, real);
-		} catch (NoninvertibleTransformException e) {
-			AppCore.getInstance().getLogger().log(e);
-		}
 		if (toMove.isEmpty()) {
 			return;
 		}
 		for (TermPainter tp : toMove) {
-			tp.getTerm().setX(tp.getTerm().getX() + (int) screen.getX() - startX);
-			tp.getTerm().setY(tp.getTerm().getY() + (int) screen.getY() - startY);
+			tp.getTerm().setX(tp.getTerm().getX() + x - startX);
+			tp.getTerm().setY(tp.getTerm().getY() + y - startY);
 			tp.getTerm().publish();
 		}
 		view.repaint();
-		startX = (int) screen.getX();
-		startY = (int) screen.getY();
+		startX = x;
+		startY = y;
 	}
 
 	@Override
 	public void mouseReleased(int x, int y, MindMapView view) {
-		Point2D real = new Point2D.Double();
-		Point2D screen = new Point2D.Double(x, y);
-		try {
-			((ProjectView) MainFrame.getInstance().getProjectView()).getMindMapView()
-				.getAffineTransform().inverseTransform(screen, real);
-		} catch (NoninvertibleTransformException e) {
-			AppCore.getInstance().getLogger().log(e);
-		}
+		Point2D real = mapPoints(x, y, view.getAffineTransform());
 		endXReal = (int) real.getX();
 		endYReal = (int) real.getY();
 
 		ArrayList<Element> elements = new ArrayList<>();
 		for (TermPainter tp : toMove) {
-			elements.add((Element) tp.getTerm());
+			elements.add(tp.getTerm());
 			tp.getTerm().setX(tp.getTerm().getX() - (endXReal - startXReal));
 			tp.getTerm().setY(tp.getTerm().getY() - (endYReal - startYReal));
 		}

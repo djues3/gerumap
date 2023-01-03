@@ -6,12 +6,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import raf.dsw.gerumap.app.mapRepository.model.Element;
 
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
+@ToString
 public class Term extends Element {
 
 	public static final int DEFAULT_WIDTH = 100;
@@ -22,12 +24,11 @@ public class Term extends Element {
 	private int y;
 	private int width = DEFAULT_WIDTH;
 	private int height = DEFAULT_HEIGHT;
+	private boolean centralTerm;
 	private String text;
-	private List<Link> links = new ArrayList<>();
+	@ToString.Exclude
+	private transient List<Link> links = new ArrayList<>();
 
-	public void addLink(Term term) {
-		links.add(new Link(this, term));
-	}
 
 	public boolean contains(int x, int y) {
 		return (x >= (this.x - DEFAULT_WIDTH / 2)) && (y >= (this.y - DEFAULT_HEIGHT / 2)) &&

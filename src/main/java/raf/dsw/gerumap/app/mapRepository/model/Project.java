@@ -1,6 +1,6 @@
 package raf.dsw.gerumap.app.mapRepository.model;
 
-import java.nio.file.Path;
+import java.io.File;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +14,10 @@ import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
 @NoArgsConstructor
 public class Project extends MapNodeComposite {
 
-	private Path filePath;
+	private File file;
 	private String author;
+
+	private boolean modified;
 
 	public Project(MapNode parent) {
 		this.parent = parent;
@@ -42,4 +44,5 @@ public class Project extends MapNodeComposite {
 		this.children.add(child);
 		publish();
 	}
+
 }

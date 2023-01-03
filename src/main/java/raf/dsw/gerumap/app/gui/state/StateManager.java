@@ -1,8 +1,14 @@
-package raf.dsw.gerumap.app.gui.state.states;
+package raf.dsw.gerumap.app.gui.state;
 
 import java.util.List;
 import lombok.Getter;
-import raf.dsw.gerumap.app.gui.state.State;
+import raf.dsw.gerumap.app.gui.state.states.DeleteState;
+import raf.dsw.gerumap.app.gui.state.states.EditState;
+import raf.dsw.gerumap.app.gui.state.states.LinkState;
+import raf.dsw.gerumap.app.gui.state.states.MoveState;
+import raf.dsw.gerumap.app.gui.state.states.SelectionState;
+import raf.dsw.gerumap.app.gui.state.states.TermState;
+import raf.dsw.gerumap.app.gui.state.states.ZoomState;
 import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;
 
 @Getter
@@ -56,6 +62,9 @@ public class StateManager {
 
 	public List<TermPainter> getSelectedTerms() {
 		return selectionState.getSelectedTerms();
+	}
+	public void clearSelected() {
+		selectionState.clearSelected();
 	}
 
 }

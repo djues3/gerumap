@@ -2,10 +2,10 @@ package raf.dsw.gerumap.app.gui.swing;
 
 import javax.swing.JOptionPane;
 import raf.dsw.gerumap.app.core.GUI;
-import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.messageGenerator.Message;
 import raf.dsw.gerumap.app.messageGenerator.MessageGeneratorImpl;
+import raf.dsw.gerumap.app.observer.IPublisher;
 
 public class SwingGui implements GUI {
 
@@ -26,8 +26,11 @@ public class SwingGui implements GUI {
 				case INFO -> optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
 				case WARNING -> optionPane.setMessageType(JOptionPane.WARNING_MESSAGE);
 				case ERROR -> optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+				default -> {
+					return;
+				}
+
 			}
-			optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
 			optionPane.createDialog(MainFrame.getInstance(), message.getLevel().name())
 				.setVisible(true);
 

@@ -15,10 +15,10 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import raf.dsw.gerumap.app.gui.observer.IPublisher;
-import raf.dsw.gerumap.app.gui.observer.ISubscriber;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
+import raf.dsw.gerumap.app.observer.IPublisher;
+import raf.dsw.gerumap.app.observer.ISubscriber;
 
 @Getter
 @Setter
@@ -34,7 +34,6 @@ public class TermPainter extends Painter implements ISubscriber {
 	@Getter(AccessLevel.NONE)
 	@Setter(AccessLevel.NONE)
 	private float y;
-	private boolean selected = false;
 	private MindMapView mindMapView;
 
 	public TermPainter(Term term, MindMapView mindMapView) {
@@ -125,10 +124,6 @@ public class TermPainter extends Painter implements ISubscriber {
 			height);
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
-	}
-
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -137,11 +132,15 @@ public class TermPainter extends Painter implements ISubscriber {
 
 	@Override
 	public void update(IPublisher publisher) {
-		if (publisher instanceof Term term) {
-			this.term = term;
-			this.x = term.getX() - term.getWidth() / 2.0f;
-			this.y = term.getY() - term.getHeight() / 2.0f;
-			color = new Color(term.getColor());
+		if (publisher instanceof Term t) {
+			this.term = t;
+			this.x = t.getX() - t.getWidth() / 2.0f;
+			this.y = t.getY() - t.getHeight() / 2.0f;
+			color = new Color(t.getColor());
+			if (t.isCentralTerm()) {
+				this.mindMapView.rearrange(this.getTerm());
+				this.mindMapView.repaint();
+			}
 		}
 	}
 }

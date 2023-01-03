@@ -10,7 +10,7 @@ public class EditStateAction extends AbstractGerumapAction {
 	public EditStateAction() {
 		putValue(NAME, "Edit");
 		putValue(SHORT_DESCRIPTION, "Edit");
-		putValue(SMALL_ICON, loadScaledIcon("/images/editState.png"));
+		putValue(SMALL_ICON, loadScaledIcon("/images/edit.png"));
 	}
 
 	@Override

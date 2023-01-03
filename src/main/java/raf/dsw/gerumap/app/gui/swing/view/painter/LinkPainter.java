@@ -23,7 +23,7 @@ public class LinkPainter extends Painter {
 	Link link;
 
 	private MindMapView mindMapView;
-	private boolean selected;
+
 
 	public LinkPainter(Link link, MindMapView mindMapView) {
 		this.mindMapView = mindMapView;

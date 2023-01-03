@@ -5,12 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import raf.dsw.gerumap.app.mapRepository.model.Element;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Link extends Element {
 
 	private Term from;
@@ -29,4 +31,13 @@ public class Link extends Element {
 			(Objects.equals(from, link.to) && Objects.equals(to, link.from));
 	}
 
+	public Term getOtherTerm(Term term) {
+		if (term.equals(from)) {
+			return to;
+		} else if (term.equals(to)) {
+			return from;
+		} else {
+			return null;
+		}
+	}
 }

@@ -6,9 +6,9 @@ import java.time.format.DateTimeFormatter;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.core.Logger;
-import raf.dsw.gerumap.app.gui.observer.IPublisher;
 import raf.dsw.gerumap.app.messageGenerator.Message;
 import raf.dsw.gerumap.app.messageGenerator.MessageGeneratorImpl;
+import raf.dsw.gerumap.app.observer.IPublisher;
 
 @Getter
 @Setter
@@ -24,16 +24,14 @@ public abstract class AbstractLogger implements Logger {
 
 	@Override
 	public void update(IPublisher publisher) {
-		if (publisher instanceof MessageGeneratorImpl) {
-			MessageGeneratorImpl generator = (MessageGeneratorImpl) publisher;
+		if (publisher instanceof MessageGeneratorImpl generator) {
 			if (generator.getThrowable() == null) {
 				if (generator.getMessage() != null) {
 					log(((MessageGeneratorImpl) publisher).getMessage());
-					return;
-				} else if (generator.getMessage() == null) {
-					log(generator.getThrowable());
-					return;
+				} else {
+					log((Throwable) null);
 				}
+				return;
 			}
 			log(generator.getMessage(), generator.getThrowable());
 		}

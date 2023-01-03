@@ -13,11 +13,10 @@ import javax.swing.JTextField;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.AppCore;
-import raf.dsw.gerumap.app.gui.observer.IPublisher;
-import raf.dsw.gerumap.app.gui.observer.ISubscriber;
 import raf.dsw.gerumap.app.gui.swing.commands.implementation.ChangeAuthorCommand;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
-
+import raf.dsw.gerumap.app.observer.IPublisher;
+import raf.dsw.gerumap.app.observer.ISubscriber;
 
 @Getter
 @Setter
@@ -43,7 +42,6 @@ public class AuthorDialog extends JDialog implements ISubscriber {
 	private void initListeners() {
 		ActionListener listener = e -> {
 			if (!(field.getText().equals("") || field.getText() == null)) {
-//				project.setAuthor(field.getText());
 				ChangeAuthorCommand command = new ChangeAuthorCommand(project, project.getAuthor(),
 					field.getText());
 				AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);

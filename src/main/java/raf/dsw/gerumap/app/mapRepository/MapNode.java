@@ -3,7 +3,7 @@ package raf.dsw.gerumap.app.mapRepository;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.app.gui.observer.IPublisherImpl;
+import raf.dsw.gerumap.app.observer.IPublisherImpl;
 
 @Getter
 @Setter

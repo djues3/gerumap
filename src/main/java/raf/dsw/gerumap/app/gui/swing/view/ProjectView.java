@@ -11,12 +11,12 @@ import javax.swing.JTabbedPane;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import raf.dsw.gerumap.app.gui.observer.IPublisher;
-import raf.dsw.gerumap.app.gui.observer.ISubscriber;
-import raf.dsw.gerumap.app.gui.state.states.StateManager;
+import raf.dsw.gerumap.app.gui.state.StateManager;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
+import raf.dsw.gerumap.app.observer.IPublisher;
+import raf.dsw.gerumap.app.observer.ISubscriber;
 
 @Getter
 @Setter
@@ -38,6 +38,8 @@ public class ProjectView extends JPanel implements ISubscriber {
 
 		labels = new JPanel();
 
+		this.stateManager = new StateManager();
+
 		nameLabel = new JLabel(project.getName());
 		authorLabel = new JLabel("Author : " + project.getAuthor());
 
@@ -48,35 +50,44 @@ public class ProjectView extends JPanel implements ISubscriber {
 		labels.add(nameLabel, BorderLayout.WEST);
 
 		tabs = new JTabbedPane();
-
+		tabs.addChangeListener(e -> {
+			if (tabs.getSelectedIndex() != -1) {
+				stateManager.clearSelected();
+			}
+		});
+		for (MapNode node : project.getChildren()) {
+			addMindMapView((MindMap) node);
+		}
 		BoxLayout box = new BoxLayout(this, BoxLayout.Y_AXIS);
 		this.setLayout(box);
 
 		this.add(labels);
 		this.add(stateToolbar);
 		this.add(tabs);
-		for (MapNode x : p.getChildren()) {
-			x.addSubscriber(this);
-		}
-		for (MapNode x : project.getChildren()) {
-			addMindMapView((MindMap) x);
-		}
-		this.stateManager = new StateManager();
 	}
 
-	private void addMindMapView(MindMap m) {
+
+	public void addMindMapView(MindMap m) {
 		if (!map.containsKey(m)) {
-			map.put(m, new MindMapView(m));
+			MindMapView mv = new MindMapView(m);
+			map.put(m, mv);
 			m.addSubscriber(this);
+			tabs.addTab(m.getName(), mv);
+			repaint();
 		}
 	}
 
-	private void removeMindMapView(MindMap m) {
+	public void removeMindMapView(MindMap m) {
 		if (map.containsKey(m)) {
 			map.remove(m);
 			m.removeSubscriber(this);
 		}
 	}
+
+	public MindMapView getMindMapView() {
+		return (MindMapView) (tabs.getSelectedComponent());
+	}
+
 
 	@Override
 	public void update(IPublisher publisher) {
@@ -118,15 +129,15 @@ public class ProjectView extends JPanel implements ISubscriber {
 	}
 
 	public void startSelectionState() {
-		stateManager.setSelectionState();
+		this.stateManager.setSelectionState();
 	}
 
 	public void startDeleteState() {
-		stateManager.setDeleteState();
+		this.stateManager.setDeleteState();
 	}
 
 	public void startEditState() {
-		stateManager.setEditState();
+		this.stateManager.setEditState();
 	}
 
 	public void startLinkState() {
@@ -164,9 +175,5 @@ public class ProjectView extends JPanel implements ISubscriber {
 
 	public void mouseWheelMoved(int x, int y, int wheelRotation, MindMapView view) {
 		this.stateManager.getState().mouseWheelMoved(x, y, wheelRotation, view);
-	}
-
-	public MindMapView getMindMapView() {
-		return (MindMapView) (tabs.getSelectedComponent());
 	}
 }
