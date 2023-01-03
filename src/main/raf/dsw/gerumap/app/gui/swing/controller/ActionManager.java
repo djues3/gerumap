@@ -21,6 +21,8 @@ public class ActionManager {
 	private LinkStateAction linkStateAction;
 	private MoveStateAction moveStateAction;
 	private ZoomStateAction zoomStateAction;
+	private UndoAction undoAction;
+	private RedoAction redoAction;
 
 	public ActionManager() {
 		initActions();
@@ -39,5 +41,7 @@ public class ActionManager {
 		linkStateAction = new LinkStateAction();
 		moveStateAction = new MoveStateAction();
 		zoomStateAction = new ZoomStateAction();
+		undoAction = new UndoAction();
+		redoAction = new RedoAction();
 	}
 }

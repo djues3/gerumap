@@ -11,6 +11,8 @@ public interface MapTree {
 
     void remove(MapTreeItem target);
 
+    MapTreeView getMapTreeView();
+
     MapTreeItem getSelectedNode();
 
 }

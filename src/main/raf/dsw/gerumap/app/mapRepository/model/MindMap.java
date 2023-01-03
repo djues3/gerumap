@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import raf.dsw.gerumap.app.AppCore;
+import raf.dsw.gerumap.app.gui.swing.commands.implementation.AddTreeChildCommand;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
@@ -34,6 +35,8 @@ public class MindMap extends MapNodeComposite {
 		if(!(child instanceof Element))
 			throw new RuntimeException("");
 		this.children.add(child);
+//		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(new AddTreeChildCommand(this, child));
+
 		publish();
 	}
 
