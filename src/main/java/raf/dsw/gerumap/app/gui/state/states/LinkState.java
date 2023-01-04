@@ -26,13 +26,14 @@ public class LinkState extends State {
 
 	@Override
 	public void mousePressed(int x, int y, MindMapView view) {
-		startX = x;
-		startY = y;
 		view.setTempShape(null);
+		view.repaint();
 		Point2D real = mapPoints(x, y, view.getAffineTransform());
 		Term term = view.getMindMap().getTermAt((int) real.getX(), (int) real.getY());
 		link = new Link();
 		if (term != null) {
+			startX = x;
+			startY = y;
 			if (link.getFrom() == null) {
 				link.setFrom(term);
 			}
@@ -65,6 +66,8 @@ public class LinkState extends State {
 			link = new Link();
 			view.setTempShape(null);
 			view.repaint();
+			startX = null;
+			startY = null;
 			return;
 		}
 		link.setTo(term);
@@ -72,6 +75,8 @@ public class LinkState extends State {
 			link = new Link();
 			view.setTempShape(null);
 			view.repaint();
+			startX = null;
+			startY = null;
 			return;
 		}
 		if (MindMap.isCyclic(view.getMindMap(), link.getFrom(), link.getTo())) {
