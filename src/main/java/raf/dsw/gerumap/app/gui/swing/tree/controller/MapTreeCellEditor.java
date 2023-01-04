@@ -9,9 +9,9 @@ import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.swing.commands.implementation.ChangeNameCommand;
 import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 
 public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionListener {
 
@@ -33,7 +33,7 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
 //            ((MapTreeItem)value).getMapNode().setName(edit.getText());
 			ChangeNameCommand command = new ChangeNameCommand((MapTreeItem) value, before,
 				edit.getText());
-			AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
+			MainFrame.getInstance().getCommandManager().addCommand(command);
 		});
 		return edit;
 	}

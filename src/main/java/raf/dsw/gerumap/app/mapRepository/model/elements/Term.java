@@ -34,8 +34,8 @@ public class Term extends Element {
 
 
 	public boolean contains(int x, int y) {
-		return (x >= (this.x - DEFAULT_WIDTH / 2)) && (y >= (this.y - DEFAULT_HEIGHT / 2)) &&
-			(x <= (this.x - DEFAULT_WIDTH / 2 + width)) && (y <= (this.y - DEFAULT_HEIGHT / 2
+		return (x >= (this.x - width / 2)) && (y >= (this.y - height / 2)) &&
+			(x <= (this.x - width / 2 + width)) && (y <= (this.y - height / 2
 			+ height));
 	}
 }

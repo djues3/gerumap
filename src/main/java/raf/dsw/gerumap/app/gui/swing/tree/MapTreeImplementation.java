@@ -47,7 +47,7 @@ public class MapTreeImplementation implements MapTree {
 
 		MapNode child = createChild(parent.getMapNode());
 		AddTreeChildCommand command = new AddTreeChildCommand(parent, new MapTreeItem(child));
-		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
+		MainFrame.getInstance().getCommandManager().addCommand(command);
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class MapTreeImplementation implements MapTree {
             }
 			RemoveTreeChildCommand command = new RemoveTreeChildCommand(
 				(MapTreeItem) target.getParent(), target);
-			AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
+			MainFrame.getInstance().getCommandManager().addCommand(command);
 		} catch (NullPointerException e) {
 			AppCore.getInstance().getMessageGenerator()
 				.generate(MessageType.NODE_CANNOT_BE_REMOVED, Message.Level.ERROR, e);

@@ -8,9 +8,12 @@ import lombok.Setter;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.state.State;
 import raf.dsw.gerumap.app.gui.swing.commands.implementation.AddLinkCommand;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
+import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
+import raf.dsw.gerumap.app.messageGenerator.Message.Level;
 
 @Getter
 @Setter
@@ -18,7 +21,7 @@ import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 public class LinkState extends State {
 
 	private Integer startX, startY, startXReal, startYReal;
-	private Link link = new Link();
+	private Link link;
 
 	@Override
 	public void mousePressed(int x, int y, MindMapView view) {
@@ -74,15 +77,21 @@ public class LinkState extends State {
 			view.repaint();
 			return;
 		}
-		link.getTo().getLinks().add(link);
-		link.getFrom().getLinks().add(link);
+		if (MindMap.isCyclic(view.getMindMap(), link.getFrom(), link.getTo())) {
+			link = new Link();
+			view.setTempShape(null);
+			view.repaint();
+			AppCore.getInstance().getMessageGenerator()
+				.generate("Cyclic links are not permitted!", Level.WARNING);
+			return;
+		}
 		AddLinkCommand command = new AddLinkCommand(link, view);
-		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
+		MainFrame.getInstance().getCommandManager().addCommand(command);
 		startX = null;
 		startY = null;
 		link = new Link();
 		view.setTempShape(null);
 		view.repaint();
-	}
+ 	}
 }
 

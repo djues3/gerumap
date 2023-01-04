@@ -28,41 +28,6 @@ public class MindMap extends MapNodeComposite {
 		this.parent = parent;
 	}
 
-
-
-	@Override
-	public void removeChild(MapNode child) {
-		if (!(child instanceof Element)) {
-			AppCore.getInstance().getLogger().log(new Exception("Child is not an element"));
-			System.out.println(child);
-		}
-		this.getChildren().remove(child);
-		publish();
-	}
-
-	@Override
-	public void addChild(MapNode child) {
-		if (!(child instanceof Element)) {
-			System.out.println(child);
-			throw new RuntimeException("");
-		}
-		this.children.add(child);
-//		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(new AddTreeChildCommand(this, child));
-
-		publish();
-	}
-
-	public Term getTermAt(int x, int y) {
-		for (MapNode child : children) {
-			if (child instanceof Term term) {
-				if (term.contains(x, y)) {
-					return term;
-				}
-			}
-		}
-		return null;
-	}
-
 	public static boolean isCyclic(MindMap map, Term from, Term to) {
 		List<MapNode> nodes = new ArrayList<>(map.getChildren());
 		Link l = new Link(from, to);
@@ -71,8 +36,19 @@ public class MindMap extends MapNodeComposite {
 		to.getLinks().add(l);
 		MindMap clone = new MindMap();
 		clone.setChildren(nodes);
-		return isCyclic(clone);
+		if (isCyclic(clone)) {
+			from.getLinks().remove(l);
+			to.getLinks().remove(l);
+			nodes.remove(l);
+			return true;
+		} else {
+			from.getLinks().remove(l);
+			to.getLinks().remove(l);
+			nodes.remove(l);
+			return false;
+		}
 	}
+
 	public static boolean isCyclic(MindMap map) {
 		List<MapNode> nodes = new ArrayList<>(map.getChildren());
 		Deque<Term> stack = new ArrayDeque<>();
@@ -106,5 +82,38 @@ public class MindMap extends MapNodeComposite {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void removeChild(MapNode child) {
+		if (!(child instanceof Element)) {
+			AppCore.getInstance().getLogger().log(new Exception("Child is not an element"));
+			System.out.println(child);
+		}
+		this.getChildren().remove(child);
+		publish();
+	}
+
+	@Override
+	public void addChild(MapNode child) {
+		if (!(child instanceof Element)) {
+			System.out.println(child);
+			throw new RuntimeException("");
+		}
+		this.children.add(child);
+//		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(new AddTreeChildCommand(this, child));
+
+		publish();
+	}
+
+	public Term getTermAt(int x, int y) {
+		for (MapNode child : children) {
+			if (child instanceof Term term) {
+				if (term.contains(x, y)) {
+					return term;
+				}
+			}
+		}
+		return null;
 	}
 }

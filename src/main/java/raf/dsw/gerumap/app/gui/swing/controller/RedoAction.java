@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
-import raf.dsw.gerumap.app.AppCore;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 
 public class RedoAction extends AbstractGerumapAction {
 
@@ -18,6 +18,6 @@ public class RedoAction extends AbstractGerumapAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		AppCore.getInstance().getMapRepository().getCommandManager().redoCommand();
+		MainFrame.getInstance() .getCommandManager().redoCommand();
 	}
 }

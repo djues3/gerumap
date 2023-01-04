@@ -19,6 +19,8 @@ public class AddLinkCommand extends AbstractCommand {
 	public void doCommand() {
 		view.getMindMap().addChild(link);
 		link.setParent(view.getMindMap());
+		link.getTo().getLinks().add(link);
+		link.getFrom().getLinks().add(link);
 		view.addPainter(new LinkPainter(link, view));
 	}
 
@@ -26,6 +28,8 @@ public class AddLinkCommand extends AbstractCommand {
 	public void undoCommand() {
 		view.getMindMap().removeChild(link);
 		link.setParent(null);
+		link.getTo().getLinks().remove(link);
+		link.getFrom().getLinks().remove(link);
 		view.removePainter(view.getPainterForLink(link));
 	}
 }

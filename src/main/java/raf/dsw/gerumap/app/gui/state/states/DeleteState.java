@@ -3,9 +3,9 @@ package raf.dsw.gerumap.app.gui.state.states;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
-import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.state.State;
 import raf.dsw.gerumap.app.gui.swing.commands.implementation.DeleteCommand;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.gui.swing.view.painter.LinkPainter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.Painter;
@@ -43,7 +43,7 @@ public class DeleteState extends State {
 		List<Term> termsToRemove = new ArrayList<>();
 		termsToRemove.add(termToRemove);
 		DeleteCommand command = new DeleteCommand(termsToRemove, linksToRemove, view);
-		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
+		MainFrame.getInstance().getCommandManager().addCommand(command);
 		view.repaint();
 	}
 }

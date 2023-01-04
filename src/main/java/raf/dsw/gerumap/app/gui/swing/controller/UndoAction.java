@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
-import raf.dsw.gerumap.app.AppCore;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 
 public class UndoAction extends AbstractGerumapAction {
 
@@ -18,6 +18,6 @@ public class UndoAction extends AbstractGerumapAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		AppCore.getInstance().getMapRepository().getCommandManager().undoCommand();
+		MainFrame.getInstance().getCommandManager().undoCommand();
 	}
 }

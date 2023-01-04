@@ -1,22 +1,29 @@
 package raf.dsw.gerumap.app.mapRepository.model.elements;
 
 import java.util.Objects;
-import lombok.AllArgsConstructor;
+import java.util.Random;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import raf.dsw.gerumap.app.mapRepository.model.Element;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Link extends Element {
 
 	private Term from;
 	private Term to;
+
+	public Link() {
+		name = "Link" + new Random().nextInt(100000);
+	}
+
+	public Link(Term from, Term to) {
+		this();
+		this.from = from;
+		this.to = to;
+	}
 
 	@Override
 	public boolean equals(Object o) {
