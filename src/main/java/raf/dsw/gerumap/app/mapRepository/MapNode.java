@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.app.mapRepository;
 
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -8,6 +9,7 @@ import raf.dsw.gerumap.app.observer.IPublisherImpl;
 
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
 @ToString
 public abstract class MapNode extends IPublisherImpl {
 

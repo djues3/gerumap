@@ -38,7 +38,7 @@ public class OpenTemplateAction extends AbstractGerumapAction {
 		jfc.setName("Open");
 		jfc.setAcceptAllFileFilterUsed(false);
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(
-			"JavaScript Object Notation", "json");
+			"JavaScript Object Notation (.json)", "json");
 		jfc.addChoosableFileFilter(filter);
 		jfc.setCurrentDirectory(new File("src/main/resources/templates"));
 		if (jfc.showOpenDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {

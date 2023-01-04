@@ -18,7 +18,7 @@ public class CentralTermState extends State {
 				term.setCentralTerm(false);
 			}
 		}
- 		Term term = view.getMindMap().getTermAt(x, y);
+		Term term = view.getMindMap().getTermAt(x, y);
 		if (term == null) {
 			return;
 		}

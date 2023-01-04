@@ -1,0 +1,1387 @@
+{
+  "type": "MindMap",
+  "template": false,
+  "children": [
+    {
+      "type": "Term",
+      "color": -3355444,
+      "x": 1197,
+      "y": 589,
+      "width": 125,
+      "height": 60,
+      "centralTerm": true,
+      "text": "The Problem",
+      "name": "Term89058"
+    },
+    {
+      "type": "Term",
+      "color": -154,
+      "x": 1253,
+      "y": 706,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "5. Conclusion",
+      "name": "Term95049"
+    },
+    {
+      "type": "Term",
+      "color": -3381505,
+      "x": 1043,
+      "y": 683,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "4. Action plan",
+      "name": "Term36865"
+    },
+    {
+      "type": "Term",
+      "color": -10027060,
+      "x": 1388,
+      "y": 564,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "1. Project description",
+      "name": "Term51899"
+    },
+    {
+      "type": "Term",
+      "color": -26215,
+      "x": 1258,
+      "y": 399,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "2. Goals",
+      "name": "Term56917"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 1036,
+      "y": 472,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "Solutions",
+      "name": "Term85978"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -3355444,
+        "x": 1197,
+        "y": 589,
+        "width": 125,
+        "height": 60,
+        "centralTerm": true,
+        "text": "The Problem",
+        "name": "Term89058"
+      },
+      "to": {
+        "type": "Term",
+        "color": -154,
+        "x": 1253,
+        "y": 706,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "5. Conclusion",
+        "name": "Term95049"
+      },
+      "name": "Link33176"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -3355444,
+        "x": 1197,
+        "y": 589,
+        "width": 125,
+        "height": 60,
+        "centralTerm": true,
+        "text": "The Problem",
+        "name": "Term89058"
+      },
+      "to": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 1043,
+        "y": 683,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "4. Action plan",
+        "name": "Term36865"
+      },
+      "name": "Link23194"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -3355444,
+        "x": 1197,
+        "y": 589,
+        "width": 125,
+        "height": 60,
+        "centralTerm": true,
+        "text": "The Problem",
+        "name": "Term89058"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 1036,
+        "y": 472,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Solutions",
+        "name": "Term85978"
+      },
+      "name": "Link72244"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -3355444,
+        "x": 1197,
+        "y": 589,
+        "width": 125,
+        "height": 60,
+        "centralTerm": true,
+        "text": "The Problem",
+        "name": "Term89058"
+      },
+      "to": {
+        "type": "Term",
+        "color": -26215,
+        "x": 1258,
+        "y": 399,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "2. Goals",
+        "name": "Term56917"
+      },
+      "name": "Link40753"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -3355444,
+        "x": 1197,
+        "y": 589,
+        "width": 125,
+        "height": 60,
+        "centralTerm": true,
+        "text": "The Problem",
+        "name": "Term89058"
+      },
+      "to": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1388,
+        "y": 564,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "1. Project description",
+        "name": "Term51899"
+      },
+      "name": "Link88308"
+    },
+    {
+      "type": "Term",
+      "color": -154,
+      "x": 1385,
+      "y": 817,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "Outside opinion",
+      "name": "Term19879"
+    },
+    {
+      "type": "Term",
+      "color": -154,
+      "x": 1255,
+      "y": 828,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "Outside opinion",
+      "name": "Term34022"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -154,
+        "x": 1253,
+        "y": 706,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "5. Conclusion",
+        "name": "Term95049"
+      },
+      "to": {
+        "type": "Term",
+        "color": -154,
+        "x": 1385,
+        "y": 817,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Outside opinion",
+        "name": "Term19879"
+      },
+      "name": "Link68356"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -154,
+        "x": 1253,
+        "y": 706,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "5. Conclusion",
+        "name": "Term95049"
+      },
+      "to": {
+        "type": "Term",
+        "color": -154,
+        "x": 1255,
+        "y": 828,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Outside opinion",
+        "name": "Term34022"
+      },
+      "name": "Link19574"
+    },
+    {
+      "type": "Term",
+      "color": -3381505,
+      "x": 1003,
+      "y": 790,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "Actions",
+      "name": "Term22783"
+    },
+    {
+      "type": "Term",
+      "color": -3381505,
+      "x": 896,
+      "y": 723,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "Actions",
+      "name": "Term17905"
+    },
+    {
+      "type": "Term",
+      "color": -3381505,
+      "x": 965,
+      "y": 856,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "action",
+      "name": "Term73654"
+    },
+    {
+      "type": "Term",
+      "color": -3381505,
+      "x": 739,
+      "y": 1225,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "effect",
+      "name": "Term82572"
+    },
+    {
+      "type": "Term",
+      "color": -3381505,
+      "x": 652,
+      "y": 897,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "effect",
+      "name": "Term94235"
+    },
+    {
+      "type": "Term",
+      "color": -3381505,
+      "x": 769,
+      "y": 816,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "action",
+      "name": "Term17715"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 1043,
+        "y": 683,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "4. Action plan",
+        "name": "Term36865"
+      },
+      "to": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 1003,
+        "y": 790,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Actions",
+        "name": "Term22783"
+      },
+      "name": "Link59003"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 1043,
+        "y": 683,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "4. Action plan",
+        "name": "Term36865"
+      },
+      "to": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 896,
+        "y": 723,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Actions",
+        "name": "Term17905"
+      },
+      "name": "Link86235"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 1003,
+        "y": 790,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Actions",
+        "name": "Term22783"
+      },
+      "to": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 965,
+        "y": 856,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "action",
+        "name": "Term73654"
+      },
+      "name": "Link71942"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 896,
+        "y": 723,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Actions",
+        "name": "Term17905"
+      },
+      "to": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 769,
+        "y": 816,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "action",
+        "name": "Term17715"
+      },
+      "name": "Link64892"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 965,
+        "y": 856,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "action",
+        "name": "Term73654"
+      },
+      "to": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 739,
+        "y": 1225,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "effect",
+        "name": "Term82572"
+      },
+      "name": "Link57479"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 769,
+        "y": 816,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "action",
+        "name": "Term17715"
+      },
+      "to": {
+        "type": "Term",
+        "color": -3381505,
+        "x": 652,
+        "y": 897,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "effect",
+        "name": "Term94235"
+      },
+      "name": "Link63516"
+    },
+    {
+      "type": "Term",
+      "color": -10027060,
+      "x": 1491,
+      "y": 399,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "Current situation",
+      "name": "Term64828"
+    },
+    {
+      "type": "Term",
+      "color": -10027060,
+      "x": 1560,
+      "y": 456,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "Why",
+      "name": "Term10307"
+    },
+    {
+      "type": "Term",
+      "color": -10027060,
+      "x": 1584,
+      "y": 521,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "Others",
+      "name": "Term95761"
+    },
+    {
+      "type": "Term",
+      "color": -10027060,
+      "x": 1641,
+      "y": 625,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "Ideal situation",
+      "name": "Term47741"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1388,
+        "y": 564,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "1. Project description",
+        "name": "Term51899"
+      },
+      "to": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1491,
+        "y": 399,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Current situation",
+        "name": "Term64828"
+      },
+      "name": "Link62540"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1388,
+        "y": 564,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "1. Project description",
+        "name": "Term51899"
+      },
+      "to": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1560,
+        "y": 456,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Why",
+        "name": "Term10307"
+      },
+      "name": "Link68937"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1388,
+        "y": 564,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "1. Project description",
+        "name": "Term51899"
+      },
+      "to": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1584,
+        "y": 521,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Others",
+        "name": "Term95761"
+      },
+      "name": "Link72315"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1388,
+        "y": 564,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "1. Project description",
+        "name": "Term51899"
+      },
+      "to": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1641,
+        "y": 625,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Ideal situation",
+        "name": "Term47741"
+      },
+      "name": "Link60855"
+    },
+    {
+      "type": "Term",
+      "color": -10027060,
+      "x": 1568,
+      "y": 263,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "current situation",
+      "name": "Term30343"
+    },
+    {
+      "type": "Term",
+      "color": -10027060,
+      "x": 1669,
+      "y": 394,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "cause",
+      "name": "Term5017"
+    },
+    {
+      "type": "Term",
+      "color": -10027060,
+      "x": 1775,
+      "y": 454,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "outside opinion",
+      "name": "Term47146"
+    },
+    {
+      "type": "Term",
+      "color": -10027060,
+      "x": 1797,
+      "y": 589,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "ideal situation",
+      "name": "Term3415"
+    },
+    {
+      "type": "Term",
+      "color": -26215,
+      "x": 1238,
+      "y": 193,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "goal",
+      "name": "Term78536"
+    },
+    {
+      "type": "Term",
+      "color": -26215,
+      "x": 1385,
+      "y": 225,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "goal",
+      "name": "Term20151"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 879,
+      "y": 609,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "Opportunities",
+      "name": "Term48251"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 845,
+      "y": 495,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "Change perspective",
+      "name": "Term8403"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 849,
+      "y": 552,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "How might we...",
+      "name": "Term89008"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 839,
+      "y": 441,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "I wish",
+      "name": "Term44998"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 859,
+      "y": 386,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "What if",
+      "name": "Term63706"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 914,
+      "y": 338,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "I wonder",
+      "name": "Term1558"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 987,
+      "y": 289,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "How to",
+      "name": "Term91310"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 742,
+      "y": 695,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "opportunity",
+      "name": "Term61965"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 601,
+      "y": 527,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "solution",
+      "name": "Term36906"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 616,
+      "y": 629,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": ".....",
+      "name": "Term93044"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 652,
+      "y": 414,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": ".....",
+      "name": "Term41001"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 703,
+      "y": 318,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": ".....",
+      "name": "Term48178"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 771,
+      "y": 228,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": ".....",
+      "name": "Term31799"
+    },
+    {
+      "type": "Term",
+      "color": -16711834,
+      "x": 896,
+      "y": 133,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": ".....",
+      "name": "Term9604"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1491,
+        "y": 399,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Current situation",
+        "name": "Term64828"
+      },
+      "to": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1568,
+        "y": 263,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "current situation",
+        "name": "Term30343"
+      },
+      "name": "Link45122"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1560,
+        "y": 456,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Why",
+        "name": "Term10307"
+      },
+      "to": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1669,
+        "y": 394,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "cause",
+        "name": "Term5017"
+      },
+      "name": "Link3464"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1584,
+        "y": 521,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Others",
+        "name": "Term95761"
+      },
+      "to": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1775,
+        "y": 454,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "outside opinion",
+        "name": "Term47146"
+      },
+      "name": "Link51886"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1641,
+        "y": 625,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Ideal situation",
+        "name": "Term47741"
+      },
+      "to": {
+        "type": "Term",
+        "color": -10027060,
+        "x": 1797,
+        "y": 589,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "ideal situation",
+        "name": "Term3415"
+      },
+      "name": "Link44000"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -26215,
+        "x": 1258,
+        "y": 399,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "2. Goals",
+        "name": "Term56917"
+      },
+      "to": {
+        "type": "Term",
+        "color": -26215,
+        "x": 1238,
+        "y": 193,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "goal",
+        "name": "Term78536"
+      },
+      "name": "Link41819"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -26215,
+        "x": 1258,
+        "y": 399,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "2. Goals",
+        "name": "Term56917"
+      },
+      "to": {
+        "type": "Term",
+        "color": -26215,
+        "x": 1385,
+        "y": 225,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "goal",
+        "name": "Term20151"
+      },
+      "name": "Link39936"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 1036,
+        "y": 472,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Solutions",
+        "name": "Term85978"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 879,
+        "y": 609,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Opportunities",
+        "name": "Term48251"
+      },
+      "name": "Link53490"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 1036,
+        "y": 472,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Solutions",
+        "name": "Term85978"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 849,
+        "y": 552,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "How might we...",
+        "name": "Term89008"
+      },
+      "name": "Link89659"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 1036,
+        "y": 472,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Solutions",
+        "name": "Term85978"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 845,
+        "y": 495,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Change perspective",
+        "name": "Term8403"
+      },
+      "name": "Link32490"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 1036,
+        "y": 472,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Solutions",
+        "name": "Term85978"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 839,
+        "y": 441,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "I wish",
+        "name": "Term44998"
+      },
+      "name": "Link11336"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 859,
+        "y": 386,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "What if",
+        "name": "Term63706"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 1036,
+        "y": 472,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Solutions",
+        "name": "Term85978"
+      },
+      "name": "Link43982"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 914,
+        "y": 338,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "I wonder",
+        "name": "Term1558"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 1036,
+        "y": 472,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Solutions",
+        "name": "Term85978"
+      },
+      "name": "Link93726"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 987,
+        "y": 289,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "How to",
+        "name": "Term91310"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 1036,
+        "y": 472,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Solutions",
+        "name": "Term85978"
+      },
+      "name": "Link65902"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 879,
+        "y": 609,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Opportunities",
+        "name": "Term48251"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 742,
+        "y": 695,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "opportunity",
+        "name": "Term61965"
+      },
+      "name": "Link76782"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 845,
+        "y": 495,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "Change perspective",
+        "name": "Term8403"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 601,
+        "y": 527,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "solution",
+        "name": "Term36906"
+      },
+      "name": "Link64630"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 849,
+        "y": 552,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "How might we...",
+        "name": "Term89008"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 616,
+        "y": 629,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": ".....",
+        "name": "Term93044"
+      },
+      "name": "Link44120"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 839,
+        "y": 441,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "I wish",
+        "name": "Term44998"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 652,
+        "y": 414,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": ".....",
+        "name": "Term41001"
+      },
+      "name": "Link3441"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 859,
+        "y": 386,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "What if",
+        "name": "Term63706"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 703,
+        "y": 318,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": ".....",
+        "name": "Term48178"
+      },
+      "name": "Link73482"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 914,
+        "y": 338,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "I wonder",
+        "name": "Term1558"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 771,
+        "y": 228,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": ".....",
+        "name": "Term31799"
+      },
+      "name": "Link96709"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 987,
+        "y": 289,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "How to",
+        "name": "Term91310"
+      },
+      "to": {
+        "type": "Term",
+        "color": -16711834,
+        "x": 896,
+        "y": 133,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": ".....",
+        "name": "Term9604"
+      },
+      "name": "Link47644"
+    }
+  ],
+  "name": "MindMap 25"
+}

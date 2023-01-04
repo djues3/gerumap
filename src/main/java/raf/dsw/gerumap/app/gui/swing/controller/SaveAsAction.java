@@ -24,7 +24,8 @@ public class SaveAsAction extends AbstractGerumapAction {
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser jfc = new JFileChooser();
 		jfc.setAcceptAllFileFilterUsed(false);
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("JavaScript Object Notation",
+		FileNameExtensionFilter filter = new FileNameExtensionFilter(
+			"JavaScript Object Notation (.json)",
 			"json");
 		jfc.addChoosableFileFilter(filter);
 		jfc.setSelectedFile(new File("."));

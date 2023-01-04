@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.core.Serializer;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
@@ -37,7 +38,13 @@ public class GsonSerializer implements Serializer {
 	@Override
 	public Project loadProject(File file) {
 		try (FileReader reader = new FileReader(file)) {
-			Project p = (Project) gson.fromJson(reader, MapNode.class);
+			Project p = gson.fromJson(reader, Project.class);
+			for (MapNode node : p.getChildren()) {
+				if (node instanceof MindMap map) {
+					map.setParent(p);
+					cleanUp(map);
+				}
+			}
 			p.setFile(file);
 			return p;
 		} catch (IOException e) {
@@ -50,7 +57,7 @@ public class GsonSerializer implements Serializer {
 	@Override
 	public void saveProject(Project project) {
 		try (FileWriter writer = new FileWriter(project.getFile())) {
-			gson.toJson(project, writer);
+			gson.toJson(project, Project.class, writer);
 		} catch (IOException e) {
 			AppCore.getInstance().getMessageGenerator()
 				.generate(e.getMessage(), Message.Level.ERROR, e);
@@ -62,8 +69,12 @@ public class GsonSerializer implements Serializer {
 		MindMap map;
 		try (FileReader reader = new FileReader(file)) {
 			map = gson.fromJson(reader, MindMap.class);
+			cleanUp(map);
+			System.out.println(map);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			AppCore.getInstance().getMessageGenerator()
+				.generate(e.getMessage(), Message.Level.ERROR, e);
+			return null;
 		}
 		return map;
 	}
@@ -71,10 +82,37 @@ public class GsonSerializer implements Serializer {
 	@Override
 	public void saveMindMap(MindMap node, File file) {
 		try (FileWriter writer = new FileWriter(file)) {
-			gson.toJson(node, writer);
+			gson.toJson(node, MindMap.class, writer);
 		} catch (IOException e) {
 			AppCore.getInstance().getMessageGenerator()
 				.generate(e.getMessage(), Message.Level.ERROR, e);
+		}
+	}
+
+	/**
+	 * Cleans up mind maps by adding all missing references lost during serialization. <p>Sets
+	 * {@code getFrom()} and {@code getTo()}  of a {@code  Link} to the correct {@code  Terms}.
+	 *  {@code Term trueFrom = ...} and {@code Term trueTo = ...} work because a {@code Term} must exist before a
+	 *  {@code Link} can be created, and as such the {@code Term} is at a lower index in {@code map.getChildren()},
+	 *  and gets returned by {@code ArrayList.indexOf()}. </p>
+	 * @param map MindMap to clean up
+	 */
+	private void cleanUp(MindMap map) {
+		List<MapNode> nodes = map.getChildren();
+		for (MapNode node : nodes) {
+			node.setParent(map);
+			if (node instanceof Link l) {
+				Term from = l.getFrom();
+				Term to = l.getTo();
+				// Works because a term must exist BEFORE a node can be made,
+				// and as such is always at a lower index in the children ArrayList
+				Term trueFrom = (Term) nodes.get(nodes.indexOf(from));
+				Term trueTo = (Term) nodes.get(nodes.indexOf(to));
+				l.setFrom(trueFrom);
+				l.setTo(trueTo);
+				trueFrom.getLinks().add(l);
+				trueTo.getLinks().add(l);
+			}
 		}
 	}
 }
