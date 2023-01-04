@@ -97,6 +97,20 @@ public class MapTreeImplementation implements MapTree {
 		pvm.setProjectView(node);
 	}
 
+	@Override
+	public void loadMindMap(MindMap m) {
+		MapTreeItem selected = getSelectedNode();
+		Project project = (Project) selected.getMapNode();
+		MapTreeItem mti = new MapTreeItem(m);
+		selected.add(mti);
+		project.addChild(m);
+		m.setParent(project);
+		treeView.expandPath(new TreePath(selected.getPath()));
+		SwingUtilities.updateComponentTreeUI(treeView);
+		ProjectViewManager pvm = MainFrame.getInstance().getPvm();
+		pvm.setProjectView((Project) selected.getMapNode());
+	}
+
 	private MapNode createChild(MapNode parent) {
 //        return FactoryUtil.getFactory(parent.getClass().getSimpleName()).getNode(parent);
 		String className = parent.getClass().getSimpleName();

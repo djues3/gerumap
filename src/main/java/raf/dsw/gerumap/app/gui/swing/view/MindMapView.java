@@ -81,7 +81,10 @@ public class MindMapView extends JPanel implements ISubscriber {
 		((Graphics2D) g).setStroke(
 			new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 1, dash, 1));
 		if (tempShape != null) {
+			AffineTransform old = ((Graphics2D) g).getTransform();
+			((Graphics2D) g).setTransform(new AffineTransform());
 			((Graphics2D) g).draw(tempShape);
+			((Graphics2D) g).setTransform(old);
 		}
 	}
 

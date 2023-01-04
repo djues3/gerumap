@@ -24,8 +24,10 @@ public class OpenAction extends AbstractGerumapAction {
 
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser jfc = new JFileChooser();
+		jfc.setName("Open");
 		jfc.setAcceptAllFileFilterUsed(false);
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(".json", "json");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JavaScript Object Notation",
+			"json");
 		jfc.addChoosableFileFilter(filter);
 		if (jfc.showOpenDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
 			try {

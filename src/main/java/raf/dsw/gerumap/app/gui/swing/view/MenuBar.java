@@ -20,7 +20,7 @@ public class MenuBar extends JMenuBar {
 		fileMenu.add(MainFrame.getInstance().getActionManager().getRedoAction());
 		fileMenu.add(MainFrame.getInstance().getActionManager().getSaveAsAction());
 		fileMenu.add(MainFrame.getInstance().getActionManager().getExportAction());
-		fileMenu.add(MainFrame.getInstance().getActionManager().getTemplateAction());
+		fileMenu.add(MainFrame.getInstance().getActionManager().getSaveTemplateAction());
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 		helpMenu.add(MainFrame.getInstance().getActionManager().getInfoAction());

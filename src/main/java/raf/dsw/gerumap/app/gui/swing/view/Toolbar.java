@@ -19,7 +19,8 @@ public class Toolbar extends JToolBar {
 		add(MainFrame.getInstance().getActionManager().getInfoAction());
 		add(MainFrame.getInstance().getActionManager().getAuthorAction());
 		add(MainFrame.getInstance().getActionManager().getExportAction());
-		add(MainFrame.getInstance().getActionManager().getTemplateAction());
+		add(MainFrame.getInstance().getActionManager().getOpenTemplateAction());
+		add(MainFrame.getInstance().getActionManager().getSaveTemplateAction());
 	}
 
 

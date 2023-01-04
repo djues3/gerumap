@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.mapRepository.model.Project;
@@ -22,6 +23,10 @@ public class SaveAsAction extends AbstractGerumapAction {
 
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser jfc = new JFileChooser();
+		jfc.setAcceptAllFileFilterUsed(false);
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JavaScript Object Notation",
+			"json");
+		jfc.addChoosableFileFilter(filter);
 		jfc.setSelectedFile(new File("."));
 		jfc.setDialogTitle("Save as");
 		if (!(MainFrame.getInstance().getMapTree().getSelectedNode()
