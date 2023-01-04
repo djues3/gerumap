@@ -104,8 +104,6 @@ public class GsonSerializer implements Serializer {
 			if (node instanceof Link l) {
 				Term from = l.getFrom();
 				Term to = l.getTo();
-				// Works because a term must exist BEFORE a node can be made,
-				// and as such is always at a lower index in the children ArrayList
 				Term trueFrom = (Term) nodes.get(nodes.indexOf(from));
 				Term trueTo = (Term) nodes.get(nodes.indexOf(to));
 				l.setFrom(trueFrom);

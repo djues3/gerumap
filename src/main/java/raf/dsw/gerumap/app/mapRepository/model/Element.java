@@ -9,7 +9,7 @@ import raf.dsw.gerumap.app.mapRepository.MapNode;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @ToString(callSuper = true)
 public class Element extends MapNode {
