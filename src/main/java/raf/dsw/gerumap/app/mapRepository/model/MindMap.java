@@ -1,5 +1,11 @@
 package raf.dsw.gerumap.app.mapRepository.model;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +13,7 @@ import lombok.Setter;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
+import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
 @Getter
@@ -19,6 +26,39 @@ public class MindMap extends MapNodeComposite {
 
 	public MindMap(MapNode parent) {
 		this.parent = parent;
+	}
+
+	public static boolean isCyclic(MindMap map, Term start, Term end) {
+		List<MapNode> nodes = new ArrayList<>(map.getChildren());
+		Link l = new Link(start, end);
+		nodes.add(l);
+		start.getLinks().add(l);
+		end.getLinks().add(l);
+		Deque<Term> stack = new ArrayDeque<>();
+		Set<Term> seen = new HashSet<>();
+
+		for (MapNode next : nodes) {
+			if (next instanceof Term) {
+				if (seen.contains(next)) {
+					continue;
+				}
+				stack.add((Term) next);
+				while (!stack.isEmpty()) {
+					Term current = stack.pop();
+					seen.add(current);
+					for (Link link : current.getLinks()) {
+						Term other = link.getOtherTerm(current);
+						if (seen.contains(other)) {
+							return true;
+						} else {
+							stack.add(other);
+							seen.add(other);
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -53,4 +93,5 @@ public class MindMap extends MapNodeComposite {
 		}
 		return null;
 	}
+
 }
