@@ -9,7 +9,7 @@ import raf.dsw.gerumap.app.observer.IPublisherImpl;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString
 public abstract class MapNode extends IPublisherImpl {
 
