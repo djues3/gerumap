@@ -11,7 +11,7 @@ import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
 public class DeleteCommand extends AbstractCommand {
 
-	MindMapView view;
+	private final MindMapView view;
 	private List<Term> terms = new ArrayList<>();
 	private List<Link> links = new ArrayList<>();
 

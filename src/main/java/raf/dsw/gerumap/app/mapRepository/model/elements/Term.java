@@ -2,9 +2,9 @@ package raf.dsw.gerumap.app.mapRepository.model.elements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import raf.dsw.gerumap.app.mapRepository.model.Element;
@@ -12,8 +12,7 @@ import raf.dsw.gerumap.app.mapRepository.model.Element;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
-@ToString
+@ToString(callSuper = true)
 public class Term extends Element {
 
 	public static final int DEFAULT_WIDTH = 100;
@@ -28,6 +27,10 @@ public class Term extends Element {
 	private String text;
 	@ToString.Exclude
 	private transient List<Link> links = new ArrayList<>();
+
+	public Term() {
+		name = "Term" + new Random().nextInt(100000);
+	}
 
 
 	public boolean contains(int x, int y) {

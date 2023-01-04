@@ -5,8 +5,9 @@ import raf.dsw.gerumap.app.mapRepository.model.Project;
 
 public class ChangeAuthorCommand extends AbstractCommand {
 
-	Project target;
-	String before, after;
+	private final Project target;
+	private final String before;
+	private final String after;
 
 	public ChangeAuthorCommand(Project target, String before, String after) {
 		this.before = before;

@@ -5,8 +5,9 @@ import raf.dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 
 public class ChangeNameCommand extends AbstractCommand {
 
-	MapTreeItem target;
-	String before, after;
+	private final MapTreeItem target;
+	private final String before;
+	private final String after;
 
 	public ChangeNameCommand(MapTreeItem target, String before, String after) {
 		this.before = before;

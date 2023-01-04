@@ -28,38 +28,7 @@ public class MindMap extends MapNodeComposite {
 		this.parent = parent;
 	}
 
-	public static boolean isCyclic(MindMap map, Term start, Term end) {
-		List<MapNode> nodes = new ArrayList<>(map.getChildren());
-		Link l = new Link(start, end);
-		nodes.add(l);
-		start.getLinks().add(l);
-		end.getLinks().add(l);
-		Deque<Term> stack = new ArrayDeque<>();
-		Set<Term> seen = new HashSet<>();
 
-		for (MapNode next : nodes) {
-			if (next instanceof Term) {
-				if (seen.contains(next)) {
-					continue;
-				}
-				stack.add((Term) next);
-				while (!stack.isEmpty()) {
-					Term current = stack.pop();
-					seen.add(current);
-					for (Link link : current.getLinks()) {
-						Term other = link.getOtherTerm(current);
-						if (seen.contains(other)) {
-							return true;
-						} else {
-							stack.add(other);
-							seen.add(other);
-						}
-					}
-				}
-			}
-		}
-		return false;
-	}
 
 	@Override
 	public void removeChild(MapNode child) {
@@ -94,4 +63,48 @@ public class MindMap extends MapNodeComposite {
 		return null;
 	}
 
+	public static boolean isCyclic(MindMap map, Term from, Term to) {
+		List<MapNode> nodes = new ArrayList<>(map.getChildren());
+		Link l = new Link(from, to);
+		nodes.add(l);
+		from.getLinks().add(l);
+		to.getLinks().add(l);
+		MindMap clone = new MindMap();
+		clone.setChildren(nodes);
+		return isCyclic(clone);
+	}
+	public static boolean isCyclic(MindMap map) {
+		List<MapNode> nodes = new ArrayList<>(map.getChildren());
+		Deque<Term> stack = new ArrayDeque<>();
+		Set<Term> seen = new HashSet<>();
+		Set<Link> seenLinks = new HashSet<>();
+
+		for (MapNode next : nodes) {
+			if (next instanceof Term) {
+				if (seen.contains(next)) {
+					continue;
+				}
+				stack.add((Term) next);
+				while (!stack.isEmpty()) {
+					Term current = stack.pop();
+					seen.add(current);
+					for (Link link : current.getLinks()) {
+						if (seenLinks.contains(link)) {
+							continue;
+						} else {
+							seenLinks.add(link);
+						}
+						Term other = link.getOtherTerm(current);
+						if (seen.contains(other)) {
+							return true;
+						} else {
+							stack.add(other);
+							seen.add(other);
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 }

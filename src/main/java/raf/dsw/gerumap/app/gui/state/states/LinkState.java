@@ -5,9 +5,10 @@ import java.awt.geom.Point2D;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.state.State;
+import raf.dsw.gerumap.app.gui.swing.commands.implementation.AddLinkCommand;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
-import raf.dsw.gerumap.app.gui.swing.view.painter.LinkPainter;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
@@ -75,8 +76,8 @@ public class LinkState extends State {
 		}
 		link.getTo().getLinks().add(link);
 		link.getFrom().getLinks().add(link);
-		view.getMindMap().addChild(link);
-		view.addPainter(new LinkPainter(link, view));
+		AddLinkCommand command = new AddLinkCommand(link, view);
+		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
 		startX = null;
 		startY = null;
 		link = new Link();

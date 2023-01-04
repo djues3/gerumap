@@ -7,7 +7,6 @@ public class FactoryUtil {
 
 	private static final ProjectFactory projectFactory = new ProjectFactory();
 	private static final MindMapFactory mindMapFactory = new MindMapFactory();
-
 	public static NodeFactory getFactory(String parentType) {
 		return switch (parentType) {
 			case "ProjectExplorer" -> projectFactory;

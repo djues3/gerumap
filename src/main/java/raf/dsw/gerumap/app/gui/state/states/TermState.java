@@ -13,7 +13,7 @@ import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 public class TermState extends State {
 
 	@Override
-	public void mousePressed(int x, int y, MindMapView view) {
+	public void mouseClicked(int x, int y, MindMapView view) {
 		Point2D real = mapPoints(x, y, view.getAffineTransform());
 		if (checkIntersect((int) real.getX(), (int) real.getY(), view)) {
 			return;

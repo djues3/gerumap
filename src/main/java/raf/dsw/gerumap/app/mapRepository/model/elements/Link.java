@@ -32,6 +32,9 @@ public class Link extends Element {
 	}
 
 	public Term getOtherTerm(Term term) {
+		if (term == null) {
+			return null;
+		}
 		if (term.equals(from)) {
 			return to;
 		} else if (term.equals(to)) {
