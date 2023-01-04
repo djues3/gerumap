@@ -10,7 +10,6 @@ import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.gui.swing.view.painter.LinkPainter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.Painter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;
-import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
@@ -21,7 +20,6 @@ public class DeleteState extends State {
 		Point2D real = mapPoints(x, y, view.getAffineTransform());
 		x = (int) real.getX();
 		y = (int) real.getY();
-		MindMap map = view.getMindMap();
 		Term termToRemove = null;
 		List<Link> linksToRemove = new ArrayList<>();
 		for (Painter p : view.getPainters()) {

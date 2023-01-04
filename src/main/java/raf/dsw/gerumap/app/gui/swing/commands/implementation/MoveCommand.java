@@ -1,6 +1,5 @@
 package raf.dsw.gerumap.app.gui.swing.commands.implementation;
 
-import java.util.ArrayList;
 import java.util.List;
 import raf.dsw.gerumap.app.gui.swing.commands.AbstractCommand;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
@@ -9,9 +8,10 @@ import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
 public class MoveCommand extends AbstractCommand {
 
-	private List<Element> elements = new ArrayList<>();
-	private int x_offset, y_offset;
-	private MindMapView view;
+	private final List<Element> elements;
+	private final int x_offset;
+	private final int y_offset;
+	private final MindMapView view;
 
 	public MoveCommand(List<Element> elements, int x_offset, int y_offset, MindMapView view) {
 		this.elements = elements;

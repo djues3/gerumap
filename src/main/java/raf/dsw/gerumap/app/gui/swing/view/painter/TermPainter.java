@@ -119,6 +119,7 @@ public class TermPainter extends Painter implements ISubscriber {
 		setup(width, Term.DEFAULT_HEIGHT);
 	}
 
+	@SuppressWarnings("SameParameterValue")
 	private void setup(int width, int height) {
 		shape = new Ellipse2D.Double(term.getX() - width / 2.0f, term.getY() - height / 2.0f, width,
 			height);

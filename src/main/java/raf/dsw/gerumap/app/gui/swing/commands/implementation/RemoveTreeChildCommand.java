@@ -6,8 +6,8 @@ import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
 
 public class RemoveTreeChildCommand extends AbstractCommand {
 
-	private MapTreeItem parent;
-	private MapTreeItem child;
+	private final MapTreeItem parent;
+	private final MapTreeItem child;
 
 
 	public RemoveTreeChildCommand(MapTreeItem parent, MapTreeItem child) {

@@ -6,7 +6,7 @@ import raf.dsw.gerumap.app.mapRepository.MapNode;
 
 public class MapTreeItem extends DefaultMutableTreeNode {
 
-	private MapNode mapNode;
+	private final MapNode mapNode;
 
 	public MapTreeItem(MapNode nodeModel) {
 		this.mapNode = nodeModel;
