@@ -26,10 +26,10 @@ public class SelectionState extends State {
 
 	@Override
 	public void mousePressed(int x, int y, MindMapView view) {
-		view.setTempShape(null);
-		Point2D real = mapPoints(x, y, view.getAffineTransform());
 		startX = x;
 		startY = y;
+		view.setTempShape(null);
+		Point2D real = mapPoints(x, y, view.getAffineTransform());
 		x = (int) real.getX();
 		y = (int) real.getY();
 		startXReal = x;
@@ -40,9 +40,9 @@ public class SelectionState extends State {
 
 	@Override
 	public void mouseDragged(int x, int y, MindMapView view) {
-		Point2D real = mapPoints(x, y, view.getAffineTransform());
 		view.setTempShape(
 			new Rectangle(min(startX, x), min(startY, y), abs(startX - x), abs(startY - y)));
+		Point2D real = mapPoints(x, y, view.getAffineTransform());
 		x = (int) real.getX();
 		y = (int) real.getY();
 		setSelected(x, y, view);

@@ -6,16 +6,17 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.messageGenerator.Message.Level;
 
-public class TemplateAction extends AbstractGerumapAction {
+public class SaveTemplateAction extends AbstractGerumapAction {
 
-	public TemplateAction() {
-		putValue(NAME, "Template");
-		putValue(SHORT_DESCRIPTION, "Template");
+	public SaveTemplateAction() {
+		putValue(NAME, "Save template");
+		putValue(SHORT_DESCRIPTION, "Save mind map as template");
 		putValue(SMALL_ICON, loadScaledIcon("/images/template.png"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.CTRL_DOWN_MASK));
 	}
@@ -25,10 +26,16 @@ public class TemplateAction extends AbstractGerumapAction {
 		if (!(MainFrame.getInstance().getMapTree().getSelectedNode()
 			.getMapNode() instanceof MindMap map)) {
 			AppCore.getInstance().getMessageGenerator().generate(
-				"Only mind maps can be templates", Level.WARNING);
+				"Only mind maps can be templates, choose the map you want to save in the tree",
+				Level.WARNING);
 			return;
 		}
 		JFileChooser jfc = new JFileChooser();
+		jfc.setAcceptAllFileFilterUsed(false);
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JavaScript Object Notation",
+			"json");
+		jfc.setDialogTitle("Save mind map as template");
+		jfc.addChoosableFileFilter(filter);
 		jfc.setCurrentDirectory(new File("src/main/resources/templates"));
 		File mapfile;
 		if (jfc.showSaveDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
@@ -37,8 +44,7 @@ public class TemplateAction extends AbstractGerumapAction {
 			return;
 		}
 
-		AppCore.getInstance().getSerializer()
-			.saveMindMap(map, mapfile);
+		AppCore.getInstance().getSerializer().saveMindMap(map, mapfile);
 
 	}
 }

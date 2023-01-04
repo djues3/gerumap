@@ -14,10 +14,10 @@ import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
 @NoArgsConstructor
 public class Project extends MapNodeComposite {
 
-	private File file;
+	private transient File file;
 	private String author;
 
-	private boolean modified;
+	private transient boolean modified;
 
 	public Project(MapNode parent) {
 		this.parent = parent;

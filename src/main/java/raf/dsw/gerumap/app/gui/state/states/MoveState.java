@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.state.State;
 import raf.dsw.gerumap.app.gui.swing.commands.implementation.MoveCommand;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
@@ -83,7 +82,7 @@ public class MoveState extends State {
 		}
 		MoveCommand command = new MoveCommand(elements, endXReal - startXReal,
 			endYReal - startYReal, view);
-		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
+		MainFrame.getInstance().getCommandManager().addCommand(command);
 		view.repaint();
 	}
 }

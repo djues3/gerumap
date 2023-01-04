@@ -28,14 +28,32 @@ public class MindMap extends MapNodeComposite {
 		this.parent = parent;
 	}
 
-	public static boolean isCyclic(MindMap map, Term start, Term end) {
+	public static boolean isCyclic(MindMap map, Term from, Term to) {
 		List<MapNode> nodes = new ArrayList<>(map.getChildren());
-		Link l = new Link(start, end);
+		Link l = new Link(from, to);
 		nodes.add(l);
-		start.getLinks().add(l);
-		end.getLinks().add(l);
+		from.getLinks().add(l);
+		to.getLinks().add(l);
+		MindMap clone = new MindMap();
+		clone.setChildren(nodes);
+		if (isCyclic(clone)) {
+			from.getLinks().remove(l);
+			to.getLinks().remove(l);
+			nodes.remove(l);
+			return true;
+		} else {
+			from.getLinks().remove(l);
+			to.getLinks().remove(l);
+			nodes.remove(l);
+			return false;
+		}
+	}
+
+	public static boolean isCyclic(MindMap map) {
+		List<MapNode> nodes = new ArrayList<>(map.getChildren());
 		Deque<Term> stack = new ArrayDeque<>();
 		Set<Term> seen = new HashSet<>();
+		Set<Link> seenLinks = new HashSet<>();
 
 		for (MapNode next : nodes) {
 			if (next instanceof Term) {
@@ -47,6 +65,11 @@ public class MindMap extends MapNodeComposite {
 					Term current = stack.pop();
 					seen.add(current);
 					for (Link link : current.getLinks()) {
+						if (seenLinks.contains(link)) {
+							continue;
+						} else {
+							seenLinks.add(link);
+						}
 						Term other = link.getOtherTerm(current);
 						if (seen.contains(other)) {
 							return true;
@@ -64,8 +87,8 @@ public class MindMap extends MapNodeComposite {
 	@Override
 	public void removeChild(MapNode child) {
 		if (!(child instanceof Element)) {
-			AppCore.getInstance().getLogger().log(new Exception("Child is not an element"));
-			System.out.println(child);
+			AppCore.getInstance().getMessageGenerator()
+				.generate(new Exception("Child is not an element"));
 		}
 		this.getChildren().remove(child);
 		publish();
@@ -74,7 +97,6 @@ public class MindMap extends MapNodeComposite {
 	@Override
 	public void addChild(MapNode child) {
 		if (!(child instanceof Element)) {
-			System.out.println(child);
 			throw new RuntimeException("");
 		}
 		this.children.add(child);
@@ -94,4 +116,58 @@ public class MindMap extends MapNodeComposite {
 		return null;
 	}
 
+	public void rearrange(Term centralTerm) {
+		Rearranger.rearrange(this, centralTerm);
+	}
+
+	private static class Rearranger {
+
+		static List<MapNode> nodes;
+		static int noTerms;
+		static Deque<Term> stack;
+		static Set<Term> seen;
+		static Set<Link> seenLinks;
+
+		public static void rearrange(MindMap map, Term centralTerm) {
+			nodes = map.children;
+			stack = new ArrayDeque<>();
+			seen = new HashSet<>();
+			seenLinks = new HashSet<>();
+			for (MapNode child : nodes) {
+				if (child instanceof Term) {
+					noTerms++;
+				}
+			}
+			rearrange(centralTerm, 0d, 2 * Math.PI, 1);
+			map.publish();
+		}
+
+		private static void rearrange(Term term, double leftBound, double rightBound,
+			int iteration) {
+			if (term.getLinks().isEmpty() || iteration > noTerms) {
+				return;
+			}
+			double angle = (rightBound - leftBound) / term.getLinks().size();
+			double currentAngle = leftBound;
+			List<Link> links = term.getLinks();
+			for (Link l : links) {
+				currentAngle += angle;
+				if (seenLinks.contains(l)) {
+					continue;
+				} else {
+					seenLinks.add(l);
+				}
+				Term other = l.getOtherTerm(term);
+				if (seen.contains(other)) {
+					continue;
+				} else {
+					seen.add(other);
+				}
+				other.setX(term.getX() + (int) (Math.cos(currentAngle) * 200));
+				other.setY(term.getY() + (int) (Math.sin(currentAngle) * 200));
+				rearrange(other, currentAngle - angle, currentAngle, iteration + 1);
+			}
+		}
+	}
 }
+

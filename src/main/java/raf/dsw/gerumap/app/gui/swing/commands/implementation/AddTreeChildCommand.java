@@ -7,8 +7,8 @@ import raf.dsw.gerumap.app.mapRepository.MapNodeComposite;
 public class AddTreeChildCommand extends AbstractCommand {
 
 
-	private MapTreeItem parent;
-	private MapTreeItem child;
+	private final MapTreeItem parent;
+	private final MapTreeItem child;
 
 
 	public AddTreeChildCommand(MapTreeItem parent, MapTreeItem child) {
@@ -19,9 +19,9 @@ public class AddTreeChildCommand extends AbstractCommand {
 	@Override
 	public void doCommand() {
 
-        if (child == null || parent == null) {
-            return;
-        }
+		if (child == null || parent == null) {
+			return;
+		}
 		parent.add(child);
 		((MapNodeComposite) parent.getMapNode()).addChild(child.getMapNode());
 
@@ -29,9 +29,9 @@ public class AddTreeChildCommand extends AbstractCommand {
 
 	@Override
 	public void undoCommand() {
-        if (child == null || parent == null) {
-            return;
-        }
+		if (child == null || parent == null) {
+			return;
+		}
 		child.removeFromParent();
 		((MapNodeComposite) (parent.getMapNode())).removeChild(child.getMapNode());
 	}

@@ -7,8 +7,8 @@ import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 
 public class AddTermCommand extends AbstractCommand {
 
-	MindMapView view;
-	Term term;
+	private final MindMapView view;
+	private final Term term;
 
 	public AddTermCommand(MindMapView view, Term term) {
 		this.view = view;
@@ -18,6 +18,7 @@ public class AddTermCommand extends AbstractCommand {
 	@Override
 	public void doCommand() {
 		view.getMindMap().addChild(term);
+		term.setParent(view.getMindMap());
 		TermPainter tp = new TermPainter(term, view);
 		view.addPainter(tp);
 	}
@@ -25,6 +26,7 @@ public class AddTermCommand extends AbstractCommand {
 	@Override
 	public void undoCommand() {
 		view.getMindMap().removeChild(term);
+		term.setParent(null);
 		view.removePainter(view.getPainterForTerm(term));
 	}
 }

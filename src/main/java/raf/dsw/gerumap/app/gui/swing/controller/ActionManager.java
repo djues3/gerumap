@@ -31,9 +31,11 @@ public class ActionManager {
 	private SaveAsAction saveAsAction;
 	private OpenAction openAction;
 	private ExportAction exportAction;
-	private TemplateAction templateAction;
+	private SaveTemplateAction saveTemplateAction;
+	private OpenTemplateAction openTemplateAction;
 	private UndoAction undoAction;
 	private RedoAction redoAction;
+	private CentralTermAction centralTermAction;
 
 	public ActionManager() {
 		initActions();
@@ -56,8 +58,10 @@ public class ActionManager {
 		saveAsAction = new SaveAsAction();
 		openAction = new OpenAction();
 		exportAction = new ExportAction();
-		templateAction = new TemplateAction();
+		saveTemplateAction = new SaveTemplateAction();
+		openTemplateAction = new OpenTemplateAction();
 		undoAction = new UndoAction();
 		redoAction = new RedoAction();
+		centralTermAction = new CentralTermAction();
 	}
 }

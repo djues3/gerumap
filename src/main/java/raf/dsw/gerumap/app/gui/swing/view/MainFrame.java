@@ -16,6 +16,7 @@ import javax.swing.WindowConstants;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.app.AppCore;
+import raf.dsw.gerumap.app.gui.swing.commands.CommandManager;
 import raf.dsw.gerumap.app.gui.swing.controller.ActionManager;
 import raf.dsw.gerumap.app.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.app.gui.swing.tree.MapTreeImplementation;
@@ -35,6 +36,8 @@ public class MainFrame extends JFrame implements ISubscriber {
 	private ProjectViewManager pvm;
 	private JSplitPane splitPane;
 	private MapTree mapTree = new MapTreeImplementation();
+
+	private CommandManager commandManager = new CommandManager();
 
 	private MainFrame() {
 		pvm = ProjectViewManager.getInstance();

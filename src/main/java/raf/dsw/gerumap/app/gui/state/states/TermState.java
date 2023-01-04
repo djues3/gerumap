@@ -1,9 +1,9 @@
 package raf.dsw.gerumap.app.gui.state.states;
 
 import java.awt.geom.Point2D;
-import raf.dsw.gerumap.app.AppCore;
 import raf.dsw.gerumap.app.gui.state.State;
 import raf.dsw.gerumap.app.gui.swing.commands.implementation.AddTermCommand;
+import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
 import raf.dsw.gerumap.app.gui.swing.view.painter.Painter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;
@@ -13,7 +13,7 @@ import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 public class TermState extends State {
 
 	@Override
-	public void mousePressed(int x, int y, MindMapView view) {
+	public void mouseClicked(int x, int y, MindMapView view) {
 		Point2D real = mapPoints(x, y, view.getAffineTransform());
 		if (checkIntersect((int) real.getX(), (int) real.getY(), view)) {
 			return;
@@ -22,12 +22,8 @@ public class TermState extends State {
 		term.setX((int) real.getX());
 		term.setY((int) real.getY());
 		term.setText("New Term");
-//		view.getMindMap().addChild(term);
 		AddTermCommand command = new AddTermCommand(view, term);
-		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
-		view.getMindMap().addChild(term);
-		TermPainter tp = new TermPainter(term, view);
-		view.addPainter(tp);
+		MainFrame.getInstance().getCommandManager().addCommand(command);
 		((Project) view.getMindMap().getParent()).setModified(true);
 	}
 

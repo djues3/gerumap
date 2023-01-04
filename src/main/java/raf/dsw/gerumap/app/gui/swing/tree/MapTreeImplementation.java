@@ -40,18 +40,14 @@ public class MapTreeImplementation implements MapTree {
 	@Override
 	public void addChild(MapTreeItem parent) {
 
-        if (!(parent.getMapNode() instanceof MapNodeComposite)
-            || parent.getMapNode() instanceof MindMap) {
-            return;
-        }
+		if (!(parent.getMapNode() instanceof MapNodeComposite)
+			|| parent.getMapNode() instanceof MindMap) {
+			return;
+		}
 
 		MapNode child = createChild(parent.getMapNode());
-//        parent.add(new MapTreeItem(child));
-//        ((MapNodeComposite) parent.getMapNode()).addChild(child);
-//        treeView.expandPath(treeView.getSelectionPath());
-//        SwingUtilities.updateComponentTreeUI(treeView);
 		AddTreeChildCommand command = new AddTreeChildCommand(parent, new MapTreeItem(child));
-		AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
+		MainFrame.getInstance().getCommandManager().addCommand(command);
 	}
 
 	@Override
@@ -63,15 +59,12 @@ public class MapTreeImplementation implements MapTree {
 					.generate(MessageType.PROJECT_EXPLORER_CANNOT_BE_REMOVED, Message.Level.ERROR);
 				return;
 			}
-            if (!(parent instanceof MapNodeComposite)) {
-                return;
-            }
-//            ((DefaultMutableTreeNode) target.getParent()).remove(target);
-//            ((MapNodeComposite) parent).removeChild(target.getMapNode());
-//            SwingUtilities.updateComponentTreeUI(treeView);
+			if (!(parent instanceof MapNodeComposite)) {
+				return;
+			}
 			RemoveTreeChildCommand command = new RemoveTreeChildCommand(
 				(MapTreeItem) target.getParent(), target);
-			AppCore.getInstance().getMapRepository().getCommandManager().addCommand(command);
+			MainFrame.getInstance().getCommandManager().addCommand(command);
 		} catch (NullPointerException e) {
 			AppCore.getInstance().getMessageGenerator()
 				.generate(MessageType.NODE_CANNOT_BE_REMOVED, Message.Level.ERROR, e);
@@ -102,6 +95,20 @@ public class MapTreeImplementation implements MapTree {
 		SwingUtilities.updateComponentTreeUI(treeView);
 		ProjectViewManager pvm = MainFrame.getInstance().getPvm();
 		pvm.setProjectView(node);
+	}
+
+	@Override
+	public void loadMindMap(MindMap m) {
+		MapTreeItem selected = getSelectedNode();
+		Project project = (Project) selected.getMapNode();
+		MapTreeItem mti = new MapTreeItem(m);
+		selected.add(mti);
+		project.addChild(m);
+		m.setParent(project);
+		treeView.expandPath(new TreePath(selected.getPath()));
+		SwingUtilities.updateComponentTreeUI(treeView);
+		ProjectViewManager pvm = MainFrame.getInstance().getPvm();
+		pvm.setProjectView((Project) selected.getMapNode());
 	}
 
 	private MapNode createChild(MapNode parent) {

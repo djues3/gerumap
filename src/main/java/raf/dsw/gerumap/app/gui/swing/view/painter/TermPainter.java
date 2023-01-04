@@ -87,16 +87,19 @@ public class TermPainter extends Painter implements ISubscriber {
 		} else {
 			g2d.setStroke(new BasicStroke(2));
 		}
-		g2d.setFont(new Font("Arial", Font.PLAIN, 12));
+		if (term.isCentralTerm()) {
+			g2d.setFont(new Font("Arial", Font.BOLD, 14));
+		} else {
+			g2d.setFont(new Font("Arial", Font.PLAIN, 12));
+		}
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.draw(shape);
-		x = term.getX() - Term.DEFAULT_WIDTH / 2.0f;
-		y = term.getY() - Term.DEFAULT_HEIGHT / 2.0f;
+		x = term.getX() - term.getWidth() / 2.0f;
+		y = term.getY() - term.getHeight() / 2.0f;
 //		g2d.drawString(term.getText(), x + 20f, y + 27.5f);
 
 		String text = term.getText();
 		FontMetrics fm = g2d.getFontMetrics();
-
 		int x = (getWidth() - fm.stringWidth(text)) / 2;
 		int y = ((getHeight() - fm.getHeight()) / 2) + fm.getAscent();
 
@@ -106,17 +109,20 @@ public class TermPainter extends Painter implements ISubscriber {
 	@Override
 	public boolean elementAt(int x, int y) {
 		return shape.intersects(
-			new Rectangle2D.Double(x - Term.DEFAULT_WIDTH / 2d, y - Term.DEFAULT_HEIGHT / 2d,
-				Term.DEFAULT_WIDTH, Term.DEFAULT_HEIGHT));
+			new Rectangle2D.Double(x - term.getWidth() / 2d, y - term.getHeight() / 2d,
+				term.getWidth(), term.getWidth()));
 	}
 
 	private void setup(Graphics2D g2d) {
 		String text = term.getText();
+		if (term.isCentralTerm()) {
+			g2d.setFont(new Font("Arial", Font.BOLD, 14));
+		}
 		FontMetrics fm = g2d.getFontMetrics();
 
-		int width = Math.max(Term.DEFAULT_WIDTH, fm.stringWidth(text) + 20);
+		int width = Math.max(term.getWidth(), fm.stringWidth(text) + 20);
 
-		setup(width, Term.DEFAULT_HEIGHT);
+		setup(width, term.getHeight());
 	}
 
 	private void setup(int width, int height) {
@@ -136,11 +142,13 @@ public class TermPainter extends Painter implements ISubscriber {
 			this.term = t;
 			this.x = t.getX() - t.getWidth() / 2.0f;
 			this.y = t.getY() - t.getHeight() / 2.0f;
+			setup((Graphics2D) mindMapView.getGraphics());
 			color = new Color(t.getColor());
 			if (t.isCentralTerm()) {
 				this.mindMapView.rearrange(this.getTerm());
-				this.mindMapView.repaint();
+//				this.setFont();
 			}
 		}
+		this.mindMapView.repaint();
 	}
 }

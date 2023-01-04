@@ -1,14 +1,15 @@
 package raf.dsw.gerumap.app.gui.swing.commands;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import javax.swing.SwingUtilities;
 import raf.dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 
 public class CommandManager {
 
-	private final Stack<AbstractCommand> undoStack = new Stack<>();
-	private final Stack<AbstractCommand> redoStack = new Stack<>();
+	private final Deque<AbstractCommand> undoStack = new ArrayDeque<>();
+	private final Deque<AbstractCommand> redoStack = new ArrayDeque<>();
 
 	public void addCommand(AbstractCommand command) {
 		undoStack.push(command);
@@ -20,7 +21,7 @@ public class CommandManager {
 	}
 
 	public void undoCommand() {
-		if (undoStack.empty()) {
+		if (undoStack.isEmpty()) {
 			return;
 		}
 		AbstractCommand command = undoStack.peek();
@@ -33,7 +34,7 @@ public class CommandManager {
 	}
 
 	public void redoCommand() {
-		if (redoStack.empty()) {
+		if (redoStack.isEmpty()) {
 			return;
 		}
 		AbstractCommand command = redoStack.peek();
