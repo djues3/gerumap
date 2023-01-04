@@ -39,16 +39,16 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
 	}
 
 	public boolean isCellEditable(EventObject event) {
-        if (event instanceof MouseEvent) {
-            return ((MouseEvent) event).getClickCount() == 3;
-        }
+		if (event instanceof MouseEvent) {
+			return ((MouseEvent) event).getClickCount() == 3;
+		}
 		return false;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-        if (!(clickedOn instanceof MapTreeItem clicked)) {
-            return;
-        }
+		if (!(clickedOn instanceof MapTreeItem clicked)) {
+			return;
+		}
 		clicked.setName(e.getActionCommand());
 	}
 

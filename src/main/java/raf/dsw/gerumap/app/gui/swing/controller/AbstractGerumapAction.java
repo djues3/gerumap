@@ -18,8 +18,8 @@ public abstract class AbstractGerumapAction extends AbstractAction {
 		if (imageURL != null) {
 			icon = new ImageIcon(imageURL);
 		} else {
-			AppCore.getInstance().getLogger()
-				.log(new RuntimeException("Resource not found" + fileName));
+			AppCore.getInstance().getMessageGenerator()
+				.generate(new RuntimeException("Resource not found: " + fileName));
 		}
 		return icon;
 	}

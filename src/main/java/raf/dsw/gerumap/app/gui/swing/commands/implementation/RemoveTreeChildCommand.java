@@ -17,9 +17,9 @@ public class RemoveTreeChildCommand extends AbstractCommand {
 
 	@Override
 	public void doCommand() {
-        if (child == null || parent == null) {
-            return;
-        }
+		if (child == null || parent == null) {
+			return;
+		}
 		child.removeFromParent();
 		((MapNodeComposite) (parent.getMapNode())).removeChild(child.getMapNode());
 
@@ -27,9 +27,9 @@ public class RemoveTreeChildCommand extends AbstractCommand {
 
 	@Override
 	public void undoCommand() {
-        if (child == null || parent == null) {
-            return;
-        }
+		if (child == null || parent == null) {
+			return;
+		}
 		parent.add(child);
 		((MapNodeComposite) parent.getMapNode()).addChild(child.getMapNode());
 

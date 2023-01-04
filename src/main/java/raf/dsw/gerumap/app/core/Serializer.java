@@ -9,6 +9,8 @@ public interface Serializer {
 	Project loadProject(File file);
 
 	void saveProject(Project node);
+
 	MindMap loadMindMap(File file);
+
 	void saveMindMap(MindMap node, File file);
 }

@@ -32,6 +32,8 @@ public class DeleteCommand extends AbstractCommand {
 			view.removePainter(view.getPainterForTerm(t));
 		}
 		for (Link l : links) {
+			l.getTo().getLinks().remove(l);
+			l.getFrom().getLinks().remove(l);
 //            view.getMindMap().removeChild(l);
 			view.removePainter(view.getPainterForLink(l));
 		}
@@ -52,6 +54,8 @@ public class DeleteCommand extends AbstractCommand {
 				continue;
 			}
 			view.getMindMap().addChild(l);
+			l.getTo().getLinks().add(l);
+			l.getFrom().getLinks().add(l);
 //            view.removePainter(view.getPainterForLink(l));
 			view.addPainter(new LinkPainter(l, view));
 		}

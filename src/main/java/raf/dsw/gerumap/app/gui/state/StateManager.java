@@ -2,6 +2,7 @@ package raf.dsw.gerumap.app.gui.state;
 
 import java.util.List;
 import lombok.Getter;
+import raf.dsw.gerumap.app.gui.state.states.CentralTermState;
 import raf.dsw.gerumap.app.gui.state.states.DeleteState;
 import raf.dsw.gerumap.app.gui.state.states.EditState;
 import raf.dsw.gerumap.app.gui.state.states.LinkState;
@@ -21,6 +22,7 @@ public class StateManager {
 	private final MoveState moveState = new MoveState();
 	private final ZoomState zoomState = new ZoomState();
 	private final SelectionState selectionState = new SelectionState();
+	private final CentralTermState centralTermState = new CentralTermState();
 	private State currentState = termState;
 
 	public void setTermState() {
@@ -56,6 +58,11 @@ public class StateManager {
 		currentState = zoomState;
 	}
 
+	public void setCentralTermState() {
+		selectionState.clearSelected();
+		currentState = centralTermState;
+	}
+
 	public State getState() {
 		return getCurrentState();
 	}
@@ -63,6 +70,7 @@ public class StateManager {
 	public List<TermPainter> getSelectedTerms() {
 		return selectionState.getSelectedTerms();
 	}
+
 	public void clearSelected() {
 		selectionState.clearSelected();
 	}

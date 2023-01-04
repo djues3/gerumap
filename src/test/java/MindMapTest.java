@@ -55,6 +55,7 @@ public class MindMapTest {
 		assertFalse(MindMap.isCyclic(map, t1, t3),
 			"Non-cyclic map should not be detected as cyclic");
 	}
+
 	@Test
 	public void testIsNotCyclic7NewLink() {
 		Term t1 = new Term();
@@ -100,6 +101,7 @@ public class MindMapTest {
 			"Non-cyclic map should not be detected as cyclic");
 
 	}
+
 	@Test
 	public void testIsNotCyclic7() {
 		Term t1 = new Term();

@@ -26,6 +26,7 @@ import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
 import raf.dsw.gerumap.app.observer.IPublisher;
 import raf.dsw.gerumap.app.observer.ISubscriber;
 
+
 @Getter
 @Setter
 public class MindMapView extends JPanel implements ISubscriber {
@@ -37,6 +38,7 @@ public class MindMapView extends JPanel implements ISubscriber {
 
 	private Set<Painter> painters = new HashSet<>();
 	private Shape tempShape; // used for drawing the selection rectangle and lines for links.
+
 	public MindMapView(MindMap mindMap) {
 		affineTransform = new AffineTransform();
 		affineTransform.setToIdentity();
@@ -145,23 +147,8 @@ public class MindMapView extends JPanel implements ISubscriber {
 		}
 		return null;
 	}
+
 	public void rearrange(Term term) {
-		if (term.getLinks().isEmpty()) {
-			return;
-		}
-		double angleDeg = 360d / term.getLinks().size();
-		double angleRad = Math.toRadians(angleDeg);
-		TermPainter termPainter = getPainterForTerm(term);
-		for (int i = 0, size = term.getLinks().size(); i < size; i++) {
-			Link l = term.getLinks().get(i);
-			Term other = l.getOtherTerm(term);
-			double distance = Math.sqrt(
-				Math.pow(term.getX() - other.getX(), 2) + Math.pow(term.getY() - other.getY(), 2));
-			other.setX(
-				Math.toIntExact(Math.round(term.getX() + distance * Math.cos(angleRad * i))));
-			other.setY(
-				Math.toIntExact(Math.round(term.getY() + distance * Math.sin(angleRad * i))));
-			rearrange(other);
-		}
+		mindMap.rearrange(term);
 	}
 }

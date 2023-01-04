@@ -3,6 +3,7 @@ package raf.dsw.gerumap.app.mapRepository.model.elements;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class Term extends Element {
 	private int y;
 	private int width = DEFAULT_WIDTH;
 	private int height = DEFAULT_HEIGHT;
+	@Setter(AccessLevel.NONE)
 	private boolean centralTerm;
 	private String text;
 	@ToString.Exclude
@@ -32,6 +34,16 @@ public class Term extends Element {
 		name = "Term" + new Random().nextInt(100000);
 	}
 
+
+	public void setCentralTerm(boolean centralTerm) {
+		if (!this.centralTerm && !centralTerm) {
+			return;
+		}
+		this.centralTerm = centralTerm;
+		this.setWidth(centralTerm ? width * 5 / 4 : width * 4 / 5);
+		this.setHeight(centralTerm ? height * 5 / 4 : height * 4 / 5);
+		publish();
+	}
 
 	public boolean contains(int x, int y) {
 		return (x >= (this.x - width / 2)) && (y >= (this.y - height / 2)) &&

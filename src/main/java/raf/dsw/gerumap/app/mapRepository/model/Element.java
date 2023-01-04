@@ -13,4 +13,5 @@ import raf.dsw.gerumap.app.mapRepository.MapNode;
 @NoArgsConstructor
 @ToString(callSuper = true)
 public class Element extends MapNode {
+
 }

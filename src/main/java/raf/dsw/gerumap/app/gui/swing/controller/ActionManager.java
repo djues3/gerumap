@@ -35,6 +35,8 @@ public class ActionManager {
 	private UndoAction undoAction;
 	private RedoAction redoAction;
 
+	private CentralTermAction centralTermAction;
+
 	public ActionManager() {
 		initActions();
 	}
@@ -59,5 +61,6 @@ public class ActionManager {
 		templateAction = new TemplateAction();
 		undoAction = new UndoAction();
 		redoAction = new RedoAction();
+		centralTermAction = new CentralTermAction();
 	}
 }

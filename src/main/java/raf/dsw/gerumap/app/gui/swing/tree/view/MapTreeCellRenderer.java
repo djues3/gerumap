@@ -35,12 +35,12 @@ public class MapTreeCellRenderer extends DefaultTreeCellRenderer {
 		}
 
 		Icon icon = null;
-        if (imageURL != null)
-        // Posto su slike 100x100, skalirane su na 20x20
-        {
-            icon = new ImageIcon(
-                new ImageIcon(imageURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
-        }
+		if (imageURL != null)
+		// Posto su slike 100x100, skalirane su na 20x20
+		{
+			icon = new ImageIcon(
+				new ImageIcon(imageURL).getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+		}
 		setIcon(icon);
 
 		return this;

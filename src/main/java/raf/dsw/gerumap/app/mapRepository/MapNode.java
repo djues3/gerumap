@@ -12,7 +12,7 @@ import raf.dsw.gerumap.app.observer.IPublisherImpl;
 public abstract class MapNode extends IPublisherImpl {
 
 	protected String name;
-	protected MapNode parent;
+	protected transient MapNode parent;
 
 	public void setName(String name) {
 		this.name = name;

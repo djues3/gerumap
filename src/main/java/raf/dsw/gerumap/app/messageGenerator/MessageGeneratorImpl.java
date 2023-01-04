@@ -35,5 +35,10 @@ public class MessageGeneratorImpl extends IPublisherImpl implements MessageGener
 		this.addSubscriber(AppCore.getInstance().getLogger());
 		this.addSubscriber(AppCore.getInstance().getGui());
 	}
+
+	@Override
+	public void generate(Throwable t) {
+		generate("", Message.Level.ERROR, t);
+	}
 }
 

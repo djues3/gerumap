@@ -39,7 +39,6 @@ public class GsonSerializer implements Serializer {
 		try (FileReader reader = new FileReader(file)) {
 			Project p = (Project) gson.fromJson(reader, MapNode.class);
 			p.setFile(file);
-			System.out.println("p = " + p);
 			return p;
 		} catch (IOException e) {
 			AppCore.getInstance().getMessageGenerator()
@@ -51,7 +50,6 @@ public class GsonSerializer implements Serializer {
 	@Override
 	public void saveProject(Project project) {
 		try (FileWriter writer = new FileWriter(project.getFile())) {
-//			System.out.println(gson.toJson(project, MapNode.class));
 			gson.toJson(project, writer);
 		} catch (IOException e) {
 			AppCore.getInstance().getMessageGenerator()

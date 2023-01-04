@@ -153,6 +153,10 @@ public class ProjectView extends JPanel implements ISubscriber {
 		this.stateManager.setZoomState();
 	}
 
+	public void startCentralTermState() {
+		this.stateManager.setCentralTermState();
+	}
+
 	public void mousePressed(int x, int y, MindMapView view) {
 		this.stateManager.getState().mousePressed(x, y, view);
 	}

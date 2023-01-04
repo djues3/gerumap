@@ -20,22 +20,19 @@ import raf.dsw.gerumap.app.messageGenerator.Message.Level;
 @NoArgsConstructor
 public class LinkState extends State {
 
-	private Integer startX, startY, startXReal, startYReal;
+	private Integer startX;
+	private Integer startY;
 	private Link link;
 
 	@Override
 	public void mousePressed(int x, int y, MindMapView view) {
+		startX = x;
+		startY = y;
 		view.setTempShape(null);
 		Point2D real = mapPoints(x, y, view.getAffineTransform());
 		Term term = view.getMindMap().getTermAt((int) real.getX(), (int) real.getY());
 		link = new Link();
 		if (term != null) {
-			startX = x;
-			startY = y;
-			x = (int) real.getX();
-			y = (int) real.getY();
-			startXReal = x;
-			startYReal = y;
 			if (link.getFrom() == null) {
 				link.setFrom(term);
 			}
@@ -92,6 +89,6 @@ public class LinkState extends State {
 		link = new Link();
 		view.setTempShape(null);
 		view.repaint();
- 	}
+	}
 }
 
