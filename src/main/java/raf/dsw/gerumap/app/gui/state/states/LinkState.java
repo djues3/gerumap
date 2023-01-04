@@ -10,6 +10,7 @@ import raf.dsw.gerumap.app.gui.state.State;
 import raf.dsw.gerumap.app.gui.swing.commands.implementation.AddLinkCommand;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
+import raf.dsw.gerumap.app.mapRepository.MapNode;
 import raf.dsw.gerumap.app.mapRepository.model.MindMap;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Link;
 import raf.dsw.gerumap.app.mapRepository.model.elements.Term;
@@ -79,14 +80,31 @@ public class LinkState extends State {
 			startY = null;
 			return;
 		}
+		for (MapNode node : view.getMindMap().getChildren()) {
+			if (node instanceof Link l) {
+				if (l.equals(link)) {
+					link = new Link();
+					view.setTempShape(null);
+					view.repaint();
+					startX = null;
+					startY = null;
+					AppCore.getInstance().getMessageGenerator()
+						.generate("Link already exists!", Level.WARNING);
+					return;
+				}
+			}
+		}
 		if (MindMap.isCyclic(view.getMindMap(), link.getFrom(), link.getTo())) {
 			link = new Link();
 			view.setTempShape(null);
 			view.repaint();
+			startX = null;
+			startY = null;
 			AppCore.getInstance().getMessageGenerator()
 				.generate("Cyclic links are not permitted!", Level.WARNING);
 			return;
 		}
+
 		AddLinkCommand command = new AddLinkCommand(link, view);
 		MainFrame.getInstance().getCommandManager().addCommand(command);
 		startX = null;

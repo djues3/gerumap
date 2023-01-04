@@ -20,5 +20,6 @@ public interface MapTree {
 
 
 	void loadProject(Project p);
+
 	void loadMindMap(MindMap m);
 }

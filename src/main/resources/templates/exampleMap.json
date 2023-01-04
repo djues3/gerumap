@@ -1,0 +1,166 @@
+{
+  "type": "MindMap",
+  "template": false,
+  "children": [
+    {
+      "type": "Term",
+      "color": -927270145,
+      "x": 186,
+      "y": 117,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "New Term",
+      "name": "Term80875"
+    },
+    {
+      "type": "Term",
+      "color": -927270145,
+      "x": 310,
+      "y": 303,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "New Term",
+      "name": "Term72769"
+    },
+    {
+      "type": "Term",
+      "color": -927270145,
+      "x": 433,
+      "y": 88,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "New Term",
+      "name": "Term18156"
+    },
+    {
+      "type": "Term",
+      "color": -927270145,
+      "x": 582,
+      "y": 281,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "New Term",
+      "name": "Term50254"
+    },
+    {
+      "type": "Term",
+      "color": -927270145,
+      "x": 753,
+      "y": 64,
+      "width": 100,
+      "height": 50,
+      "centralTerm": false,
+      "text": "New Term",
+      "name": "Term58197"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -927270145,
+        "x": 186,
+        "y": 117,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "New Term",
+        "name": "Term80875"
+      },
+      "to": {
+        "type": "Term",
+        "color": -927270145,
+        "x": 433,
+        "y": 88,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "New Term",
+        "name": "Term18156"
+      },
+      "name": "Link34288"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -927270145,
+        "x": 433,
+        "y": 88,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "New Term",
+        "name": "Term18156"
+      },
+      "to": {
+        "type": "Term",
+        "color": -927270145,
+        "x": 310,
+        "y": 303,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "New Term",
+        "name": "Term72769"
+      },
+      "name": "Link47252"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -927270145,
+        "x": 433,
+        "y": 88,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "New Term",
+        "name": "Term18156"
+      },
+      "to": {
+        "type": "Term",
+        "color": -927270145,
+        "x": 582,
+        "y": 281,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "New Term",
+        "name": "Term50254"
+      },
+      "name": "Link51489"
+    },
+    {
+      "type": "Link",
+      "from": {
+        "type": "Term",
+        "color": -927270145,
+        "x": 433,
+        "y": 88,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "New Term",
+        "name": "Term18156"
+      },
+      "to": {
+        "type": "Term",
+        "color": -927270145,
+        "x": 753,
+        "y": 64,
+        "width": 100,
+        "height": 50,
+        "centralTerm": false,
+        "text": "New Term",
+        "name": "Term58197"
+      },
+      "name": "Link22161"
+    }
+  ],
+  "name": "MindMap 36"
+}

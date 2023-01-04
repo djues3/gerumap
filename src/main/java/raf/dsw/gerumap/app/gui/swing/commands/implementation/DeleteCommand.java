@@ -30,12 +30,16 @@ public class DeleteCommand extends AbstractCommand {
 		for (Term t : terms) {
 //            view.getMindMap().removeChild(t);
 			view.removePainter(view.getPainterForTerm(t));
+			t.setParent(null);
 		}
 		for (Link l : links) {
 			l.getTo().getLinks().remove(l);
 			l.getFrom().getLinks().remove(l);
 //            view.getMindMap().removeChild(l);
 			view.removePainter(view.getPainterForLink(l));
+			l.setFrom(null);
+			l.setTo(null);
+			l.setParent(null);
 		}
 	}
 
@@ -46,18 +50,19 @@ public class DeleteCommand extends AbstractCommand {
 				continue;
 			}
 			view.getMindMap().addChild(t);
-//            view.removePainter(view.getPainterForTerm(t));
 			view.addPainter(new TermPainter(t, view));
+			t.setParent(view.getMindMap());
 		}
 		for (Link l : links) {
 			if (l == null) {
 				continue;
 			}
+			l.setParent(view.getMindMap());
 			view.getMindMap().addChild(l);
 			l.getTo().getLinks().add(l);
 			l.getFrom().getLinks().add(l);
-//            view.removePainter(view.getPainterForLink(l));
 			view.addPainter(new LinkPainter(l, view));
+			view.repaint();
 		}
 	}
 }

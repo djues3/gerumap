@@ -83,10 +83,9 @@ public class EditState extends State {
 		edit.getTextField().setText(term.getText());
 		dialog.setModal(true);
 		dialog.setSize(screenSize.width / 3, screenSize.height / 3);
-
+		dialog.getRootPane().setDefaultButton(edit.getDoneButton());
 		dialog.setContentPane(edit);
 		dialog.setLocationRelativeTo(MainFrame.getInstance());
-
 		dialog.setVisible(true);
 
 		Color color = edit.getColor();

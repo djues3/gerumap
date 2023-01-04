@@ -7,6 +7,7 @@ import raf.dsw.gerumap.app.gui.state.State;
 import raf.dsw.gerumap.app.gui.swing.commands.implementation.DeleteCommand;
 import raf.dsw.gerumap.app.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.app.gui.swing.view.MindMapView;
+import raf.dsw.gerumap.app.gui.swing.view.ProjectView;
 import raf.dsw.gerumap.app.gui.swing.view.painter.LinkPainter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.Painter;
 import raf.dsw.gerumap.app.gui.swing.view.painter.TermPainter;
@@ -22,9 +23,19 @@ public class DeleteState extends State {
 		y = (int) real.getY();
 		Term termToRemove = null;
 		List<Link> linksToRemove = new ArrayList<>();
+		List<Term> termsToRemove = new ArrayList<>();
 		for (Painter p : view.getPainters()) {
 			if (p instanceof TermPainter tp) {
 				if (tp.elementAt(x, y)) {
+					List<TermPainter> selected = ((ProjectView) MainFrame.getInstance().getProjectView()).getStateManager().getSelectedTerms();
+					if(selected.contains(tp)) {
+						selected.forEach(t -> {
+							termsToRemove.add(t.getTerm());
+							linksToRemove.addAll(t.getTerm().getLinks());
+						});
+						termToRemove = tp.getTerm();
+						break;
+					}
 					Term term = tp.getTerm();
 					termToRemove = term;
 					linksToRemove.addAll(term.getLinks());
@@ -40,7 +51,7 @@ public class DeleteState extends State {
 				}
 			}
 		}
-		List<Term> termsToRemove = new ArrayList<>();
+
 		termsToRemove.add(termToRemove);
 		DeleteCommand command = new DeleteCommand(termsToRemove, linksToRemove, view);
 		MainFrame.getInstance().getCommandManager().addCommand(command);
