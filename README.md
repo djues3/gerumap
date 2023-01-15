@@ -9,3 +9,5 @@
 ### Notion link ka specifikaciji - https://spiced-apogee-6f5.notion.site/GeRuMap-specifikacija-13d947f3cd5448ae89dbae68c70c062e
 
 ### Notion link ka klasnom dijagramu - https://spiced-apogee-6f5.notion.site/Klasni-dijagram-78a466ce11a64084afe6c49f4419093a
+
+### Notion link ka sequence dijagramu - https://spiced-apogee-6f5.notion.site/Sequence-dijagram-3d796e801ba345b4a74503e0fd25562b
